@@ -3,6 +3,7 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
+using Android.Views.InputMethods;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
 using Google.Android.Material.Snackbar;
@@ -33,13 +34,19 @@ namespace SpockApp.Resources
         
         private void LoginAttempt_Click(object sender, System.EventArgs e)
         {
+
             // Code to be executed when the button is clicked
-            
+
             EditText usernameField = FindViewById<EditText>(Resource.Id.user_name_field);
             string usernameRaw = usernameField.Text;
 
             EditText passwordField = FindViewById<EditText>(Resource.Id.password_field);
             string passwordRaw = passwordField.Text;
+
+            //hide keyboard to see the popup incase of wrong password and/or username
+            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(Context.InputMethodService);
+            inputMethodManager.HideSoftInputFromWindow(passwordField.WindowToken, 0);
+
             Console.WriteLine(usernameRaw);
             Console.WriteLine(passwordRaw);
 
@@ -69,6 +76,7 @@ namespace SpockApp.Resources
             }
             else
             {
+                //popup at the bottom of the screen
                 View view = (View)sender;
                 Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
                     .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();

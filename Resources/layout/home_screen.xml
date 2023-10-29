@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -20,8 +20,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView1"
             android:layout_gravity="center_horizontal|center_vertical"
-            android:foregroundTint="#fffdfdfd" />
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
     </androidx.appcompat.widget.Toolbar>
 
 
-</LinearLayout>
+</RelativeLayout>
