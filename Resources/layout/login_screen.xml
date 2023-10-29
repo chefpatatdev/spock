@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <TextView
+        android:text="Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/user_name_field"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="Username"
+        android:inputType="text"
+        android:maxLength="20" />
+    <TextView
+        android:text="Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password_field"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="Password"
+        android:accessibilityHeading="false"
+        android:inputType="none|textPassword|textNoSuggestions"
+        android:password="true"
+        android:maxLength="20" />
+    <Button
+        android:text="Login"
+        android:layout_width="241.2dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_button"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:clickable="true"/>
+
+
+</LinearLayout>
