@@ -5,14 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
+    android:minHeight="25px"
+    android:gravity="center">
     <TextView
         android:text="Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/username_txt"
+        android:gravity="left"
+        android:layout_marginLeft="16.0dp"
+         />
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350.0dp"
         android:layout_height="wrap_content"
         android:minWidth="25px"
         android:minHeight="25px"
@@ -25,9 +29,12 @@
         android:text="Password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+        android:id="@+id/password_txt"
+        android:gravity="left"
+        android:layout_marginLeft="16.0dp"
+         />
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="350.0dp"
         android:layout_height="wrap_content"
         android:id="@+id/password_field"
         android:layout_gravity="center_horizontal"
@@ -42,7 +49,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/login_button"
         android:layout_gravity="center_vertical|center_horizontal"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:layout_marginBottom="100dp"
+    />
 
 
 </LinearLayout>

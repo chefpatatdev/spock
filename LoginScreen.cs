@@ -7,6 +7,7 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
 using Google.Android.Material.Snackbar;
+using SpockApp.Resources.mipmap_xhdpi;
 using SpockApp.src;
 using System;
 using System.Collections.Generic;
@@ -71,7 +72,7 @@ namespace SpockApp.Resources
             if (allowedEntrance)
             {
                 //swicth to homescreen
-                Intent intent = new Intent(this, typeof(HomeScreen));
+                Intent intent = new Intent(this, typeof(LiveDriving));
                 StartActivity(intent);
             }
             else
