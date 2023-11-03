@@ -7,6 +7,7 @@ using Android.Views.InputMethods;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
 using Google.Android.Material.Snackbar;
+using SpockApp.Resources.mipmap_xhdpi;
 using SpockApp.src;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,8 @@ namespace SpockApp.Resources
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login_screen);
             // Create your application here
-            Button myButton = FindViewById<Button>(Resource.Id.login_button);
-            myButton.Click += LoginAttempt_Click;
+            Button LoginButton = FindViewById<Button>(Resource.Id.login_button);
+            LoginButton.Click += LoginAttempt_Click;
 
 
         }

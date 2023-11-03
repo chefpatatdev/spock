@@ -24,5 +24,38 @@
             android:inputType="none"/>
     </androidx.appcompat.widget.Toolbar>
 
+    <Button
+        android:text="Live driving"
+        android:id="@+id/live_driving_nav"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
+        android:layout_below="@id/toolbar_home"
+        android:layout_marginTop="25dp" />
+    <Button
+        android:text="placeholder1"
+        android:id="@+id/placeholder1"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
+        android:layout_below="@+id/live_driving_nav"
+        />
+        <Button
+        android:text="placeholder2"
+        android:id="@+id/placeholder2"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
+        android:layout_below="@+id/placeholder1"
+         />
+        <Button
+        android:text="placeholder3"
+        android:id="@+id/placeholder3"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
+        android:layout_below="@+id/placeholder2"
+        />
+
 
 </RelativeLayout>

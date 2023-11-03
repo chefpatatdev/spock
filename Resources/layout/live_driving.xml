@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar_live_driving"
+        android:layout_gravity="top">
+        <TextView
+            android:text="Live driving"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/live_driving_text"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
+    </androidx.appcompat.widget.Toolbar>
+    
+    <Button
+        android:text="STOP"
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+        android:id="@+id/center_button"
+        android:layout_centerInParent="true"
+        />
+    <Button
+        android:text="RIGHT"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/right_button"
+        android:layout_toRightOf="@id/center_button"
+        android:layout_alignBottom="@id/center_button"
+        />    
+    <Button
+        android:text="LEFT"
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+        android:id="@+id/left_button"
+        android:layout_toLeftOf="@id/center_button"
+        android:layout_alignBottom="@id/center_button"
+        />    
+    <Button
+        android:text="UP"
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+        android:id="@+id/up_button"
+        android:layout_toRightOf="@id/left_button"
+        android:layout_above="@id/center_button"
+
+        />    
+    <Button
+        android:text="DOWN"
+         android:layout_width="80dp"
+         android:layout_height="80dp"
+        android:id="@+id/down_button"
+        android:layout_toRightOf="@id/left_button"
+        android:layout_below="@id/center_button"
+        />
+</RelativeLayout>
