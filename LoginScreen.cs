@@ -25,8 +25,8 @@ namespace SpockApp.Resources
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.login_screen);
             // Create your application here
-            Button myButton = FindViewById<Button>(Resource.Id.login_button);
-            myButton.Click += LoginAttempt_Click;
+            Button LoginButton = FindViewById<Button>(Resource.Id.login_button);
+            LoginButton.Click += LoginAttempt_Click;
 
 
         }
@@ -72,7 +72,7 @@ namespace SpockApp.Resources
             if (allowedEntrance)
             {
                 //swicth to homescreen
-                Intent intent = new Intent(this, typeof(LiveDriving));
+                Intent intent = new Intent(this, typeof(HomeScreen));
                 StartActivity(intent);
             }
             else
