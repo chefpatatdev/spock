@@ -23,43 +23,73 @@
     </androidx.appcompat.widget.Toolbar>
     
     <Button
-        android:text="STOP"
+        android:text="-"
          android:layout_width="80dp"
          android:layout_height="80dp"
         android:id="@+id/center_button"
         android:layout_centerInParent="true"
         />
     <Button
-        android:text="RIGHT"
+        android:text="→"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/right_button"
         android:layout_toRightOf="@id/center_button"
         android:layout_alignBottom="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingBottom="20dp"
         />    
     <Button
-        android:text="LEFT"
-         android:layout_width="80dp"
-         android:layout_height="80dp"
+        android:text="←"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/left_button"
         android:layout_toLeftOf="@id/center_button"
         android:layout_alignBottom="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="20dp"
         />    
     <Button
-        android:text="UP"
-         android:layout_width="80dp"
-         android:layout_height="80dp"
+        android:text="↑"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/up_button"
         android:layout_toRightOf="@id/left_button"
         android:layout_above="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:paddingTop="20dp"
 
         />    
     <Button
-        android:text="DOWN"
-         android:layout_width="80dp"
-         android:layout_height="80dp"
+        android:text="↓"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:id="@+id/down_button"
         android:layout_toRightOf="@id/left_button"
         android:layout_below="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="20dp"
         />
+        <Button
+        android:text="↷	"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/rr_button"
+        android:layout_toLeftOf="@id/center_button"
+        android:layout_above="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="20dp"
+        />
+        <Button
+        android:text="↶"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/rl_button"
+        android:layout_toRightOf="@id/center_button"
+        android:layout_above="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="20dp"
+        />
+
 </RelativeLayout>
