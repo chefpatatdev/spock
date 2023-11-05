@@ -17,6 +17,9 @@ namespace SpockApp.src
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            string name = Intent.GetStringExtra("test") ?? "Data not available";
+            Button usertest = FindViewById<Button>(Resource.Id.placeholder1);
+            usertest.Text = name;
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.home_screen);
 

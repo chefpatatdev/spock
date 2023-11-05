@@ -44,6 +44,12 @@ namespace SpockApp.Resources
             EditText passwordField = FindViewById<EditText>(Resource.Id.password_field);
             string passwordRaw = passwordField.Text;
 
+            EditText ipField = FindViewById<EditText>(Resource.Id.ip);
+            string ip = ipField.Text;
+
+            EditText portField = FindViewById<EditText>(Resource.Id.port);
+            string port = portField.Text;
+
             //hide keyboard to see the popup incase of wrong password and/or username
             InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(passwordField.WindowToken, 0);
@@ -73,6 +79,7 @@ namespace SpockApp.Resources
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
+                intent.PutExtra("test", usernameField.Text);
                 StartActivity(intent);
             }
             else
