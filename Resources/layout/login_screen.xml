@@ -72,6 +72,12 @@
         android:accessibilityPaneTitle="port"
         android:inputType="number"
         android:maxLength="20" />
+    <TextView
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
 
 
 </LinearLayout>

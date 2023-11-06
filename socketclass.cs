@@ -12,34 +12,47 @@ using System.Text;
 
 namespace SpockApp
 {
-    class socketclass
+
+    static class socket
     {
-        private Socket socketint;
+        private static Socket socketObj;
+        public static String host;
+        public static int port;
 
-        public socketclass()
+        public static void Connect(string host, int port)
         {
-            socketint = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.host = host;
+            socket.port = port;
+            socket.socketObj = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.socketObj.Connect(host, port);
         }
-
-        public void Connectsocket(string host, int port)
+        public static void Disconnect()
         {
-            socketint.Connect(host, port);
+            socket.socketObj.Close();
         }
-
-        public string sendmessage(string message = null)
+        public static bool IsConnected()
         {
-            if (socketint == null || !socketint.Connected)
+            if (socketObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return socketObj.Connected;
+            }
+        }
+        public static string sendmessage(string message = null)
+        {
+            if (socketObj == null || !socketObj.Connected)
             {
                 return "Socket is not connected.";
             }
 
             byte[] requestBytes = Encoding.ASCII.GetBytes(message);
-            socketint.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
-
+            socket.socketObj.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
             byte[] responseBytes = new byte[256];
-            int bytesReceived = socketint.Receive(responseBytes);
+            int bytesReceived = socketObj.Receive(responseBytes);
             string response = Encoding.ASCII.GetString(responseBytes, 0, bytesReceived);
-
             return response;
         }
     }

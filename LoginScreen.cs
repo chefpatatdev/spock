@@ -12,14 +12,18 @@ using SpockApp.src;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 
 
-namespace SpockApp.Resources
+namespace SpockApp
 {
+
+
     [Activity(Label = "LoginScreen", MainLauncher = true)]
     public class LoginScreen : Activity
     {
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -31,8 +35,6 @@ namespace SpockApp.Resources
 
         }
 
-
-        
         private void LoginAttempt_Click(object sender, System.EventArgs e)
         {
 
@@ -44,12 +46,6 @@ namespace SpockApp.Resources
             EditText passwordField = FindViewById<EditText>(Resource.Id.password_field);
             string passwordRaw = passwordField.Text;
 
-            EditText ipField = FindViewById<EditText>(Resource.Id.ip);
-            string ip = ipField.Text;
-
-            EditText portField = FindViewById<EditText>(Resource.Id.port);
-            string port = portField.Text;
-
             //hide keyboard to see the popup incase of wrong password and/or username
             InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(passwordField.WindowToken, 0);
@@ -57,29 +53,40 @@ namespace SpockApp.Resources
             Console.WriteLine(usernameRaw);
             Console.WriteLine(passwordRaw);
 
-            bool allowedEntrance = false;
+
 
             //temporary for development reasons
-            if(usernameRaw.Equals("admin") && passwordRaw.Equals("admin"))
-            {
-                allowedEntrance = true;
+
+
+            EditText ipField = FindViewById<EditText>(Resource.Id.ip);
+            EditText portField = FindViewById<EditText>(Resource.Id.port);
+            if (!socket.IsConnected()){
+                socket.Connect(ipField.Text, Int32.Parse(portField.Text));
+
             }
-
-
             var key = "b14ca5898a4e4133bbce2ea2315a1916";
             var encryptedUsername = AesOperation.EncryptString(key, usernameRaw);
             var encryptedPassword = AesOperation.EncryptString(key, passwordRaw);
             Console.WriteLine(encryptedUsername);
             Console.WriteLine(encryptedPassword);
             //encrypt password before sending message thru socket
-
+            String allowdEntrance=socket.sendmessage("login," + usernameRaw + "," + passwordRaw);
             //allowedEntrance = response from socket
+            TextView box = FindViewById<TextView>(Resource.Id.textView1);
 
-            if (allowedEntrance)
+            while (true)
+            {
+
+                box.Text = socket.IsConnected().ToString();
+            }
+
+            if (allowdEntrance == "ok")
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
-                intent.PutExtra("test", usernameField.Text);
+
+                intent.PutExtra("host", socket.host);
+                intent.PutExtra("port", socket.port);
                 StartActivity(intent);
             }
             else
