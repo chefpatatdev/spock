@@ -32,17 +32,25 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Button leftButton = FindViewById<Button>(Resource.Id.left_button);
             leftButton.Touch += LeftButton_Touch;
 
+            Button RRButton = FindViewById<Button>(Resource.Id.rr_button);
+            RRButton.Touch += RRButton_Touch;
+
+            Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
+            RLButton.Touch += RLButton_Touch;
         }
 
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
-        { 
+        {
+            Button btn = (Button)sender;
             switch (e.Event.Action & MotionEventActions.Mask)
             {
                 case MotionEventActions.Down:
-                case MotionEventActions.Move://treated same as down action
+                    btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
                     Console.WriteLine("up button pressed");
+                    
                     break;
                 case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
                     Console.WriteLine("up button released");
                     break;
                 default:
@@ -53,13 +61,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
         private void DownButton_Touch(object sender, View.TouchEventArgs e)
         {
+            Button btn = (Button)sender;
             switch (e.Event.Action & MotionEventActions.Mask)
             {
                 case MotionEventActions.Down:
-                case MotionEventActions.Move:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
                     Console.WriteLine("down button pressed");
                     break;
                 case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     Console.WriteLine("down button released");
                     break;
                 default:
@@ -70,13 +80,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
         private void RightButton_Touch(object sender, View.TouchEventArgs e)
         {
+            Button btn = (Button)sender;
             switch (e.Event.Action & MotionEventActions.Mask)
             {
                 case MotionEventActions.Down:
-                case MotionEventActions.Move: 
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
                     Console.WriteLine("right button pressed");
                     break;
                 case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     Console.WriteLine("right button released");
                     break;
                 default:
@@ -87,17 +99,57 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
         private void LeftButton_Touch(object sender, View.TouchEventArgs e)
         {
+            Button btn = (Button)sender;
             switch (e.Event.Action & MotionEventActions.Mask)
             {
                 case MotionEventActions.Down:
-                case MotionEventActions.Move:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
                     Console.WriteLine("left button pressed");
                     break;
                 case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     Console.WriteLine("left button released");
                     break;
                 default:
                     Console.WriteLine("default left");
+                    break;
+            }
+        }
+
+        private void RRButton_Touch(object sender, View.TouchEventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (e.Event.Action & MotionEventActions.Mask)
+            {
+                case MotionEventActions.Down:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
+                    Console.WriteLine("RR button pressed");
+                    break;
+                case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
+                    Console.WriteLine("RR button released");
+                    break;
+                default:
+                    Console.WriteLine("default RR");
+                    break;
+            }
+        }
+
+        private void RLButton_Touch(object sender, View.TouchEventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (e.Event.Action & MotionEventActions.Mask)
+            {
+                case MotionEventActions.Down:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
+                    Console.WriteLine("RL button pressed");
+                    break;
+                case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
+                    Console.WriteLine("RL button released");
+                    break;
+                default:
+                    Console.WriteLine("default RL");
                     break;
             }
         }
