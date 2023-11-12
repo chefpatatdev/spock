@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar_live_driving"
+        android:layout_gravity="top">
+        <TextView
+            android:text="Measure"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/measure_text"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:text="Distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        aandroid:layout_gravity="center_horizontal"
+        android:id="@+id/dist_text"/>
+
+    <Button
+        android:text="Measure"
+        android:layout_width="241.2dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/measure_button"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:layout_marginBottom="100dp"
+    />
+
+</LinearLayout>

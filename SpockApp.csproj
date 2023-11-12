@@ -64,6 +64,7 @@
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
     <Compile Include="LoginScreen.cs" />
+    <Compile Include="MeasuringScreen.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -110,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\login_screen.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\measuring_screen.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
