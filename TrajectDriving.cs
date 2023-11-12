@@ -14,6 +14,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
     [Activity(Label = "TrajectDriving")]
     public class TrajectDriving : Activity
     {
+        string traject_index;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -37,6 +38,28 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
             RLButton.Touch += RLButton_Touch;
+
+
+            //Maken van drop down menu om traject te slecteren
+            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
+            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+            //custom stings in de drop down menu zetten
+            var adapter = ArrayAdapter.CreateFromResource(
+                    this, Resource.Array.traject_array, Android.Resource.Layout.SimpleSpinnerItem);
+
+            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinner.Adapter = adapter;
+
+        }
+        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            //Traject opslaan om door te sturen naar database
+            traject_index = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
+
+            //pop up dat zegt welk traject gekozen is
+            string toast = string.Format("The traject is {0}", spinner.GetItemAtPosition(e.Position));
+            Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
 
         private void UpButton_Touch(object sender, View.TouchEventArgs e)

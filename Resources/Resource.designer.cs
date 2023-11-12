@@ -4153,79 +4153,73 @@ namespace SpockApp
 			public const int toolbar_live_driving = 2131296488;
 			
 			// aapt resource value: 0x7F0900E9
-			public const int toolbar_traject_driving = 2131296489;
+			public const int top = 2131296489;
 			
 			// aapt resource value: 0x7F0900EA
-			public const int top = 2131296490;
+			public const int topPanel = 2131296490;
 			
 			// aapt resource value: 0x7F0900EB
-			public const int topPanel = 2131296491;
+			public const int touch_outside = 2131296491;
 			
 			// aapt resource value: 0x7F0900EC
-			public const int touch_outside = 2131296492;
+			public const int traject_driving_nav = 2131296492;
 			
 			// aapt resource value: 0x7F0900ED
-			public const int traject_driving_nav = 2131296493;
+			public const int transition_current_scene = 2131296493;
 			
 			// aapt resource value: 0x7F0900EE
-			public const int traject_driving_text = 2131296494;
+			public const int transition_layout_save = 2131296494;
 			
 			// aapt resource value: 0x7F0900EF
-			public const int transition_current_scene = 2131296495;
+			public const int transition_position = 2131296495;
 			
 			// aapt resource value: 0x7F0900F0
-			public const int transition_layout_save = 2131296496;
+			public const int transition_scene_layoutid_cache = 2131296496;
 			
 			// aapt resource value: 0x7F0900F1
-			public const int transition_position = 2131296497;
+			public const int transition_transform = 2131296497;
 			
 			// aapt resource value: 0x7F0900F2
-			public const int transition_scene_layoutid_cache = 2131296498;
+			public const int @unchecked = 2131296498;
 			
 			// aapt resource value: 0x7F0900F3
-			public const int transition_transform = 2131296499;
+			public const int uniform = 2131296499;
 			
 			// aapt resource value: 0x7F0900F4
-			public const int @unchecked = 2131296500;
+			public const int unlabeled = 2131296500;
 			
 			// aapt resource value: 0x7F0900F5
-			public const int uniform = 2131296501;
+			public const int up = 2131296501;
 			
 			// aapt resource value: 0x7F0900F6
-			public const int unlabeled = 2131296502;
+			public const int up_button = 2131296502;
 			
 			// aapt resource value: 0x7F0900F7
-			public const int up = 2131296503;
-			
-			// aapt resource value: 0x7F0900F8
-			public const int up_button = 2131296504;
+			public const int useLogo = 2131296503;
 			
 			// aapt resource value: 0x7F0900F9
-			public const int useLogo = 2131296505;
+			public const int username_txt = 2131296505;
 			
-			// aapt resource value: 0x7F0900FB
-			public const int username_txt = 2131296507;
+			// aapt resource value: 0x7F0900F8
+			public const int user_name_field = 2131296504;
 			
 			// aapt resource value: 0x7F0900FA
-			public const int user_name_field = 2131296506;
+			public const int view_offset_helper = 2131296506;
+			
+			// aapt resource value: 0x7F0900FB
+			public const int view_tree_saved_state_registry_owner = 2131296507;
 			
 			// aapt resource value: 0x7F0900FC
-			public const int view_offset_helper = 2131296508;
+			public const int visible = 2131296508;
 			
 			// aapt resource value: 0x7F0900FD
-			public const int view_tree_saved_state_registry_owner = 2131296509;
+			public const int visible_removing_fragment_view_tag = 2131296509;
 			
 			// aapt resource value: 0x7F0900FE
-			public const int visible = 2131296510;
+			public const int withText = 2131296510;
 			
 			// aapt resource value: 0x7F0900FF
-			public const int visible_removing_fragment_view_tag = 2131296511;
-			
-			// aapt resource value: 0x7F090100
-			public const int withText = 2131296512;
-			
-			// aapt resource value: 0x7F090101
-			public const int wrap_content = 2131296513;
+			public const int wrap_content = 2131296511;
 			
 			static Id()
 			{
@@ -4523,9 +4517,6 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F0C003B
 			public const int support_simple_spinner_dropdown_item = 2131492923;
-			
-			// aapt resource value: 0x7F0C003C
-			public const int traject_driving = 2131492924;
 			
 			static Layout()
 			{
