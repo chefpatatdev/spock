@@ -17,9 +17,9 @@ namespace SpockApp.Resources.mipmap_xhdpi
     {
         string traject_index;
         int number_picker_value;
-        string[,] traject_1;
-        string[,] traject_2;
-        string[,] traject_3;
+        string[,] traject_1 = new string[2,50];
+        string[,] traject_2 = new string[2, 50];
+        string[,] traject_3 = new string[2, 50];
         int array_index = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -45,19 +45,18 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
             RLButton.Touch += RLButton_Touch;
 
-            int rows = 2;
-            int cols = 50;
-            initializeStringMatrix(rows, cols, traject_1);
-            initializeStringMatrix(rows, cols, traject_2);
-            initializeStringMatrix(rows, cols, traject_3);
+            
+            initializeStringMatrix(traject_1);
+            initializeStringMatrix(traject_2);
+            initializeStringMatrix(traject_3);
             initializeSpinner();
             initializePicker();
         }
-        private void initializeStringMatrix(int row, int col, string[,] matrix)
+        private void initializeStringMatrix(string[,] matrix)
         {
-            for (int i = 0; i < row; i++)
+            for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < col; j++)
+                for (int j = 0; j < 50 ; j++)
                 {
                     matrix[i, j] = "";
                 }
