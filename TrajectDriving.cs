@@ -15,6 +15,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
     public class TrajectDriving : Activity
     {
         string traject_index;
+        int number_picker_value;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -40,6 +41,21 @@ namespace SpockApp.Resources.mipmap_xhdpi
             RLButton.Touch += RLButton_Touch;
 
 
+
+            initializeSpinner();
+            initializePicker();
+        }
+        private void initializePicker()
+        {
+            NumberPicker picker = FindViewById<NumberPicker>(Resource.Id.numberPicker);
+            picker.MinValue = 0;
+            picker.MaxValue = 10;
+            picker.ValueChanged += numberPicker;
+            
+        }
+
+        private void initializeSpinner()
+        {
             //Maken van drop down menu om traject te slecteren
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
@@ -49,7 +65,11 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
-
+        }
+        private void numberPicker(object sender, System.EventArgs e)
+        {
+            NumberPicker picker = (NumberPicker)sender;
+            number_picker_value = picker.Value;
         }
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {

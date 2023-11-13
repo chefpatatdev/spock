@@ -25,11 +25,19 @@ namespace SpockApp.src
 
             Button TrajectDrivingNav = FindViewById<Button>(Resource.Id.traject_driving_nav);
             TrajectDrivingNav.Click += TrajectDrivingNav_Click;
+
+            Button test = FindViewById<Button>(Resource.Id.test);
+            test.Click += Test_click;
         }
 
         private void LiveDrivingNav_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(LiveDriving));
+            StartActivity(intent);
+        }
+        private void Test_click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(test));
             StartActivity(intent);
         }
 
