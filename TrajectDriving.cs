@@ -26,7 +26,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
 
-            // Create your application here
+            InitializeStringMatrix(traject_1);
+            InitializeStringMatrix(traject_2);
+            InitializeStringMatrix(traject_3);
+            InitializeSpinner();
+            InitializePicker();
+            InitializeButtons();
+        }
+        private void InitializeButtons()
+        {
             Button upButton = FindViewById<Button>(Resource.Id.up_button);
             upButton.Touch += UpButton_Touch;
 
@@ -47,15 +55,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             Button centerButton = FindViewById<Button>(Resource.Id.center_button);
             centerButton.Touch += CenterButton_Touch;
-
-
-            initializeStringMatrix(traject_1);
-            initializeStringMatrix(traject_2);
-            initializeStringMatrix(traject_3);
-            initializeSpinner();
-            initializePicker();
         }
-        private void initializeStringMatrix(string[,] matrix)
+        private void InitializeStringMatrix(string[,] matrix)
         {
             for (int i = 0; i < 2; i++)
             {
@@ -65,20 +66,20 @@ namespace SpockApp.Resources.mipmap_xhdpi
                 }
             }
         }
-        private void initializePicker()
+        private void InitializePicker()
         {
             NumberPicker picker = FindViewById<NumberPicker>(Resource.Id.numberPicker);
             picker.MinValue = 0;
             picker.MaxValue = 10;
-            picker.ValueChanged += numberPicker;
+            picker.ValueChanged += NumberPicker;
             
         }
 
-        private void initializeSpinner()
+        private void InitializeSpinner()
         {
             //Maken van drop down menu om traject te slecteren
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
-            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
+            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
             //custom stings in de drop down menu zetten
             var adapter = ArrayAdapter.CreateFromResource(
                     this, Resource.Array.traject_array, Android.Resource.Layout.SimpleSpinnerItem);
@@ -86,12 +87,12 @@ namespace SpockApp.Resources.mipmap_xhdpi
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
         }
-        private void numberPicker(object sender, System.EventArgs e)
+        private void NumberPicker(object sender, System.EventArgs e)
         {
             NumberPicker picker = (NumberPicker)sender;
             number_picker_value = picker.Value;
         }
-        private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             //Traject opslaan om door te sturen naar database
