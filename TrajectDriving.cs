@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static Android.InputMethodServices.Keyboard;
 
 namespace SpockApp.Resources.mipmap_xhdpi
 {
@@ -16,6 +17,10 @@ namespace SpockApp.Resources.mipmap_xhdpi
     {
         string traject_index;
         int number_picker_value;
+        string[,] traject_1;
+        string[,] traject_2;
+        string[,] traject_3;
+        int array_index = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -40,10 +45,23 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
             RLButton.Touch += RLButton_Touch;
 
-
-
+            int rows = 2;
+            int cols = 50;
+            initializeStringMatrix(rows, cols, traject_1);
+            initializeStringMatrix(rows, cols, traject_2);
+            initializeStringMatrix(rows, cols, traject_3);
             initializeSpinner();
             initializePicker();
+        }
+        private void initializeStringMatrix(int row, int col, string[,] matrix)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    matrix[i, j] = "";
+                }
+            }
         }
         private void initializePicker()
         {
@@ -80,8 +98,33 @@ namespace SpockApp.Resources.mipmap_xhdpi
             //pop up dat zegt welk traject gekozen is
             string toast = string.Format("The traject is {0}", spinner.GetItemAtPosition(e.Position));
             Toast.MakeText(this, toast, ToastLength.Long).Show();
+
+            array_index = 0;
         }
 
+        private void TrajectUpdater(string button)
+        {
+            switch (traject_index) {
+                case "Traject 1":
+                    traject_1[0, array_index] = button;
+                    traject_1[1, array_index] = number_picker_value.ToString();
+                    array_index++;
+                    break;
+                case "Traject 2":
+                    traject_2[0, array_index] = button;
+                    traject_2[1, array_index] = number_picker_value.ToString();
+                    array_index++;
+                    break;
+                case "Traject 3":
+                    traject_3[0, array_index] = button;
+                    traject_3[1, array_index] = number_picker_value.ToString();
+                    array_index++;
+                    break;
+                default:
+                    array_index = 0;
+                    break;
+            }
+        }
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
