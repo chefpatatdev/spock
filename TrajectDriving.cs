@@ -45,7 +45,10 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
             RLButton.Touch += RLButton_Touch;
 
-            
+            Button centerButton = FindViewById<Button>(Resource.Id.center_button);
+            centerButton.Touch += CenterButton_Touch;
+
+
             initializeStringMatrix(traject_1);
             initializeStringMatrix(traject_2);
             initializeStringMatrix(traject_3);
@@ -131,15 +134,14 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    Console.WriteLine("up button pressed");
-                    
+                    TrajectUpdater("U");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
-                    Console.WriteLine("up button released");
+                    //Console.WriteLine("up button released");
                     break;
                 default:
-                    Console.WriteLine("default up");
+                    TrajectUpdater("U");
                     break;
             }
         }
@@ -151,14 +153,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    Console.WriteLine("down button pressed");
+                    TrajectUpdater("D");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    Console.WriteLine("down button released");
                     break;
                 default:
-                    Console.WriteLine("default down");
+                    TrajectUpdater("D");
                     break;
             }
         }
@@ -170,14 +171,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    Console.WriteLine("right button pressed");
+                    TrajectUpdater("R");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    Console.WriteLine("right button released");
                     break;
                 default:
-                    Console.WriteLine("default right");
+                    TrajectUpdater("R");
                     break;
             }
         }
@@ -189,14 +189,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    Console.WriteLine("left button pressed");
+                    TrajectUpdater("L");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    Console.WriteLine("left button released");
                     break;
                 default:
-                    Console.WriteLine("default left");
+                    TrajectUpdater("L");
                     break;
             }
         }
@@ -208,14 +207,14 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    Console.WriteLine("RR button pressed");
+                    TrajectUpdater("RR");
+
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    Console.WriteLine("RR button released");
                     break;
                 default:
-                    Console.WriteLine("default RR");
+                    TrajectUpdater("RR");
                     break;
             }
         }
@@ -227,14 +226,33 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    Console.WriteLine("RL button pressed");
+                    TrajectUpdater("RL");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    Console.WriteLine("RL button released");
                     break;
                 default:
-                    Console.WriteLine("default RL");
+                    TrajectUpdater("RL");
+                    break;
+            }
+        }
+
+        private void CenterButton_Touch(object sender, View.TouchEventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (e.Event.Action & MotionEventActions.Mask)
+            {
+                case MotionEventActions.Down:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
+                    TrajectUpdater("Stop");
+                    array_index  = 0;
+                    break;
+                case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
+                    break;
+                default:
+                    TrajectUpdater("Stop");
+                    array_index = 0;
                     break;
             }
         }
