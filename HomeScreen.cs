@@ -23,7 +23,7 @@ namespace SpockApp.src
             Button LiveDrivingNav = FindViewById<Button>(Resource.Id.live_driving_nav);
             LiveDrivingNav.Click += LiveDrivingNav_Click;
 
-            Button TrajectDrivingNav = FindViewById<Button>(Resource.Id.live_driving_nav);
+            Button TrajectDrivingNav = FindViewById<Button>(Resource.Id.traject_driving_nav);
             TrajectDrivingNav.Click += TrajectDrivingNav_Click;
         }
 
