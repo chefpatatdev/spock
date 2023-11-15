@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
+    <Compile Include="test.cs" />
+    <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
     <Compile Include="LiveDriving.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -140,6 +142,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\live_upbutton_unpressed.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\traject_driving.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\pickertest.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

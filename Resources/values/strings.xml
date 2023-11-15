@@ -3,4 +3,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
+	<string name="planet_prompt">Select Traject Number</string>
+	<string-array name="traject_array">
+		<item>Traject 1</item>
+		<item>Traject 2</item>
+		<item>Traject 3</item>
+	</string-array>
 </resources>
