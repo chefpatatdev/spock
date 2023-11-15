@@ -52,6 +52,32 @@
         android:clickable="true"
         android:layout_marginBottom="100dp"
     />
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/ip"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="ip"
+        android:inputType="text"
+        android:maxLength="20" />
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/port"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="port"
+        android:inputType="number"
+        android:maxLength="20" />
+    <TextView
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
 
 
 </LinearLayout>
