@@ -41,8 +41,8 @@
         android:layout_below="@+id/live_driving_nav"
         />
         <Button
-        android:text="placeholder2"
-        android:id="@+id/test"
+        android:text="measuring"
+        android:id="@+id/measuing_button"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="50dp"
@@ -54,7 +54,7 @@
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="50dp"
-        android:layout_below="@+id/test"
+        android:layout_below="@+id/measuing_button"
         />
 
 

@@ -23,12 +23,6 @@
             android:inputType="none"/>
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:text="Distance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/dist_text"/>
 
     <Button
         android:text="measure"
@@ -43,7 +37,7 @@
         android:text="__cm"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:id="@+id/up_button"
+        android:id="@+id/measure_text"
         android:layout_above="@id/measure_button"
         android:autoSizeTextType="uniform"
         android:gravity="center"

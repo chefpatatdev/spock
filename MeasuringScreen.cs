@@ -24,8 +24,8 @@ namespace SpockApp.Resources
             // Create your application here
             Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
             //LoginButton.Click += LoginAttempt_Click;
-
-
+            TextView measureText = FindViewById<TextView>(Resource.Id.measure_text);
+            measureText.Text= "test cm";
         }
     }
 }
