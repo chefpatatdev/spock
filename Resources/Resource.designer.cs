@@ -14,7 +14,7 @@ namespace SpockApp
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.1.111")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.1.0.5")]
 	public partial class Resource
 	{
 		
@@ -3347,6 +3347,9 @@ namespace SpockApp
 			// aapt resource value: 0x7F08006A
 			public const int design_password_eye = 2131230826;
 			
+			// aapt resource value: 0x7F08006D
+			public const int filled = 2131230829;
+			
 			// aapt resource value: 0x7F08006B
 			public const int design_snackbar_background = 2131230827;
 			
@@ -3436,6 +3439,9 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F080088
 			public const int tooltip_frame_dark = 2131230856;
+			
+			// aapt resource value: 0x7F080003
+			public const int META = 2131230723;
 			
 			// aapt resource value: 0x7F080089
 			public const int tooltip_frame_light = 2131230857;
