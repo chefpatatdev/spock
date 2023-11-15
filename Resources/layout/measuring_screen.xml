@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:text="Distance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        aandroid:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:id="@+id/dist_text"/>
 
     <Button
@@ -41,4 +41,4 @@
         android:layout_marginBottom="100dp"
     />
 
-</LinearLayout>
+</RelativeLayout>
