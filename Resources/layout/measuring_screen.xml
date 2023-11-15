@@ -1,9 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.appcompat.widget.Toolbar
+
+        <androidx.appcompat.widget.Toolbar
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
@@ -22,8 +23,14 @@
             android:inputType="none"/>
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:text="Distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/dist_text"/>
 
-        <Button
+    <Button
         android:text="measure"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -47,6 +54,6 @@
         android:background="@drawable/live_upbutton_unpressed" 
         android:textColor="@color/colorSecundairy"
 
-        /> 
+    />
 
 </RelativeLayout>
