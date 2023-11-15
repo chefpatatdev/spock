@@ -4560,6 +4560,9 @@ namespace SpockApp
 			// aapt resource value: 0x7F0C003E
 			public const int traject_driving = 2131492926;
 			
+			// aapt resource value: 0x7F0C003F
+			public const int traject_editor = 2131492927;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
