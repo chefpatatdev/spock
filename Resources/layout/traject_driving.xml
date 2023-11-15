@@ -11,7 +11,24 @@
         android:background="?attr/colorPrimary"
         android:id="@+id/toolbar_traject_driving"
         android:layout_gravity="top">
-        <TextView
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+         <Button
+        android:text="⏭"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:id="@+id/drive"
+        android:layout_marginRight="5dp" 
+        android:autoSizeTextType="none"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/traject_driving_text"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        />
+            <TextView
             android:text="Traject driving"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
@@ -19,7 +36,28 @@
             android:id="@+id/traject_driving_text"
             android:layout_gravity="center_horizontal|center_vertical"
             android:textColor="#ffffffff"
+            android:layout_centerInParent="true"
             android:inputType="none"/>
+      
+  
+    <Button
+        android:text="✎"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:id="@+id/edit_traject"
+        android:layout_below="@id/toolbar_traject_driving" 
+        android:autoSizeTextType="none"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@id/traject_driving_text"
+
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        />
+        </RelativeLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
      
     <Spinner
@@ -131,5 +169,44 @@
         android:textColor="@color/colorSecundairy"
         
         />
+        <Button
+        android:text="-"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/remove"
+        android:layout_toLeftOf="@id/down_button"
+        android:layout_below="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingBottom="17dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        />
+        <Button
+        android:text="+"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/add"
+        android:layout_toRightOf="@id/down_button"
+        android:layout_below="@id/center_button"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingBottom="12dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        />
+    <TextView
+        android:id="@+id/traject_text"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignLeft="@id/remove"
+        android:layout_below="@id/spinner"
+        android:background="@drawable/live_button_unpressed" 
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="25dp"
+        />
+    
+    
 
 </RelativeLayout>
