@@ -15,21 +15,22 @@ namespace SpockApp.Resources.mipmap_xhdpi
     [Activity(Label = "TrajectDriving")]
     public class TrajectDriving : Activity
     {
-        string traject_index;
+        string traject_name;
         int number_picker_value;
-        string[,] traject_1 = new string[2,50];
+        string[,] traject_1 = new string[2, 50];
         string[,] traject_2 = new string[2, 50];
         string[,] traject_3 = new string[2, 50];
         int array_index = 0;
+        string[] ta = { "Traject 1", "Traject 2", "Traject 3", "Test" };
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
-
             InitializeStringMatrix(traject_1);
             InitializeStringMatrix(traject_2);
             InitializeStringMatrix(traject_3);
-            InitializeSpinner();
+            InitializeSpinner(ta);
             InitializePicker();
             InitializeButtons();
         }
@@ -60,7 +61,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         {
             for (int i = 0; i < 2; i++)
             {
-                for (int j = 0; j < 50 ; j++)
+                for (int j = 0; j < 50; j++)
                 {
                     matrix[i, j] = "";
                 }
@@ -72,20 +73,19 @@ namespace SpockApp.Resources.mipmap_xhdpi
             picker.MinValue = 0;
             picker.MaxValue = 10;
             picker.ValueChanged += NumberPicker;
-            
+
         }
 
-        private void InitializeSpinner()
+        private void InitializeSpinner(string[] traject_array)
         {
             //Maken van drop down menu om traject te slecteren
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
             spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
-            //custom stings in de drop down menu zetten
-            var adapter = ArrayAdapter.CreateFromResource(
-                    this, Resource.Array.traject_array, Android.Resource.Layout.SimpleSpinnerItem);
-
+            //custom strings in de drop down menu zetten
+            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, traject_array);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
         }
         private void NumberPicker(object sender, System.EventArgs e)
         {
@@ -96,7 +96,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         {
             Spinner spinner = (Spinner)sender;
             //Traject opslaan om door te sturen naar database
-            traject_index = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
+            traject_name = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
 
             //pop up dat zegt welk traject gekozen is
             string toast = string.Format("The traject is {0}", spinner.GetItemAtPosition(e.Position));
@@ -104,21 +104,63 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             array_index = 0;
         }
+        private void TrajectToast()
+        {
+            string[,] traject = new string[2, 50];
+            string toast = "";
+            switch (traject_name)
+            {
+                case "Traject 1":
+                    traject = traject_1;
+                    break;
+                case "Traject 2":
+                    traject = traject_2;
+                    break;
+                case "Traject 3":
+                    traject = traject_3;
+                    break;
+                default:
+                    traject = traject_1;
+                    break;
+            }
+            for (int i = 0; i < traject.Length; i++)
+            {
+                if (traject[0, i] == "")
+                {
+                    i = traject.Length;
+                }
+                else
+                {
+                    if (traject[0, i] == "stop") { toast += "stop"; }
+                    else
+                    {
+                        toast += traject[0, i] + traject[1, i] + " ";
+                    }
+                }
+            }
 
+            Toast.MakeText(this, toast, ToastLength.Short).Show();
+
+
+        }
         private void TrajectUpdater(string button)
         {
-            switch (traject_index) {
+            switch (traject_name)
+            {
                 case "Traject 1":
+                    if (array_index == 0) { traject_1[0, 1] = ""; }
                     traject_1[0, array_index] = button;
                     traject_1[1, array_index] = number_picker_value.ToString();
                     array_index++;
                     break;
                 case "Traject 2":
+                    if (array_index == 0) { traject_1[0, 1] = ""; }
                     traject_2[0, array_index] = button;
                     traject_2[1, array_index] = number_picker_value.ToString();
                     array_index++;
                     break;
                 case "Traject 3":
+                    if (array_index == 0) { traject_1[0, 1] = ""; }
                     traject_3[0, array_index] = button;
                     traject_3[1, array_index] = number_picker_value.ToString();
                     array_index++;
@@ -127,6 +169,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
                     array_index = 0;
                     break;
             }
+            TrajectToast();
         }
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
@@ -246,7 +289,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
                     TrajectUpdater("Stop");
-                    array_index  = 0;
+                    array_index = 0;
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -254,6 +297,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
                 default:
                     TrajectUpdater("Stop");
                     array_index = 0;
+
                     break;
             }
         }
