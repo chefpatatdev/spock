@@ -9,25 +9,45 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:id="@+id/toolbar_live_driving"
+        android:id="@+id/toolbar_traject_driving"
         android:layout_gravity="top">
         <TextView
-            android:text="Live driving"
+            android:text="Traject driving"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/live_driving_text"
+            android:id="@+id/traject_driving_text"
             android:layout_gravity="center_horizontal|center_vertical"
             android:textColor="#ffffffff"
             android:inputType="none"/>
     </androidx.appcompat.widget.Toolbar>
-    
+     
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:prompt="@string/planet_prompt"
+        android:layout_below="@id/toolbar_traject_driving" 
+    />
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker"
+        android:layout_below="@id/spinner"
+        android:layout_marginVertical="25dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        
+        />
+
+ 
     <Button
         android:text=""
          android:layout_width="100dp"
          android:layout_height="100dp"
         android:id="@+id/center_button"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/up_button"
+        android:layout_alignRight="@id/up_button"
         android:background="@drawable/live_button_unpressed" 
         />
     <Button
@@ -44,6 +64,7 @@
         android:textColor="@color/colorSecundairy"
         />    
     <Button
+        
         android:text="←"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -61,15 +82,14 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/up_button"
-        android:layout_toRightOf="@id/left_button"
-        android:layout_above="@id/center_button"
+        
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:background="@drawable/live_upbutton_unpressed" 
         android:textColor="@color/colorSecundairy"
-
+        android:layout_centerInParent="true"
         />    
     <Button
         android:text="↓"

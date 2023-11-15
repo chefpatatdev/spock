@@ -17,16 +17,34 @@ namespace SpockApp.src
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            socket.sendmessage("connected home");
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.home_screen);
 
             Button LiveDrivingNav = FindViewById<Button>(Resource.Id.live_driving_nav);
             LiveDrivingNav.Click += LiveDrivingNav_Click;
+
+            Button TrajectDrivingNav = FindViewById<Button>(Resource.Id.traject_driving_nav);
+            TrajectDrivingNav.Click += TrajectDrivingNav_Click;
+
+            Button test = FindViewById<Button>(Resource.Id.test);
+            test.Click += Test_click;
         }
 
         private void LiveDrivingNav_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(LiveDriving));
+            StartActivity(intent);
+        }
+        private void Test_click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(test));
+            StartActivity(intent);
+        }
+
+        private void TrajectDrivingNav_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(TrajectDriving));
             StartActivity(intent);
         }
 
