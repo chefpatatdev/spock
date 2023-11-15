@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar_live_driving"
+        android:layout_gravity="top">
+        <TextView
+            android:text="Measuring"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/measuring_text"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
+    </androidx.appcompat.widget.Toolbar>
+
+
+        <Button
+        android:text="measure"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:id="@+id/measure_button"
+        android:layout_centerInParent="true"
+        android:background="@drawable/live_button_unpressed" 
+        />
+
+        <TextView
+        android:text="__cm"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:id="@+id/up_button"
+        android:layout_above="@id/measure_button"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_centerInParent="true"
+        android:textSize="32dp"
+        android:background="@drawable/live_upbutton_unpressed" 
+        android:textColor="@color/colorSecundairy"
+
+        /> 
+
+</RelativeLayout>
