@@ -18,6 +18,11 @@ namespace SpockApp
     public class Traject_Editor : Activity
     {
         static string[] Trajects { get; set; } = { "Traject 1", "Traject 2", "Traject 3"};
+        static ListView list;
+        static ListViewAdapter adapter;
+        static Context context;
+        static EditText input;
+
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,7 +36,13 @@ namespace SpockApp
 
             btn.Click += Add_Click;
             // Create your application here
-            InitializeListView();
+            list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
+            adapter = new ListViewAdapter(this, Trajects);
+            list.Adapter = adapter;
+            list.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(Listview_Click);
+
+            context = ApplicationContext;
+            input = FindViewById<EditText>(Resource.Id.traject_input);
 
         }
         public override void OnBackPressed()
@@ -43,21 +54,24 @@ namespace SpockApp
 
         private void Add_Click(object sender, EventArgs e)
         {
-            EditText input = FindViewById<EditText>(Resource.Id.traject_input);
             string text = input.Text.ToString();
             if (string.IsNullOrEmpty(text))
             {
                 Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
+                InitializeListView();
             }
-            AddItems(text);
-            input.Text = "";
+            else {
+                AddItems(text);
+                input.Text = "";
+            }
+            
         }
 
         private void InitializeListView()
         {
             //Maken van drop down menu om traject te slecteren
-            ListView list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
-            var adapter = new ListViewAdapter(this, Trajects);
+            list = FindViewById<ListView>(Resource.Id.listview_edit);
+            adapter = new ListViewAdapter(this, Trajects);
             list.Adapter = adapter;
             list.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(Listview_Click);
 
@@ -80,7 +94,25 @@ namespace SpockApp
         public static void RemoveItems(string item)
         {
             Trajects = Trajects.Where(o => o != item).ToArray();
-            //InitializeListView();
+
+            adapter = new ListViewAdapter(context, Trajects);
+            list.Adapter = adapter;
+        }
+        public static void ModifyItems(string item)
+        {
+
+            string text = input.Text.ToString();
+            if (string.IsNullOrEmpty(text))
+            {
+                Toast.MakeText(context, "Enter Something", ToastLength.Short).Show();
+            }
+            else
+            {
+                Trajects[Array.FindIndex(Trajects, m => m == item)] = text;
+                input.Text = "";
+            }
+            adapter = new ListViewAdapter(context, Trajects);
+            list.Adapter = adapter;
         }
     }
 }

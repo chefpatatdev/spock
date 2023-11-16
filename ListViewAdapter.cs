@@ -16,7 +16,6 @@ namespace SpockApp
     {
         string[] list;
         Context context;
-        int Position;
         public ListViewAdapter(Context context, string[] items) : base(context, Resource.Layout.list_row, items)
         {
             this.context = context;
@@ -24,7 +23,8 @@ namespace SpockApp
         }
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            if(convertView == null)
+
+            if (convertView == null)
             {
                 LayoutInflater lf = (LayoutInflater)context.GetSystemService(Activity.LayoutInflaterService);
                 convertView = lf.Inflate(Resource.Layout.list_row, null);
@@ -33,22 +33,18 @@ namespace SpockApp
                 name.Text = list[position];
 
                 Button modify = convertView.FindViewById<Button>(Resource.Id.modify_traject);
-                modify.Click += Modify_Click;
+                modify.Click += (sender, eventArgs) =>
+                {
+                    Traject_Editor.ModifyItems(list[position]);
+                };
 
                 Button delete = convertView.FindViewById<Button>(Resource.Id.delete_traject);
-                delete.Click += Delete_Click;
-                Position = position;
+                delete.Click += (sender, eventArgs) =>
+                {
+                    Traject_Editor.RemoveItems(list[position]);  
+                };
             }
             return convertView;
-        }
-
-        private void Delete_Click(object sender, EventArgs e)
-        {
-            Traject_Editor.RemoveItems(list.ElementAt(Position));//positie klopt niet
-        }
-
-        private void Modify_Click(object sender, EventArgs e)
-        {
         }
     }
 }
