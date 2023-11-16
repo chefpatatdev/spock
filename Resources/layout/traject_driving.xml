@@ -20,7 +20,7 @@
                 android:layout_height="35dp"
                 android:id="@+id/drive"
                 android:layout_marginRight="5dp" 
-                android:autoSizeTextType="none"
+                android:autoSizeTextType="uniform"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/traject_driving_text"
                 android:gravity="center"
@@ -46,7 +46,7 @@
                 android:layout_height="35dp"
                 android:id="@+id/edit_traject"
                 android:layout_below="@id/toolbar_traject_driving" 
-                android:autoSizeTextType="none"
+                android:autoSizeTextType="uniform"
                 android:layout_alignParentLeft="true"
                 android:layout_alignTop="@id/traject_driving_text"
 

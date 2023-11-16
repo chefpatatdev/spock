@@ -20,6 +20,22 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:textColor="#ffffffff"
             android:inputType="none"/>
+         <Button
+                android:text="⇐ "
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:id="@+id/back_traject"
+                android:layout_below="@id/toolbar_traject_driving" 
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@id/traject_driving_text"
+                android:gravity="center"
+                android:paddingTop="0sp"
+                android:paddingBottom="1sp"
+                android:background="@drawable/live_button_unpressed" 
+                android:textColor="@color/colorSecundairy"
+                />
 
     </androidx.appcompat.widget.Toolbar>
     <RelativeLayout

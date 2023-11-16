@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Nio.Channels;
+using SpockApp.src;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializePicker();
             InitializeButtons();
 
+        }
+        public override void OnBackPressed()
+        {
+            Intent intent = new Intent(this, typeof(HomeScreen));
+            StartActivity(intent);
         }
         private void InitializeButtons()
         {
@@ -93,7 +99,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             UpdateTrajectText();
 
         }
-
         private void RemoveCommand()
         {
             if (Array_index != 0)
@@ -105,7 +110,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             UpdateTrajectText();
 
         }
-
         private void InitializeStringMatrix(string[,] matrix)
         {
             for (int i = 0; i < 2; i++)
@@ -124,7 +128,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             picker.ValueChanged += NumberPicker;
 
         }
-
         private void InitializeSpinner(string[] traject_array)
         {
             //Maken van drop down menu om traject te slecteren

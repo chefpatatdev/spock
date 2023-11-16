@@ -31,20 +31,29 @@ namespace SpockApp
             context = ApplicationContext;
             adapter = new ListViewAdapter(this, Trajects);
 
-            Button btn = FindViewById<Button>(Resource.Id.add_traject);
+            Button add = FindViewById<Button>(Resource.Id.add_traject);
+            Button back = FindViewById<Button>(Resource.Id.back_traject);
             list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
             input = FindViewById<EditText>(Resource.Id.traject_input);
 
-            btn.Click += Add_Click;
+            add.Click += Add_Click;
+            back.Click += Back_Click;
             list.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(Listview_Click);
             list.Adapter = adapter;
         }
-        public override void OnBackPressed()
+
+        private void Back_Click(object sender, EventArgs e)
         {
             //als terug gaat naar traject_driving wordt de veranderde stringarray meegegeven zodat daar gebruikt kan worden
             Intent intent = new Intent(this, typeof(TrajectDriving));
             intent.PutExtra("trajectID", Trajects);
             StartActivity(intent);
+        }
+
+        public override void OnBackPressed()
+        {
+            //als terug gaat naar traject_driving wordt de veranderde stringarray meegegeven zodat daar gebruikt kan worden
+            Back_Click(null , null);
         }
 
         private void Add_Click(object sender, EventArgs e)

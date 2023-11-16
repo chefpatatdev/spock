@@ -29,32 +29,55 @@
         android:id="@+id/live_driving_nav"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:layout_below="@id/toolbar_home"
-        android:layout_marginTop="25dp" />
-    <Button
-        android:text="traject_driving_nav"
+        android:gravity="center"
+        
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="25dp" 
+        android:paddingBottom="1dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        />
+        <Button
+        android:text="Traject Driving"
         android:id="@+id/traject_driving_nav"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="50dp"
-        android:layout_below="@+id/live_driving_nav"
+        android:layout_margin="15dp"
+        android:layout_height="75dp"
+        android:layout_below="@id/live_driving_nav"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
         />
         <Button
-        android:text="placeholder2"
-        android:id="@+id/test"
+        android:text="Measuring Screen"
+        android:id="@+id/measuring_screen"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:layout_below="@+id/traject_driving_nav"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
          />
         <Button
-        android:text="placeholder3"
-        android:id="@+id/placeholder3"
+        android:text="Connect Sockets"
+        android:id="@+id/sockets"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
-        android:layout_height="50dp"
-        android:layout_below="@+id/test"
+        android:layout_height="75dp"
+        android:layout_below="@id/measuring_screen"
+        android:gravity="center"
+        android:paddingBottom="1dp"
+        android:layout_margin="15dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
         />
 
 
