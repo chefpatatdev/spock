@@ -28,10 +28,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
+            if(Intent.GetStringArrayExtra("trajectID") != null)
+            {
+                ta = Intent.GetStringArrayExtra("trajectID");
+            }
             InitializeStringMatrix(traject);
             InitializeSpinner(ta);
             InitializePicker();
             InitializeButtons();
+
         }
         private void InitializeButtons()
         {
@@ -77,6 +82,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         private void EditTraject_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(Traject_Editor));
+            intent.PutExtra("arrayID", ta);
             StartActivity(intent);
         }
         private void AddCommand()

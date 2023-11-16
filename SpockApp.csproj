@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
+    <Compile Include="ListViewAdapter.cs" />
     <Compile Include="test.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
@@ -169,6 +170,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\traject_editor.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\list_row.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

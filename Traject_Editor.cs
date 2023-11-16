@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Java.Util;
+using SpockApp.Resources.mipmap_xhdpi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,15 @@ namespace SpockApp
     [Activity(Label = "Traject_Editor")]
     public class Traject_Editor : Activity
     {
-        string[] Trajects { get; set; } = { "Traject 1", "Traject 2", "Traject 3", "Test" };
+        static string[] Trajects { get; set; } = { "Traject 1", "Traject 2", "Traject 3"};
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_editor);
+
+            Trajects = Intent.GetStringArrayExtra("arrayID");
 
             Button btn = FindViewById<Button>(Resource.Id.add_traject);
 
@@ -29,7 +33,12 @@ namespace SpockApp
             // Create your application here
             InitializeListView();
 
-
+        }
+        public override void OnBackPressed()
+        {
+            Intent intent = new Intent(this, typeof(TrajectDriving));
+            intent.PutExtra("trajectID", Trajects);
+            StartActivity(intent);
         }
 
         private void Add_Click(object sender, EventArgs e)
@@ -47,8 +56,8 @@ namespace SpockApp
         private void InitializeListView()
         {
             //Maken van drop down menu om traject te slecteren
-            ListView list = FindViewById<ListView>(Resource.Id.listview_edit);
-            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, Trajects);
+            ListView list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
+            var adapter = new ListViewAdapter(this, Trajects);
             list.Adapter = adapter;
             list.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(Listview_Click);
 
@@ -68,10 +77,10 @@ namespace SpockApp
             Trajects = list.ToArray();
             InitializeListView();
         }
-        private void RemoveItems(string item)
+        public static void RemoveItems(string item)
         {
             Trajects = Trajects.Where(o => o != item).ToArray();
-            InitializeListView();
+            //InitializeListView();
         }
     }
 }

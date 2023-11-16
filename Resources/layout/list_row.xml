@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/traject_name"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"   
+        android:layout_marginLeft="10dp"
+        />
+    <Button
+        android:text="✎"
+        android:layout_width="40sp"
+        android:layout_height="40sp" 
+        android:id="@+id/modify_traject"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/delete_traject"
+        android:layout_marginRight="18sp"
+        />
+    <Button
+        android:text="❌"
+        android:layout_width="40sp"
+        android:layout_height="40sp" 
+        android:id="@+id/delete_traject"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="18sp"
+        android:layout_alignParentRight="true"
+        />
+
+
+</RelativeLayout>
