@@ -81,7 +81,15 @@
         
         />
 
- 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/down_button"
+        android:id="@+id/switch1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Toggle Pointer:"
+        />
     <Button
         android:text=""
         android:layout_width="100dp"

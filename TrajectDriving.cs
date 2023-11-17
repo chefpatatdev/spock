@@ -24,6 +24,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         string Command { get; set; } = "";
         int Array_index { get; set; } = 0;
         string[] ta = { "Traject 1", "Traject 2", "Traject 3", "Test" };
+        bool Switch = false;
 
         ScrollView scroll;
 
@@ -84,6 +85,12 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Button driveButton = FindViewById<Button>(Resource.Id.drive);
             driveButton.Click += DriveTraject_Click;
 
+            Switch ptr = FindViewById<Switch>(Resource.Id.switch1);
+            ptr.CheckedChange += (sender, e) =>
+            {
+                Switch = e.IsChecked;
+            };
+
         }
         private void InitializeStringMatrix(string[,] matrix)
         {
@@ -126,29 +133,45 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 traject[0, Array_index] = Command;
                 traject[1, Array_index] = Number_picker_value.ToString();
-                Array_index++;
                 UpdateTrajectText();
+                if(traject[0, Array_index+1] == "") Array_index++;
+
             }
 
         }
         private void RemoveCommand()
         {
-            if (Array_index != 0)
+            if (traject[0, Array_index+1] != "")
             {
-                Array_index--;
-                traject[0, Array_index] = "";
-                traject[1, Array_index] = "";
+                for (int i = Array_index; i < traject.GetLength(1)-1; i++)
+                {
+                    traject[0, i] = traject[0, i + 1];
+                    traject[1, i] = traject[1, i + 1];
+                }
+                traject[0, traject.GetLength(1) - 1] = "";
+                traject[1, traject.GetLength(1) - 1] = "";
             }
-            UpdateTrajectText();
+            else if (Array_index >= 0)
+            {
+               Array_index = Math.Max(Array_index - 1, 0);
+               traject[0, Array_index] = "";
+               traject[1, Array_index] = "";
+            }
 
+            Array_index = Math.Max(Array_index - 1, 0);
+            UpdateTrajectText();
+            if (traject[0, Array_index + 1] == "" && Array_index != 0) Array_index++;
         }
         private void UpdateTrajectText()
         {
             string toast = "";
-            for (int i = 0; i < Array_index; i++)
+            for (int i = 0; i < traject.GetLength(1); i++)
             {
-                toast += traject[1, i] + "s naar " + traject[0, i] + "\n";
+                if (i == Array_index) toast += "→";
+                toast += "  " + traject[1, i] + "s " + traject[0, i] + "\n";
+                if (traject[0, i+1] == "") break;
             }
+            if (Array_index  <= 0 && traject[0,0] == "") toast = "";
             TextView text = FindViewById<TextView>(Resource.Id.traject_text);
             text.Text = toast;
             scroll.FullScroll(FocusSearchDirection.Down);
@@ -297,7 +320,23 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    RemoveCommand();
+                    if (!Switch)
+                    {
+                        RemoveCommand();
+                    }
+                    else
+                    {
+                        if (Array_index > 0)
+                        {
+                            if (traject[0 , Array_index+1] == "") Array_index--;
+                            Array_index--;
+                            UpdateTrajectText();
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Can't move pointer down anymore", ToastLength.Short).Show();
+                        }
+                    }
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
@@ -313,7 +352,24 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    AddCommand();
+                    if (!Switch)
+                    {
+                        AddCommand();
+                    }
+                    else
+                    {
+                        if (traject[0, Array_index + 1] != "")
+                        {
+                            Array_index++;
+                            UpdateTrajectText();
+                            if (traject[0, Array_index + 1] == "") Array_index++;
+                        }
+                        else
+                        {
+                            Toast.MakeText(this, "Can't move pointer up anymore", ToastLength.Short).Show();
+                        }
+                    }
+                    
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
