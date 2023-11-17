@@ -118,10 +118,17 @@ namespace SpockApp.Resources.mipmap_xhdpi
         //Update Traject
         private void AddCommand()
         {
-            traject[0, Array_index] = Command;
-            traject[1, Array_index] = Number_picker_value.ToString();
-            Array_index++;
-            UpdateTrajectText();
+            if (Command == "")
+            {
+                Toast.MakeText(this, "Pick a direction", ToastLength.Short).Show();
+            }
+            else
+            {
+                traject[0, Array_index] = Command;
+                traject[1, Array_index] = Number_picker_value.ToString();
+                Array_index++;
+                UpdateTrajectText();
+            }
 
         }
         private void RemoveCommand()
