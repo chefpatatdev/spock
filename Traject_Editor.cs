@@ -38,10 +38,10 @@ namespace SpockApp
 
             add.Click += Add_Click;
             back.Click += Back_Click;
-            list.ItemClick += new EventHandler<AdapterView.ItemClickEventArgs>(Listview_Click);
             list.Adapter = adapter;
         }
 
+        //Hanlers
         private void Back_Click(object sender, EventArgs e)
         {
             //als terug gaat naar traject_driving wordt de veranderde stringarray meegegeven zodat daar gebruikt kan worden
@@ -49,13 +49,11 @@ namespace SpockApp
             intent.PutExtra("trajectID", Trajects);
             StartActivity(intent);
         }
-
         public override void OnBackPressed()
         {
             //als terug gaat naar traject_driving wordt de veranderde stringarray meegegeven zodat daar gebruikt kan worden
             Back_Click(null , null);
         }
-
         private void Add_Click(object sender, EventArgs e)
         {
             //voegt de ingevoerde string toe aan de projecten en kijkt ook ofdat deze niet leeg is
@@ -71,6 +69,7 @@ namespace SpockApp
             }
         }
 
+        //Modifying the Trajecten
         private static void UpdateListView()
         {
             //update listview adapter
@@ -78,14 +77,6 @@ namespace SpockApp
             list.Adapter = adapter;
 
         }
-
-        private void Listview_Click(object sender, AdapterView.ItemClickEventArgs e)
-        {   
-            //eventuele click handler als er iets moet gebeuren als er op een item geklikt wordt
-            var list = (ListView)sender;
-            Toast.MakeText(this, list.GetItemAtPosition(e.Position).ToString(), ToastLength.Short).Show();
-        }
-
         private void AddItems(string item)
         {
             // item aan trajecten toevoegen door naar een modifiable lijst om te zetten

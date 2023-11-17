@@ -44,6 +44,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Intent intent = new Intent(this, typeof(HomeScreen));
             StartActivity(intent);
         }
+
+        //initalizers
         private void InitializeButtons()
         {
             Button upButton = FindViewById<Button>(Resource.Id.up_button);
@@ -80,36 +82,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             driveButton.Click += DriveTraject_Click;
 
         }
-        private void DriveTraject_Click(object sender, System.EventArgs e)
-        {
-            string toast = "Traject " + traject_name + " is running";
-            Toast.MakeText(this, toast, ToastLength.Long).Show();
-        }
-        private void EditTraject_Click(object sender, System.EventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(Traject_Editor));
-            intent.PutExtra("arrayID", ta);
-            StartActivity(intent);
-        }
-        private void AddCommand()
-        {
-            traject[0, Array_index] = Command;
-            traject[1, Array_index] = Number_picker_value.ToString();
-            Array_index++;
-            UpdateTrajectText();
-
-        }
-        private void RemoveCommand()
-        {
-            if (Array_index != 0)
-            {
-                Array_index--;
-                traject[0, Array_index] = "";
-                traject[1, Array_index] = "";
-            }
-            UpdateTrajectText();
-
-        }
         private void InitializeStringMatrix(string[,] matrix)
         {
             for (int i = 0; i < 2; i++)
@@ -139,6 +111,44 @@ namespace SpockApp.Resources.mipmap_xhdpi
             spinner.Adapter = adapter;
 
         }
+
+        //Update Traject
+        private void AddCommand()
+        {
+            traject[0, Array_index] = Command;
+            traject[1, Array_index] = Number_picker_value.ToString();
+            Array_index++;
+            UpdateTrajectText();
+
+        }
+        private void RemoveCommand()
+        {
+            if (Array_index != 0)
+            {
+                Array_index--;
+                traject[0, Array_index] = "";
+                traject[1, Array_index] = "";
+            }
+            UpdateTrajectText();
+
+        }
+        private void UpdateTrajectText()
+        {
+            string toast = "";
+            int startfrom = Array_index - 6;
+            startfrom = Math.Max(startfrom, 0);
+            for (int i = startfrom; i < Array_index; i++)
+            {
+                toast += traject[1, i] + "s naar " + traject[0, i] + "\n";
+            }
+
+            TextView text = FindViewById<TextView>(Resource.Id.traject_text);
+            text.Text = toast;
+
+
+        }
+
+        //Event Handlers
         private void NumberPicker(object sender, System.EventArgs e)
         {
             NumberPicker picker = (NumberPicker)sender;
@@ -156,29 +166,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             Array_index = 0;
         }
-        private void UpdateTrajectText()
-        {
-            string toast = "";
-            int startfrom = Array_index - 6;
-            startfrom = Math.Max(startfrom, 0);
-            for (int i = startfrom; i < Array_index; i++)
-            {
-                toast +=  traject[1, i] + "s naar "  + traject[0, i] + "\n";                
-            }
 
-            TextView text = FindViewById<TextView>(Resource.Id.traject_text);
-            text.Text = toast;
-
-
-        }
-        private void TrajectUpdater(string command)
-        {
-            traject[0, Array_index] = command;
-            traject[1, Array_index] = Number_picker_value.ToString();
-            Array_index++;
-            UpdateTrajectText();
-
-        }
+            //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -186,20 +175,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    //TrajectUpdater("U");
                     this.Command = "U";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
-                    //Console.WriteLine("up button released");
                     break;
                 default:
-                    //TrajectUpdater("U");
-                    this.Command = "U";
                     break;
             }
         }
-
         private void DownButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -207,19 +191,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("D");
                     this.Command = "D";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("D");
-                    this.Command = "D";
                     break;
             }
         }
-
         private void RightButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -227,19 +207,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("R");
                     this.Command = "R";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("R");
-                    this.Command = "R";
                     break;
             }
         }
-
         private void LeftButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -247,19 +223,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("L");
                     this.Command = "L";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("L");
-                    this.Command = "L";
                     break;
             }
         }
-
         private void RRButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -267,19 +239,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("RR");
                     this.Command = "RR";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("RR");
-                    this.Command = "RR";
                     break;
             }
         }
-
         private void RLButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -287,20 +255,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("RL");
                     this.Command = "RL";
-
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("RL");
-                    this.Command = "RL";
                     break;
             }
         }
-
         private void CenterButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -308,21 +271,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    //TrajectUpdater("Wait");
                     this.Command = "Wait";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
                     break;
                 default:
-                    //TrajectUpdater("Wait");
-                    this.Command = "Wait";
-
-
                     break;
             }
         }
-
         private void RemoveButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -334,10 +291,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
-                    //Console.WriteLine("up button released");
                     break;
                 default:
-                    RemoveCommand();
                     break;
             }
         }
@@ -352,12 +307,21 @@ namespace SpockApp.Resources.mipmap_xhdpi
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
-                    //Console.WriteLine("up button released");
                     break;
                 default:
-                    AddCommand();
                     break;
             }
+        }
+        private void DriveTraject_Click(object sender, System.EventArgs e)
+        {
+            string toast = "Traject " + traject_name + " is running";
+            Toast.MakeText(this, toast, ToastLength.Long).Show();
+        }
+        private void EditTraject_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(Traject_Editor));
+            intent.PutExtra("arrayID", ta);
+            StartActivity(intent);
         }
     }
 }
