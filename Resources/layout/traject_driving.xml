@@ -28,7 +28,9 @@
                 android:background="@drawable/live_button_unpressed" 
                 android:textColor="@color/colorSecundairy"
             />
-            <TextView
+            
+                
+                <TextView
                 android:text="Traject driving"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_width="wrap_content"
@@ -39,6 +41,7 @@
                 android:layout_centerInParent="true"
                 android:inputType="none"/>
       
+            
   
             <Button
                 android:text="✎"
@@ -195,17 +198,26 @@
         android:background="@drawable/live_button_unpressed" 
         android:textColor="@color/colorSecundairy"
         />
-    <TextView
-        android:id="@+id/traject_text"
+    <ScrollView
+        
+        android:id="@+id/scrollView"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_alignLeft="@id/remove"
         android:layout_below="@id/spinner"
         android:background="@drawable/live_button_unpressed" 
         android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textSize="25dp"
-        />
+        android:scrollbars="vertical"
+        >
+        <TextView
+            android:id="@+id/traject_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="25dp"
+            />
+    </ScrollView>
+
     
     
 

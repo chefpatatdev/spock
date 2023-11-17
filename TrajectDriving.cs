@@ -25,6 +25,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
         int Array_index { get; set; } = 0;
         string[] ta = { "Traject 1", "Traject 2", "Traject 3", "Test" };
 
+        ScrollView scroll;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -37,6 +39,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializeSpinner(ta);
             InitializePicker();
             InitializeButtons();
+            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
         }
         public override void OnBackPressed()
@@ -135,16 +138,16 @@ namespace SpockApp.Resources.mipmap_xhdpi
         private void UpdateTrajectText()
         {
             string toast = "";
-            int startfrom = Array_index - 6;
-            startfrom = Math.Max(startfrom, 0);
-            for (int i = startfrom; i < Array_index; i++)
+            for (int i = 0; i < Array_index; i++)
             {
                 toast += traject[1, i] + "s naar " + traject[0, i] + "\n";
             }
-
             TextView text = FindViewById<TextView>(Resource.Id.traject_text);
             text.Text = toast;
-
+            scroll.FullScroll(FocusSearchDirection.Down);
+        }
+        private void UpdateTrajectMatrix()
+        {
 
         }
 
