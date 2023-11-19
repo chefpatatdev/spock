@@ -131,6 +131,12 @@ namespace SpockApp.Resources.mipmap_xhdpi
             }
             else
             {
+
+                for (int i = traject.GetLength(1) - 1 ; i > Array_index; i--)
+                {
+                    traject[0, i] = traject[0, i - 1];
+                    traject[1, i] = traject[1, i - 1];
+                }
                 traject[0, Array_index] = Command;
                 traject[1, Array_index] = Number_picker_value.ToString();
                 UpdateTrajectText();
