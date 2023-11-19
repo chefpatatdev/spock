@@ -180,7 +180,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             if (Array_index  <= 0 && traject[0,0] == "") toast = "";
             TextView text = FindViewById<TextView>(Resource.Id.traject_text);
             text.Text = toast;
-            scroll.FullScroll(FocusSearchDirection.Down);
+            if (traject[0, Array_index + 1] == "") scroll.FullScroll(FocusSearchDirection.Down);
         }
         private void UpdateTrajectMatrix()
         {
