@@ -20,7 +20,7 @@ namespace SpockApp
 {
 
 
-    [Activity(Label = "LoginScreen", MainLauncher = true)]
+    [Activity(Label = "test", MainLauncher = true)]
     public class LoginScreen : Activity
     {
 
@@ -64,22 +64,7 @@ namespace SpockApp
                 socket.Connect(ipField.Text, Int32.Parse(portField.Text));
 
             }
-            var key = "b14ca5898a4e4133bbce2ea2315a1916";
-            var encryptedUsername = AesOperation.EncryptString(key, usernameRaw);
-            var encryptedPassword = AesOperation.EncryptString(key, passwordRaw);
-            Console.WriteLine(encryptedUsername);
-            Console.WriteLine(encryptedPassword);
-            //encrypt password before sending message thru socket
             String allowdEntrance=socket.sendmessage("login," + usernameRaw + "," + passwordRaw);
-            //allowedEntrance = response from socket
-            TextView box = FindViewById<TextView>(Resource.Id.textView1);
-
-            while (true)
-            {
-
-                box.Text = socket.IsConnected().ToString();
-            }
-
             if (allowdEntrance == "ok")
             {
                 //swicth to homescreen

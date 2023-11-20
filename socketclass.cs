@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using EncryptionDecryptionUsingSymmetricKey;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,12 +48,11 @@ namespace SpockApp
             {
                 return "Socket is not connected.";
             }
-
-            byte[] requestBytes = Encoding.ASCII.GetBytes(message);
+            byte[] requestBytes = Encoding.ASCII.GetBytes(AesOperation.EncryptString(message));
             socket.socketObj.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
             byte[] responseBytes = new byte[256];
             int bytesReceived = socketObj.Receive(responseBytes);
-            string response = Encoding.ASCII.GetString(responseBytes, 0, bytesReceived);
+            string response = AesOperation.DecryptString(Encoding.ASCII.GetString(responseBytes, 0, bytesReceived));
             return response;
         }
     }
