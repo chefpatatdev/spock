@@ -20,7 +20,7 @@ namespace SpockApp
 {
 
 
-    [Activity(Label = "LoginScreen", MainLauncher = true)]
+    [Activity(Label = "Spock", MainLauncher = true)]
     public class LoginScreen : Activity
     {
 

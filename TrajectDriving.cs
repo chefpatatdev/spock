@@ -105,7 +105,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         private void InitializePicker()
         {
             NumberPicker picker = FindViewById<NumberPicker>(Resource.Id.numberPicker);
-            picker.MinValue = 0;
+            picker.MinValue = 1;
             picker.MaxValue = 10;
             picker.ValueChanged += NumberPicker;
 
@@ -138,7 +138,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
                     traject[1, i] = traject[1, i - 1];
                 }
                 traject[0, Array_index] = Command;
-                traject[1, Array_index] = Number_picker_value.ToString();
+                traject[1, Array_index] = (Number_picker_value -1).ToString();
                 UpdateTrajectText();
                 if(traject[0, Array_index+1] == "") Array_index++;
 
@@ -171,13 +171,15 @@ namespace SpockApp.Resources.mipmap_xhdpi
         private void UpdateTrajectText()
         {
             string toast = "";
-            for (int i = 0; i < traject.GetLength(1); i++)
+            if (!(Array_index <= 0 && traject[0, 0] == ""))
             {
-                if (i == Array_index) toast += "→";
-                toast += "  " + traject[1, i] + "s " + traject[0, i] + "\n";
-                if (traject[0, i+1] == "") break;
+                for (int i = 0; i < traject.GetLength(1); i++)
+                {
+                    if (i == Array_index) toast += "→";
+                    toast += "  " + (int.Parse(traject[1, i]) + 1).ToString() + "s " + traject[0, i] + "\n";
+                    if (traject[0, i + 1] == "") break;
+                }
             }
-            if (Array_index  <= 0 && traject[0,0] == "") toast = "";
             TextView text = FindViewById<TextView>(Resource.Id.traject_text);
             text.Text = toast;
             if (traject[0, Array_index + 1] == "") scroll.FullScroll(FocusSearchDirection.Down);
