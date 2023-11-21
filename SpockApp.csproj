@@ -76,14 +76,13 @@
     <Compile Include="HomeScreen.cs" />
     <Compile Include="ListViewAdapter.cs" />
     <Compile Include="Manual_Driving.cs" />
-    <Compile Include="test.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
     <Compile Include="MeasuringScreen.cs" />
     <Compile Include="LiveDriving.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="socketclass.cs" />
+    <Compile Include="Socketclass.cs" />
     <Compile Include="Traject_Editor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,11 +161,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\pickertest.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\measuring_screen.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +175,16 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\manual_measurement_screen.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\online_indicator.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\offline_indicator.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
