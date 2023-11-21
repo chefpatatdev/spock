@@ -90,10 +90,10 @@ namespace SpockApp
                     }
                     await Task.Delay(1000);
                 }
-                reconnecting();
+                Reconnecting();
             }
         }
-        public static async void reconnecting()
+        public static async void Reconnecting()
         {
 
             while (!IsConnected())
@@ -101,8 +101,8 @@ namespace SpockApp
                 try
                 {
                     Console.WriteLine("trying to connect");
-                    socket.socketObj = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    socket.socketObj.Connect(host, port);
+                    SocketClass.Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    SocketClass.Connection.Connect(host, port);
                 }
                 catch (Exception error)
                 {
