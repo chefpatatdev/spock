@@ -3771,6 +3771,9 @@ namespace SpockApp
 			// aapt resource value: 0x7F09006B
 			public const int enterAlwaysCollapsed = 2131296363;
 			
+			// aapt resource value: 0x7F09006E
+			public const int filled = 2131296366;
+			
 			// aapt resource value: 0x7F09006C
 			public const int exitUntilCollapsed = 2131296364;
 			
@@ -3875,6 +3878,9 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F09008D
 			public const int live_driving_text = 2131296397;
+			
+			// aapt resource value: 0x7F090003
+			public const int META = 2131296259;
 			
 			// aapt resource value: 0x7F09008E
 			public const int login_button = 2131296398;
@@ -4031,6 +4037,9 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F0900C0
 			public const int search_close_btn = 2131296448;
+			
+			// aapt resource value: 0x7F0900C2
+			public const int selected = 2131296450;
 			
 			// aapt resource value: 0x7F0900C1
 			public const int search_edit_frame = 2131296449;
@@ -4229,6 +4238,9 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F090100
 			public const int traject_text = 2131296512;
+			
+			// aapt resource value: 0x7F090102
+			public const int username_txt = 2131296514;
 			
 			// aapt resource value: 0x7F090101
 			public const int transition_current_scene = 2131296513;

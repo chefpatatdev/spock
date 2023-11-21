@@ -24,7 +24,9 @@
         android:layout_gravity="center_horizontal"
         android:accessibilityPaneTitle="Username"
         android:inputType="text"
-        android:maxLength="20" />
+        android:maxLength="20" 
+        android:text="admin"
+        />
     <TextView
         android:text="Password"
         android:layout_width="match_parent"
@@ -42,7 +44,8 @@
         android:accessibilityHeading="false"
         android:inputType="none|textPassword|textNoSuggestions"
         android:password="true"
-        android:maxLength="20" />
+        android:maxLength="20" 
+        android:text="admin"/>
     <Button
         android:text="Login"
         android:layout_width="241.2dp"
@@ -55,8 +58,34 @@
         android:background="@drawable/live_button_unpressed" 
         android:textColor="@color/colorSecundairy"
     />
-   
-       
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/ip"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="ip"
+        android:inputType="text"
+        android:maxLength="20" 
+        android:text="172.18.100.7"/>
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/port"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="port"
+        android:inputType="number"
+        android:maxLength="20" 
+        android:text="3000"/>
+    <TextView
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
 
 
 </LinearLayout>

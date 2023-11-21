@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -64,30 +64,15 @@ namespace SpockApp
                 socket.Connect(ipField.Text, Int32.Parse(portField.Text));
 
             }
-            var key = "b14ca5898a4e4133bbce2ea2315a1916";
-            var encryptedUsername = AesOperation.EncryptString(key, usernameRaw);
-            var encryptedPassword = AesOperation.EncryptString(key, passwordRaw);
-            Console.WriteLine(encryptedUsername);
-            Console.WriteLine(encryptedPassword);
-            //encrypt password before sending message thru socket
-            String allowdEntrance=socket.sendmessage("login," + usernameRaw + "," + passwordRaw);
-            //allowedEntrance = response from socket
-            TextView box = FindViewById<TextView>(Resource.Id.textView1);
+            String allowdEntrance=socket.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+            socket.Pinging();
 
-            while (true)
-            {
-
-                box.Text = socket.IsConnected().ToString();
-            }*/
-
-            if (true)//allowdEntrance == "ok")
+            if (allowdEntrance == "ok")
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
-
-                //intent.PutExtra("host", socket.host);
-                //intent.PutExtra("port", socket.port);
                 StartActivity(intent);
+
             }
             else
             {
