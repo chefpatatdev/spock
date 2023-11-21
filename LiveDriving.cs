@@ -51,7 +51,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    //socketIndicator.SetBackgroundResource(Resource.Drawable.online_indicator);
+                    
                     Console.WriteLine("up button pressed");
                     
                     break;
