@@ -64,15 +64,15 @@ namespace SpockApp
                 socket.Connect(ipField.Text, Int32.Parse(portField.Text));
 
             }
-            String allowdEntrance=socket.sendmessage("login," + usernameRaw + "," + passwordRaw);
+            String allowdEntrance=socket.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+            socket.Pinging();
+
             if (allowdEntrance == "ok")
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
-
-                intent.PutExtra("host", socket.host);
-                intent.PutExtra("port", socket.port);
                 StartActivity(intent);
+
             }
             else
             {
