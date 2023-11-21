@@ -14,7 +14,7 @@ namespace SpockApp
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.0.93")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "13.2.1.111")]
 	public partial class Resource
 	{
 		
@@ -3435,10 +3435,16 @@ namespace SpockApp
 			public const int notify_panel_notification_icon_bg = 2131230855;
 			
 			// aapt resource value: 0x7F080088
-			public const int tooltip_frame_dark = 2131230856;
+			public const int offline_indicator = 2131230856;
 			
 			// aapt resource value: 0x7F080089
-			public const int tooltip_frame_light = 2131230857;
+			public const int online_indicator = 2131230857;
+			
+			// aapt resource value: 0x7F08008A
+			public const int tooltip_frame_dark = 2131230858;
+			
+			// aapt resource value: 0x7F08008B
+			public const int tooltip_frame_light = 2131230859;
 			
 			static Drawable()
 			{
