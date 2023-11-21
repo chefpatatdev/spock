@@ -37,15 +37,19 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             Button RLButton = FindViewById<Button>(Resource.Id.rl_button);
             RLButton.Touch += RLButton_Touch;
+
         }
 
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
+
+            //ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             switch (e.Event.Action & MotionEventActions.Mask)
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
+                    //socketIndicator.SetBackgroundResource(Resource.Drawable.online_indicator);
                     Console.WriteLine("up button pressed");
                     
                     break;

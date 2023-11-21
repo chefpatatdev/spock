@@ -85,8 +85,8 @@ namespace SpockApp
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
 
-                intent.PutExtra("host", socket.host);
-                intent.PutExtra("port", socket.port);
+                //intent.PutExtra("host", socket.host);
+                //intent.PutExtra("port", socket.port);
                 StartActivity(intent);
             }
             else

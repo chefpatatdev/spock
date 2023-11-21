@@ -18,7 +18,7 @@ namespace SpockApp.src
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            socket.sendmessage("connected home");
+            //socket.sendmessage("connected home");
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.home_screen);
 
