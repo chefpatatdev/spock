@@ -22,8 +22,7 @@ namespace SpockApp
         public static String host;
         public static int port;
         public static bool alreadyPinging;
-
-
+        public static ImageView socketIndicator_update;
 
         public static void Connect(string host, int port)
         {
@@ -71,11 +70,19 @@ namespace SpockApp
                     try
                     {
                         Sendmessage("ping");
+                        if(socketIndicator_update != null)
+                        {
+                            socketIndicator_update.SetBackgroundResource(Resource.Drawable.online_indicator);
+                        }
                         Console.WriteLine("ok");
                     }
                     catch (Exception error)
                     {
                         Console.WriteLine("disconnect");
+                        if (socketIndicator_update != null)
+                        {
+                            socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
+                        }
                         alreadyPinging = false;
                         Connection.Close();
                         break;
