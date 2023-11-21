@@ -60,40 +60,59 @@
         android:layout_marginBottom="5dp"
         />
     <LinearLayout
-     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="50dp">">
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:weightSum="xx">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:text="Value"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
+            android:id="@+id/textView1"
+            android:layout_alignParentLeft="true"
+
             />
                <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Value"
+            android:text="Scalar"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
+            android:id="@+id/textView2"
+            android:layout_toRightOf="@id/textView1"
+
             />
                <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Value"
+            android:text="Sensor"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
+            android:id="@+id/textView3"
+            android:layout_toLeftOf="@id/textView4"
+
+
             />
                <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Value"
+            android:text="Timestamp"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
+            android:id="@+id/textView4"
+            android:layout_alignParentRight="true"
+
+
             />
      </LinearLayout>
     <ListView

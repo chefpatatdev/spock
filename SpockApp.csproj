@@ -75,6 +75,7 @@
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
     <Compile Include="ListViewAdapter.cs" />
+    <Compile Include="ListViewAdapterMeasure.cs" />
     <Compile Include="Manual_Measure.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
@@ -190,6 +191,11 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\text_color.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResourceAnalysisConfig Include="Resources\layout\list_row_measure.xml">
+      <SubType>Designer</SubType>
+    </AndroidResourceAnalysisConfig>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
