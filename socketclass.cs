@@ -55,9 +55,9 @@ namespace SpockApp
             }
 
             byte[] requestBytes = Encoding.ASCII.GetBytes(AesOperation.EncryptString(message));
-            socket.socketObj.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
+            SocketClass.Connection.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
             byte[] responseBytes = new byte[256];
-            int bytesReceived = socketObj.Receive(responseBytes);
+            int bytesReceived = Connection.Receive(responseBytes);
             string response = AesOperation.DecryptString(Encoding.ASCII.GetString(responseBytes, 0, bytesReceived));
             return response;
         }
@@ -77,7 +77,7 @@ namespace SpockApp
                     {
                         Console.WriteLine("disconnect");
                         alreadyPinging = false;
-                        socketObj.Close();
+                        Connection.Close();
                         break;
                     }
                     await Task.Delay(1000);

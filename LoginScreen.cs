@@ -50,22 +50,16 @@ namespace SpockApp
             InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(Context.InputMethodService);
             inputMethodManager.HideSoftInputFromWindow(passwordField.WindowToken, 0);
 
-            Console.WriteLine(usernameRaw);
-            Console.WriteLine(passwordRaw);
+            
+            EditText ipField = FindViewById<EditText>(Resource.Id.ip_field);
+            EditText portField = FindViewById<EditText>(Resource.Id.port_field);
 
-
-
-            //temporary for development reasons
-
-            /*
-            EditText ipField = FindViewById<EditText>(Resource.Id.ip);
-            EditText portField = FindViewById<EditText>(Resource.Id.port);
-            if (!socket.IsConnected()){
-                socket.Connect(ipField.Text, Int32.Parse(portField.Text));
-
+            if (!SocketClass.IsConnected()){
+                SocketClass.Connect(ipField.Text, Int32.Parse(portField.Text));
             }
-            String allowdEntrance=socket.Sendmessage("login," + usernameRaw + "," + passwordRaw);
-            socket.Pinging();
+
+            String allowdEntrance= SocketClass.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+            SocketClass.Pinging();
 
             if (allowdEntrance == "ok")
             {
