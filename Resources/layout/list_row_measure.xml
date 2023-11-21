@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="match_parent"
     android:orientation="horizontal"
     android:weightSum="xx">
         <TextView
@@ -12,9 +12,8 @@
             android:gravity="center"
             android:background="@drawable/text_color"
             android:id="@+id/textView1"
- 
             />
-               <TextView
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -22,29 +21,23 @@
             android:gravity="center"
             android:background="@drawable/text_color"
             android:id="@+id/textView2"
-
-
             />
-               <TextView
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-                        android:id="@+id/textView3"
-
-
+            android:id="@+id/textView3"
             />
-               <TextView
+        <TextView
             android:layout_width="0dp"
             android:layout_weight="1.5"
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-                android:id="@+id/textView4"
-
-
+            android:id="@+id/textView4"
             />
      </LinearLayout>

@@ -15,7 +15,7 @@ namespace SpockApp
     {
         string[] list;
         Context context;
-        public ListViewAdapterMeasure(Context context, string[] items) : base(context, Resource.Layout.list_row, items)
+        public ListViewAdapterMeasure(Context context, string[] items) : base(context, Resource.Layout.list_row_measure, items)
         {
             this.context = context;
             list = items;

@@ -18,7 +18,7 @@ namespace SpockApp
     {
         static EditText input;
         static ListView list;
-        static ListViewAdapter adapter;
+        static ListViewAdapterMeasure adapter;
         static Context context;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,7 +28,7 @@ namespace SpockApp
             SetContentView(Resource.Layout.manual_measurement_screen);
 
             string[] filter = { "Sensor", "Datum", "tijdstip" };
-            adapter = new ListViewAdapter(this, filter);
+            adapter = new ListViewAdapterMeasure(this, filter);
 
             InitializeSpinner(filter);
             input = FindViewById<EditText>(Resource.Id.traject_input);
@@ -37,6 +37,7 @@ namespace SpockApp
 
             list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
             list.Adapter = adapter;
+
         }
 
         private void Btn_Touch(object sender, View.TouchEventArgs e)

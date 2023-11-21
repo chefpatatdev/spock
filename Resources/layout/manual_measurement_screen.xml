@@ -72,7 +72,6 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-            android:id="@+id/textView1"
             android:layout_alignParentLeft="true"
 
             />
@@ -84,7 +83,6 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-            android:id="@+id/textView2"
             android:layout_toRightOf="@id/textView1"
 
             />
@@ -96,20 +94,18 @@
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-            android:id="@+id/textView3"
             android:layout_toLeftOf="@id/textView4"
 
 
             />
                <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:layout_height="match_parent"
             android:text="Timestamp"
             android:textSize="20dp"
             android:gravity="center"
             android:background="@drawable/text_color"
-            android:id="@+id/textView4"
             android:layout_alignParentRight="true"
 
 
