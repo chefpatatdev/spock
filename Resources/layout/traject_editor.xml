@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+     <androidx.appcompat.widget.Toolbar
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar_traject_driving"
+        android:layout_gravity="top">
+        <TextView
+            android:text="Traject Editor"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/live_driving_text"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
+         <Button
+                android:text="⇐ "
+                android:layout_width="75dp"
+                android:layout_height="35dp"
+                android:id="@+id/back_traject"
+                android:layout_below="@id/toolbar_traject_driving" 
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignTop="@id/traject_driving_text"
+                android:gravity="center"
+                android:paddingTop="0sp"
+                android:paddingBottom="1sp"
+                android:background="@drawable/live_button_unpressed" 
+                android:textColor="@color/colorSecundairy"
+                />
+
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/header_edit_traject"
+        android:background="@color/colorThird"
+        >
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:hint="Enter traject here:"
+            
+            android:id="@+id/traject_input"
+            />
+        <Button
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/traject_input"
+            android:id="@+id/add_traject"
+            android:text="ADD"
+            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/live_button_unpressed" 
+            android:textColor="@color/colorSecundairy"
+            android:gravity="center"
+            android:paddingBottom="0dp"            />
+    </RelativeLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_edit"
+        
+        />
+</LinearLayout>

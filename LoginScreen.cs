@@ -20,7 +20,7 @@ namespace SpockApp
 {
 
 
-    [Activity(Label = "LoginScreen", MainLauncher = true)]
+    [Activity(Label = "Spock", MainLauncher = true)]
     public class LoginScreen : Activity
     {
 
@@ -57,7 +57,7 @@ namespace SpockApp
 
             //temporary for development reasons
 
-
+            /*
             EditText ipField = FindViewById<EditText>(Resource.Id.ip);
             EditText portField = FindViewById<EditText>(Resource.Id.port);
             if (!socket.IsConnected()){
@@ -78,9 +78,9 @@ namespace SpockApp
             {
 
                 box.Text = socket.IsConnected().ToString();
-            }
+            }*/
 
-            if (allowdEntrance == "ok")
+            if (true)//allowdEntrance == "ok")
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));

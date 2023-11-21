@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SpockApp.Resources;
 using SpockApp.Resources.mipmap_xhdpi;
 using System;
 using System.Collections.Generic;
@@ -27,8 +28,8 @@ namespace SpockApp.src
             Button TrajectDrivingNav = FindViewById<Button>(Resource.Id.traject_driving_nav);
             TrajectDrivingNav.Click += TrajectDrivingNav_Click;
 
-            Button test = FindViewById<Button>(Resource.Id.test);
-            test.Click += Test_click;
+            Button measure = FindViewById<Button>(Resource.Id.measuring_screen);
+            measure.Click += MeasuringScreen_click;
         }
 
         private void LiveDrivingNav_Click(object sender, System.EventArgs e)
@@ -36,9 +37,9 @@ namespace SpockApp.src
             Intent intent = new Intent(this, typeof(LiveDriving));
             StartActivity(intent);
         }
-        private void Test_click(object sender, System.EventArgs e)
+        private void MeasuringScreen_click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(test));
+            Intent intent = new Intent(this, typeof(MeasuringScreen));
             StartActivity(intent);
         }
 
