@@ -28,19 +28,20 @@ namespace SpockApp
                 convertView = lf.Inflate(Resource.Layout.list_row_measure, null);
 
                 TextView value = convertView.FindViewById<TextView>(Resource.Id.textView1);
-                value.Text = list[position];
+                value.Text = list[0];
 
                 TextView scalar = convertView.FindViewById<TextView>(Resource.Id.textView2);
-                scalar.Text = list[position];
+                scalar.Text = list[1];
 
                 TextView sensor = convertView.FindViewById<TextView>(Resource.Id.textView3);
-                sensor.Text = list[position];
+                sensor.Text = list[2];
 
                 TextView timestamp = convertView.FindViewById<TextView>(Resource.Id.textView4);
-                timestamp.Text = list[position];
+                timestamp.Text = list[3];
 
             }
-            return base.GetView(position, convertView, parent);
+            return convertView;
+
         }
 
     }

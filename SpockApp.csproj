@@ -193,12 +193,13 @@
     <AndroidResource Include="Resources\drawable\text_color.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResourceAnalysisConfig Include="Resources\layout\list_row_measure.xml">
+    <AndroidResource Include="Resources\layout\list_row_measure.xml">
       <SubType>Designer</SubType>
-    </AndroidResourceAnalysisConfig>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\measure_list.xml">
+    <AndroidResource Include="Resources\drawable\text_measure.xml">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="xx">
+    >
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:background="@drawable/text_color"
+            android:background="@drawable/text_measure"
             android:id="@+id/textView1"
             />
         <TextView
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:background="@drawable/text_color"
+            android:background="@drawable/text_measure"
             android:id="@+id/textView2"
             />
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:background="@drawable/text_color"
+            android:background="@drawable/text_measure"
             android:id="@+id/textView3"
             />
         <TextView
@@ -37,7 +37,7 @@
             android:layout_height="match_parent"
             android:textSize="20dp"
             android:gravity="center"
-            android:background="@drawable/text_color"
+            android:background="@drawable/text_measure"
             android:id="@+id/textView4"
             />
      </LinearLayout>

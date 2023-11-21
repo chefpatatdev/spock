@@ -27,8 +27,10 @@ namespace SpockApp
             // Create your application here
             SetContentView(Resource.Layout.manual_measurement_screen);
 
-            string[] filter = { "Sensor", "Datum", "tijdstip" };
+            string[] filter = { "value", "Scalar","Sensor", "Datumtijdstip"  };
             adapter = new ListViewAdapterMeasure(this, filter);
+            context = ApplicationContext;
+
 
             InitializeSpinner(filter);
             input = FindViewById<EditText>(Resource.Id.traject_input);
