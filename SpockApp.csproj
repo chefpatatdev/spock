@@ -75,8 +75,7 @@
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
     <Compile Include="ListViewAdapter.cs" />
-    <Compile Include="Manual_Driving.cs" />
-    <Compile Include="test.cs" />
+    <Compile Include="Manual_Measure.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
     <Compile Include="MeasuringScreen.cs" />
@@ -157,11 +156,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\pickertest.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\measuring_screen.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +187,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\app_icon_foreground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\text_color.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

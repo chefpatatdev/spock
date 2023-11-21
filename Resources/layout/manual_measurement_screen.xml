@@ -3,5 +3,103 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+         <androidx.appcompat.widget.Toolbar
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar_measurment"
+        android:layout_gravity="top">
+        <TextView
+            android:text="Manual Measure"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/manual_measurment_text"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:textColor="#ffffffff"
+            android:inputType="none"/>
+       
+    </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/header_edit_traject"
+        android:background="@color/colorThird"
+        >
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:hint="Enter traject here:"
+            
+            android:id="@+id/filter_input"
+            />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:prompt="@string/planet_prompt"
+        android:layout_toRightOf="@id/filter_input"
+        android:layout_alignTop="@id/filter_input"
+        android:background="@drawable/live_button_unpressed" 
+        android:gravity="center"
+        android:paddingBottom="5dp"      
+    />
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:gravity="center"
+        android:paddingBottom="5dp"   
+        android:id="@+id/manual_measure_button"
+        android:text="Measure"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        />
+    <LinearLayout
+     android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Value"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/text_color"
+            />
+               <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Value"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/text_color"
+            />
+               <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Value"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/text_color"
+            />
+               <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Value"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/text_color"
+            />
+     </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listview_edit"
+        
+        />
 </LinearLayout>
