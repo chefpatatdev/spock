@@ -27,8 +27,11 @@ namespace SpockApp
             // Create your application here
             SetContentView(Resource.Layout.manual_measurement_screen);
 
-            string[] filter = { "value", "Scalar","Sensor", "Datumtijdstip"  };
-            adapter = new ListViewAdapterMeasure(this, filter);
+            string[] filter = { "value", "Scalar","Sensor", "datum" };
+            string[,] test = { {"4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" },{"1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
+            string[] t = new string[test.GetLength(1)];
+            InitializeStringArray(t);
+            adapter = new ListViewAdapterMeasure(this, test, t );
             context = ApplicationContext;
 
 
@@ -41,6 +44,15 @@ namespace SpockApp
             list.Adapter = adapter;
 
         }
+        private void InitializeStringArray(string[] array)
+        {
+                for (int j = 0; j < array.Length; j++)
+                {
+                    array[j] = "";
+                }
+            
+        }
+
 
         private void Btn_Touch(object sender, View.TouchEventArgs e)
         {
