@@ -1,4 +1,4 @@
-﻿using Android.App;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -18,7 +18,6 @@ namespace SpockApp.src
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            socket.sendmessage("connected home");
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.home_screen);
 
