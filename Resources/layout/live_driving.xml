@@ -20,6 +20,16 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:textColor="#ffffffff"
             android:inputType="none"/>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/socket_indicator"
+            android:src="@android:color/transparent"
+            android:background="@drawable/offline_indicator"
+            android:contentDescription="offline" 
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            />
     </androidx.appcompat.widget.Toolbar>
     
     <Button

@@ -7,7 +7,8 @@ namespace EncryptionDecryptionUsingSymmetricKey
 {
     public class AesOperation
     {
-        const string key = "b14ca5898a4e4133bbce2ea2315a1916";
+
+        const string key= "b14ca5898a4e4133bbce2ea2315a1916";
         public static string EncryptString(string plainText)
         {
             byte[] iv = new byte[16];
