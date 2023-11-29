@@ -37,11 +37,25 @@
             android:id="@+id/filter_input"
             />
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerfilter"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:prompt="@string/planet_prompt"
         android:layout_toRightOf="@id/filter_input"
+        android:layout_alignTop="@id/filter_input"
+        android:background="@drawable/live_button_unpressed" 
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:textAlignment="center"
+        android:paddingLeft="2dp"
+  
+    />
+        <Spinner
+        android:id="@+id/spinnersensor"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:prompt="@string/planet_prompt"
+        android:layout_toLeftOf="@id/filter_input"
         android:layout_alignTop="@id/filter_input"
         android:background="@drawable/live_button_unpressed" 
         android:gravity="center"

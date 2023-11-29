@@ -29,6 +29,9 @@ namespace SpockApp.src
 
             Button measure = FindViewById<Button>(Resource.Id.measuring_screen);
             measure.Click += MeasuringScreen_click;
+
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
         }
 
         private void LiveDrivingNav_Click(object sender, System.EventArgs e)

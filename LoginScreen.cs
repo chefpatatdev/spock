@@ -53,12 +53,12 @@ namespace SpockApp
             
             EditText ipField = FindViewById<EditText>(Resource.Id.ip_field);
             EditText portField = FindViewById<EditText>(Resource.Id.port_field);
-
+            
             if (!SocketClass.IsConnected()){
                 SocketClass.Connect(ipField.Text, Int32.Parse(portField.Text));
             }
 
-            String allowdEntrance= SocketClass.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+            String allowdEntrance= SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
             SocketClass.Pinging();
 
             if (allowdEntrance == "ok")

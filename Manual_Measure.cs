@@ -21,6 +21,7 @@ namespace SpockApp
         static ListViewAdapterMeasure adapter;
         static Context context;
         static string[] Filter { get; set; } = { "value", "Scalar", "Sensor", "datum" };
+        static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
         static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,7 +36,7 @@ namespace SpockApp
             context = ApplicationContext;
 
 
-            InitializeSpinner(Filter);
+            InitializeSpinners(Filter, Sensornames);
             input = FindViewById<EditText>(Resource.Id.traject_input);
             Button btn = FindViewById<Button>(Resource.Id.manual_measure_button);
             btn.Touch += Btn_Touch;
@@ -71,15 +72,23 @@ namespace SpockApp
             }
         }
 
-        private void InitializeSpinner(string[] traject_array)
+        private void InitializeSpinners(string[] filter_array, string[] naam_array )
         {
             //Maken van drop down menu om traject te slecteren
-            Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner);
-            spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
+            Spinner spinnerf = FindViewById<Spinner>(Resource.Id.spinnerfilter);
+            spinnerf.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
             //custom strings in de drop down menu zetten
-            var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, traject_array);
-            adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
-            spinner.Adapter = adapter;
+            var adapter1 = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, filter_array);
+            adapter1.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinnerf.Adapter = adapter1;
+
+            //Maken van drop down menu om traject te slecteren
+            Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensor);
+            spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
+            //custom strings in de drop down menu zetten
+            var adapter2 = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, naam_array);
+            adapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+            spinners.Adapter = adapter2;
 
         }
         private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)

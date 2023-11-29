@@ -32,7 +32,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
-            if(Intent.GetStringArrayExtra("trajectID") != null)
+            if (Intent.GetStringArrayExtra("trajectID") != null)
             {
                 ta = Intent.GetStringArrayExtra("trajectID");
             }
@@ -40,7 +40,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializeSpinner(ta);
             InitializePicker();
             InitializeButtons();
+
+            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
+            RecieveSavedTraject(saved_traject);
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
+
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
 
         }
         public override void OnBackPressed()
@@ -120,6 +126,19 @@ namespace SpockApp.Resources.mipmap_xhdpi
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
 
+        }
+        private void RecieveSavedTraject(string saved)
+        {
+            string[] s_traject = saved.Split(",");
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 50; j++)
+                {
+                    if (s_traject[j] == "Stop") break;
+                    traject[i, j] = "";
+                }
+            }
+           
         }
 
         //Update Traject
