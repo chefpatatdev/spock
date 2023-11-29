@@ -200,9 +200,7 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\list_row_measure.xml">
 
-    <AndroidResource Include="Resources\drawable\online_indicator.xml">
 
-      <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
@@ -210,9 +208,7 @@
     <AndroidResource Include="Resources\drawable\text_measure.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
 
-    <AndroidResource Include="Resources\drawable\offline_indicator.xml">
-
-      <SubType>Designer</SubType>
+ 
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
