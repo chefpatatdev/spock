@@ -20,6 +20,8 @@ namespace SpockApp
         static ListView list;
         static ListViewAdapterMeasure adapter;
         static Context context;
+        static string[] Filter { get; set; } = { "value", "Scalar", "Sensor", "datum" };
+        static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -27,15 +29,13 @@ namespace SpockApp
             // Create your application here
             SetContentView(Resource.Layout.manual_measurement_screen);
 
-            string[] filter = { "value", "Scalar","Sensor", "datum" };
-            string[,] test = { {"4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" },{"1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
-            string[] t = new string[test.GetLength(1)];
-            InitializeStringArray(t);
-            adapter = new ListViewAdapterMeasure(this, test, t );
+            string[] listlength = new string[SensorData.GetLength(1)];
+            InitializeStringArray(listlength);
+            adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
             context = ApplicationContext;
 
 
-            InitializeSpinner(filter);
+            InitializeSpinner(Filter);
             input = FindViewById<EditText>(Resource.Id.traject_input);
             Button btn = FindViewById<Button>(Resource.Id.manual_measure_button);
             btn.Touch += Btn_Touch;
