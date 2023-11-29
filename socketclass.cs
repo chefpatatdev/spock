@@ -5,6 +5,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
+
+using Java.Net;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,9 +74,11 @@ namespace SpockApp
                     try
                     {
                         Sendmessage("ping");
+
                         if(socketIndicator_update != null)
                         {
                             socketIndicator_update.SetBackgroundResource(Resource.Drawable.online_indicator);
+
                         }
                         Console.WriteLine("ok");
                     }
@@ -82,7 +87,9 @@ namespace SpockApp
                         Console.WriteLine("disconnect");
                         if (socketIndicator_update != null)
                         {
+
                             socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
+
                         }
                         alreadyPinging = false;
                         Connection.Close();

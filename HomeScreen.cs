@@ -38,7 +38,7 @@ namespace SpockApp.src
         }
         private void MeasuringScreen_click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(MeasuringScreen));
+            Intent intent = new Intent(this, typeof(Manual_Measure));
             StartActivity(intent);
         }
 

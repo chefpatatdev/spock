@@ -19,7 +19,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
     public class TrajectDriving : Activity
     {
         string traject_name;
-        int Number_picker_value { get; set; }
+        int Number_picker_value { get; set; } = 1;
         string[,] traject = new string[2, 50];
         string Command { get; set; } = "";
         int Array_index { get; set; } = 0;

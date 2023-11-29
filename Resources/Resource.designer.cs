@@ -3435,10 +3435,17 @@ namespace SpockApp
 			public const int notify_panel_notification_icon_bg = 2131230855;
 			
 			// aapt resource value: 0x7F080088
+
+			public const int text_color = 2131230856;
+			
+			// aapt resource value: 0x7F080089
+			public const int text_measure = 2131230857;
+
 			public const int offline_indicator = 2131230856;
 			
 			// aapt resource value: 0x7F080089
 			public const int online_indicator = 2131230857;
+
 			
 			// aapt resource value: 0x7F08008A
 			public const int tooltip_frame_dark = 2131230858;
@@ -3793,52 +3800,55 @@ namespace SpockApp
 			public const int fill_vertical = 2131296369;
 			
 			// aapt resource value: 0x7F090073
-			public const int @fixed = 2131296371;
+			public const int filter_input = 2131296371;
 			
 			// aapt resource value: 0x7F090074
-			public const int forever = 2131296372;
+			public const int @fixed = 2131296372;
 			
 			// aapt resource value: 0x7F090075
-			public const int fragment_container_view_tag = 2131296373;
+			public const int forever = 2131296373;
+			
+			// aapt resource value: 0x7F090076
+			public const int fragment_container_view_tag = 2131296374;
 			
 			// aapt resource value: 0x7F090002
 			public const int FUNCTION = 2131296258;
 			
-			// aapt resource value: 0x7F090076
-			public const int ghost_view = 2131296374;
-			
 			// aapt resource value: 0x7F090077
-			public const int ghost_view_holder = 2131296375;
+			public const int ghost_view = 2131296375;
 			
 			// aapt resource value: 0x7F090078
-			public const int group_divider = 2131296376;
+			public const int ghost_view_holder = 2131296376;
 			
 			// aapt resource value: 0x7F090079
-			public const int header_edit_traject = 2131296377;
+			public const int group_divider = 2131296377;
 			
 			// aapt resource value: 0x7F09007A
-			public const int home = 2131296378;
+			public const int header_edit_traject = 2131296378;
 			
 			// aapt resource value: 0x7F09007B
-			public const int homeAsUp = 2131296379;
+			public const int home = 2131296379;
 			
 			// aapt resource value: 0x7F09007C
-			public const int icon = 2131296380;
+			public const int homeAsUp = 2131296380;
 			
 			// aapt resource value: 0x7F09007D
-			public const int icon_group = 2131296381;
+			public const int icon = 2131296381;
 			
 			// aapt resource value: 0x7F09007E
-			public const int ifRoom = 2131296382;
+			public const int icon_group = 2131296382;
 			
 			// aapt resource value: 0x7F09007F
-			public const int image = 2131296383;
+			public const int ifRoom = 2131296383;
 			
 			// aapt resource value: 0x7F090080
-			public const int info = 2131296384;
+			public const int image = 2131296384;
 			
 			// aapt resource value: 0x7F090081
+			public const int info = 2131296385;
+
 			public const int ip_field = 2131296385;
+
 			
 			// aapt resource value: 0x7F090082
 			public const int italic = 2131296386;
@@ -3883,6 +3893,222 @@ namespace SpockApp
 			public const int login_button = 2131296399;
 			
 			// aapt resource value: 0x7F090090
+
+			public const int manual_measure_button = 2131296400;
+			
+			// aapt resource value: 0x7F090091
+			public const int manual_measurment_text = 2131296401;
+			
+			// aapt resource value: 0x7F090092
+			public const int masked = 2131296402;
+			
+			// aapt resource value: 0x7F090093
+			public const int measure_button = 2131296403;
+			
+			// aapt resource value: 0x7F090094
+			public const int measuring_screen = 2131296404;
+			
+			// aapt resource value: 0x7F090095
+			public const int measuring_text = 2131296405;
+			
+			// aapt resource value: 0x7F090096
+			public const int message = 2131296406;
+			
+			// aapt resource value: 0x7F090003
+			public const int META = 2131296259;
+			
+			// aapt resource value: 0x7F090097
+			public const int middle = 2131296407;
+			
+			// aapt resource value: 0x7F090098
+			public const int mini = 2131296408;
+			
+			// aapt resource value: 0x7F090099
+			public const int modify_traject = 2131296409;
+			
+			// aapt resource value: 0x7F09009A
+			public const int mtrl_child_content_container = 2131296410;
+			
+			// aapt resource value: 0x7F09009B
+			public const int mtrl_internal_children_alpha_tag = 2131296411;
+			
+			// aapt resource value: 0x7F09009C
+			public const int multiply = 2131296412;
+			
+			// aapt resource value: 0x7F09009D
+			public const int navigation_header_container = 2131296413;
+			
+			// aapt resource value: 0x7F09009E
+			public const int never = 2131296414;
+			
+			// aapt resource value: 0x7F09009F
+			public const int none = 2131296415;
+			
+			// aapt resource value: 0x7F0900A0
+			public const int normal = 2131296416;
+			
+			// aapt resource value: 0x7F0900A1
+			public const int notification_background = 2131296417;
+			
+			// aapt resource value: 0x7F0900A2
+			public const int notification_main_column = 2131296418;
+			
+			// aapt resource value: 0x7F0900A3
+			public const int notification_main_column_container = 2131296419;
+			
+			// aapt resource value: 0x7F0900A4
+			public const int numberPicker = 2131296420;
+			
+			// aapt resource value: 0x7F0900A5
+			public const int off = 2131296421;
+			
+			// aapt resource value: 0x7F0900A6
+			public const int on = 2131296422;
+			
+			// aapt resource value: 0x7F0900A7
+			public const int outline = 2131296423;
+			
+			// aapt resource value: 0x7F0900A8
+			public const int parallax = 2131296424;
+			
+			// aapt resource value: 0x7F0900A9
+			public const int parentPanel = 2131296425;
+			
+			// aapt resource value: 0x7F0900AA
+			public const int parent_matrix = 2131296426;
+			
+			// aapt resource value: 0x7F0900AB
+			public const int password_field = 2131296427;
+			
+			// aapt resource value: 0x7F0900AC
+			public const int password_txt = 2131296428;
+			
+			// aapt resource value: 0x7F0900AD
+			public const int pin = 2131296429;
+			
+			// aapt resource value: 0x7F0900AE
+			public const int progress_circular = 2131296430;
+			
+			// aapt resource value: 0x7F0900AF
+			public const int progress_horizontal = 2131296431;
+			
+			// aapt resource value: 0x7F0900B0
+			public const int radio = 2131296432;
+			
+			// aapt resource value: 0x7F0900B1
+			public const int remove = 2131296433;
+			
+			// aapt resource value: 0x7F0900B2
+			public const int right = 2131296434;
+			
+			// aapt resource value: 0x7F0900B3
+			public const int right_button = 2131296435;
+			
+			// aapt resource value: 0x7F0900B4
+			public const int right_icon = 2131296436;
+			
+			// aapt resource value: 0x7F0900B5
+			public const int right_side = 2131296437;
+			
+			// aapt resource value: 0x7F0900B6
+			public const int rl_button = 2131296438;
+			
+			// aapt resource value: 0x7F0900B7
+			public const int rr_button = 2131296439;
+			
+			// aapt resource value: 0x7F0900B8
+			public const int save_non_transition_alpha = 2131296440;
+			
+			// aapt resource value: 0x7F0900B9
+			public const int save_overlay_view = 2131296441;
+			
+			// aapt resource value: 0x7F0900BA
+			public const int screen = 2131296442;
+			
+			// aapt resource value: 0x7F0900BB
+			public const int scroll = 2131296443;
+			
+			// aapt resource value: 0x7F0900BF
+			public const int scrollable = 2131296447;
+			
+			// aapt resource value: 0x7F0900BC
+			public const int scrollIndicatorDown = 2131296444;
+			
+			// aapt resource value: 0x7F0900BD
+			public const int scrollIndicatorUp = 2131296445;
+			
+			// aapt resource value: 0x7F0900BE
+			public const int scrollView = 2131296446;
+			
+			// aapt resource value: 0x7F0900C0
+			public const int search_badge = 2131296448;
+			
+			// aapt resource value: 0x7F0900C1
+			public const int search_bar = 2131296449;
+			
+			// aapt resource value: 0x7F0900C2
+			public const int search_button = 2131296450;
+			
+			// aapt resource value: 0x7F0900C3
+			public const int search_close_btn = 2131296451;
+			
+			// aapt resource value: 0x7F0900C4
+			public const int search_edit_frame = 2131296452;
+			
+			// aapt resource value: 0x7F0900C5
+			public const int search_go_btn = 2131296453;
+			
+			// aapt resource value: 0x7F0900C6
+			public const int search_mag_icon = 2131296454;
+			
+			// aapt resource value: 0x7F0900C7
+			public const int search_plate = 2131296455;
+			
+			// aapt resource value: 0x7F0900C8
+			public const int search_src_text = 2131296456;
+			
+			// aapt resource value: 0x7F0900C9
+			public const int search_voice_btn = 2131296457;
+			
+			// aapt resource value: 0x7F0900CB
+			public const int selected = 2131296459;
+			
+			// aapt resource value: 0x7F0900CA
+			public const int select_dialog_listview = 2131296458;
+			
+			// aapt resource value: 0x7F090004
+			public const int SHIFT = 2131296260;
+			
+			// aapt resource value: 0x7F0900CC
+			public const int shortcut = 2131296460;
+			
+			// aapt resource value: 0x7F0900CD
+			public const int showCustom = 2131296461;
+			
+			// aapt resource value: 0x7F0900CE
+			public const int showHome = 2131296462;
+			
+			// aapt resource value: 0x7F0900CF
+			public const int showTitle = 2131296463;
+			
+			// aapt resource value: 0x7F0900D0
+			public const int smallLabel = 2131296464;
+			
+			// aapt resource value: 0x7F0900D1
+			public const int snackbar_action = 2131296465;
+			
+			// aapt resource value: 0x7F0900D2
+			public const int snackbar_text = 2131296466;
+			
+			// aapt resource value: 0x7F0900D3
+			public const int snap = 2131296467;
+			
+			// aapt resource value: 0x7F0900D4
+			public const int snapMargins = 2131296468;
+			
+			// aapt resource value: 0x7F0900D5
+			public const int sockets = 2131296469;
+
 			public const int masked = 2131296400;
 			
 			// aapt resource value: 0x7F090091
@@ -4097,6 +4323,7 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F0900D4
 			public const int socket_indicator = 2131296468;
+
 			
 			// aapt resource value: 0x7F0900D6
 			public const int spacer = 2131296470;
@@ -4167,6 +4394,7 @@ namespace SpockApp
 			// aapt resource value: 0x7F0900EB
 			public const int text2 = 2131296491;
 			
+
 			// aapt resource value: 0x7F0900F1
 			public const int textinput_counter = 2131296497;
 			
@@ -4175,6 +4403,7 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F0900F3
 			public const int textinput_helper_text = 2131296499;
+
 			
 			// aapt resource value: 0x7F0900EC
 			public const int textSpacerNoButtons = 2131296492;
@@ -4188,7 +4417,7 @@ namespace SpockApp
 			// aapt resource value: 0x7F0900EF
 			public const int textView1 = 2131296495;
 			
-			// aapt resource value: 0x7F0900F0
+
 			public const int text_input_password_toggle = 2131296496;
 			
 			// aapt resource value: 0x7F0900F4
@@ -4292,6 +4521,7 @@ namespace SpockApp
 			
 			// aapt resource value: 0x7F090115
 			public const int wrap_content = 2131296533;
+
 			
 			static Id()
 			{
@@ -4552,43 +4782,47 @@ namespace SpockApp
 			public const int list_row = 2131492910;
 			
 			// aapt resource value: 0x7F0C002F
-			public const int live_driving = 2131492911;
+			public const int list_row_measure = 2131492911;
 			
 			// aapt resource value: 0x7F0C0030
-			public const int login_screen = 2131492912;
+			public const int live_driving = 2131492912;
 			
 			// aapt resource value: 0x7F0C0031
-			public const int manual_measurement_screen = 2131492913;
+			public const int login_screen = 2131492913;
 			
 			// aapt resource value: 0x7F0C0032
-			public const int measuring_screen = 2131492914;
+			public const int manual_measurement_screen = 2131492914;
 			
 			// aapt resource value: 0x7F0C0033
-			public const int mtrl_layout_snackbar = 2131492915;
+			public const int measuring_screen = 2131492915;
 			
 			// aapt resource value: 0x7F0C0034
-			public const int mtrl_layout_snackbar_include = 2131492916;
+			public const int mtrl_layout_snackbar = 2131492916;
 			
 			// aapt resource value: 0x7F0C0035
-			public const int notification_action = 2131492917;
+			public const int mtrl_layout_snackbar_include = 2131492917;
 			
 			// aapt resource value: 0x7F0C0036
-			public const int notification_action_tombstone = 2131492918;
+			public const int notification_action = 2131492918;
 			
 			// aapt resource value: 0x7F0C0037
-			public const int notification_template_custom_big = 2131492919;
+			public const int notification_action_tombstone = 2131492919;
 			
 			// aapt resource value: 0x7F0C0038
-			public const int notification_template_icon_group = 2131492920;
+			public const int notification_template_custom_big = 2131492920;
 			
 			// aapt resource value: 0x7F0C0039
-			public const int notification_template_part_chronometer = 2131492921;
+			public const int notification_template_icon_group = 2131492921;
 			
 			// aapt resource value: 0x7F0C003A
-			public const int notification_template_part_time = 2131492922;
+			public const int notification_template_part_chronometer = 2131492922;
 			
 			// aapt resource value: 0x7F0C003B
+
+			public const int notification_template_part_time = 2131492923;
+
 			public const int select_dialog_item_material = 2131492923;
+
 			
 			// aapt resource value: 0x7F0C003C
 			public const int select_dialog_multichoice_material = 2131492924;
@@ -4619,13 +4853,16 @@ namespace SpockApp
 		{
 			
 			// aapt resource value: 0x7F0D0000
-			public const int ic_launcher = 2131558400;
+			public const int app_icon_foreground = 2131558400;
 			
 			// aapt resource value: 0x7F0D0001
-			public const int ic_launcher_foreground = 2131558401;
+			public const int ic_launcher = 2131558401;
 			
 			// aapt resource value: 0x7F0D0002
-			public const int ic_launcher_round = 2131558402;
+			public const int ic_launcher_foreground = 2131558402;
+			
+			// aapt resource value: 0x7F0D0003
+			public const int ic_launcher_round = 2131558403;
 			
 			static Mipmap()
 			{
