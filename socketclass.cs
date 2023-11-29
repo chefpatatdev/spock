@@ -83,7 +83,7 @@ namespace SpockApp
                         Console.WriteLine("disconnect");
                         if (socketIndicator_update != null)
                         {
-                            //socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
+                            socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
                         }
                         alreadyPinging = false;
                         Connection.Close();
