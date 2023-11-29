@@ -5,6 +5,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
+
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,9 +74,11 @@ namespace SpockApp
                     try
                     {
                         Sendmessage("ping");
+
                         if(socketIndicator_update != null)
                         {
                             socketIndicator_update.SetBackgroundResource(Resource.Drawable.online_indicator);
+
                         }
                         Console.WriteLine("ok");
                     }
@@ -101,8 +106,8 @@ namespace SpockApp
                 try
                 {
                     Console.WriteLine("trying to connect");
-                    socket.socketObj = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    socket.socketObj.Connect(host, port);
+                    Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    Connection.Connect(host, port);
                 }
                 catch (Exception error)
                 {
