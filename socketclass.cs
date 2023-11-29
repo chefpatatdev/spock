@@ -6,7 +6,7 @@ using Android.Views;
 using Android.Widget;
 using EncryptionDecryptionUsingSymmetricKey;
 
-using Java.Net;
+
 
 using System;
 using System.Collections.Generic;
@@ -87,7 +87,7 @@ namespace SpockApp
                         Console.WriteLine("disconnect");
                         if (socketIndicator_update != null)
                         {
-                            //socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
+                            socketIndicator_update.SetBackgroundResource(Resource.Drawable.offline_indicator);
                         }
                         alreadyPinging = false;
                         Connection.Close();
@@ -106,8 +106,8 @@ namespace SpockApp
                 try
                 {
                     Console.WriteLine("trying to connect");
-                    socket.socketObj = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    socket.socketObj.Connect(host, port);
+                    Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    Connection.Connect(host, port);
                 }
                 catch (Exception error)
                 {

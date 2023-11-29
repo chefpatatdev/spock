@@ -75,12 +75,9 @@
     <Compile Include="AesOperation.cs" />
     <Compile Include="HomeScreen.cs" />
     <Compile Include="ListViewAdapter.cs" />
-
     <Compile Include="ListViewAdapterMeasure.cs" />
     <Compile Include="Manual_Measure.cs" />
-
     <Compile Include="Manual_Driving.cs" />
-
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
     <Compile Include="MeasuringScreen.cs" />
@@ -179,7 +176,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-
     <AndroidResource Include="Resources\mipmap-hdpi\app_icon_foreground.png" />
   </ItemGroup>
   <ItemGroup>
@@ -199,17 +195,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\list_row_measure.xml">
-
-
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-
     <AndroidResource Include="Resources\drawable\text_measure.xml">
       <Generator>MSBuild:UpdateGeneratedFiles</Generator>
-
- 
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\offline_indicator.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\online_indicator.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
