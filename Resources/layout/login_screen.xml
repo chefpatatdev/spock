@@ -8,6 +8,45 @@
     android:minHeight="25px"
     android:gravity="center">
     <TextView
+        android:text="IP address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ip_txt"
+        android:gravity="left"
+        android:layout_marginLeft="16.0dp"
+        />
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/ip_field"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="ip"
+        android:inputType="text"
+        android:maxLength="20" 
+        android:text="172.18.100.7"/>
+    <TextView
+        android:text="Port"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/port_txt"
+        android:gravity="left"
+        android:layout_marginLeft="16.0dp"
+        />
+    <EditText
+        android:layout_width="350.0dp"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:id="@+id/port_field"
+        android:layout_gravity="center_horizontal"
+        android:accessibilityPaneTitle="port"
+        android:inputType="number"
+        android:maxLength="20" 
+        android:text="3000"/>
+
+    <TextView
         android:text="Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,34 +97,8 @@
         android:background="@drawable/live_button_unpressed" 
         android:textColor="@color/colorSecundairy"
     />
-    <EditText
-        android:layout_width="350.0dp"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/ip_field"
-        android:layout_gravity="center_horizontal"
-        android:accessibilityPaneTitle="ip"
-        android:inputType="text"
-        android:maxLength="20" 
-        android:text="172.18.100.7"/>
-    <EditText
-        android:layout_width="350.0dp"
-        android:layout_height="wrap_content"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/port_field"
-        android:layout_gravity="center_horizontal"
-        android:accessibilityPaneTitle="port"
-        android:inputType="number"
-        android:maxLength="20" 
-        android:text="3000"/>
-    <TextView
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+
+
 
 
 </LinearLayout>

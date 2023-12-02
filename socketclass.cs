@@ -27,12 +27,21 @@ namespace SpockApp
         public static bool alreadyPinging;
         public static ImageView socketIndicator_update;
 
-        public static void Connect(string host, int port)
+        public static bool Connect(string host, int port)
         {
-            SocketClass.host = host;
-            SocketClass.port = port;
-            SocketClass.Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            SocketClass.Connection.Connect(host, port);
+
+                SocketClass.host = host;
+                SocketClass.port = port;
+                SocketClass.Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                SocketClass.Connection.Connect(host, port); //we zitten in 1 thread en dit houd alles tegen als hij geen connectie vind -> app reageerd niet meer en crashed 
+                return true;
+            }catch (Exception e)
+            {
+                return false;
+            }
+
         }
 
         public static void Disconnect()

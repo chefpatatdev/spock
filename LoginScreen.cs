@@ -2,6 +2,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Telecom;
 using Android.Views;
 using Android.Views.InputMethods;
 using Android.Widget;
@@ -52,31 +53,46 @@ namespace SpockApp
 
             
             EditText ipField = FindViewById<EditText>(Resource.Id.ip_field);
+            string IPAddr = ipField.Text;
+
             EditText portField = FindViewById<EditText>(Resource.Id.port_field);
+            int port = Int32.Parse(portField.Text);
+
+            bool connectionStatus = false;
 
             if (!SocketClass.IsConnected()){
-                SocketClass.Connect(ipField.Text, Int32.Parse(portField.Text));
-            }
-
-            String allowdEntrance= SocketClass.Sendmessage("login," + usernameRaw + "," + passwordRaw);
-            SocketClass.Pinging();
-
-            if (allowdEntrance == "ok")
-            {
-                //swicth to homescreen
-                Intent intent = new Intent(this, typeof(HomeScreen));
-                StartActivity(intent);
-
+                Console.WriteLine("Not connected, Trying to connect..\n");
+                connectionStatus = SocketClass.Connect(IPAddr, port);
+                if (!connectionStatus)
+                {
+                    View view = (View)sender;
+                    Snackbar.Make(view, "Could not connect to that IP and port!", Snackbar.LengthLong)
+                        .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                }
             }
             else
             {
-                //popup at the bottom of the screen
-                View view = (View)sender;
-                Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
-                    .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-            }
-            
+                Console.WriteLine("Connected!");
 
+
+                String allowdEntrance = SocketClass.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+                SocketClass.Pinging();
+
+                if (allowdEntrance == "ok")
+                {
+                    //swicth to homescreen
+                    Intent intent = new Intent(this, typeof(HomeScreen));
+                    StartActivity(intent);
+
+                }
+                else
+                {
+                    //popup at the bottom of the screen
+                    View view = (View)sender;
+                    Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
+                        .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                }
+            }
 
         }
     }
