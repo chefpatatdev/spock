@@ -23,6 +23,10 @@ namespace SpockApp
         static string[] Filter { get; set; } = { "value", "Scalar", "Sensor", "datum" };
         static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
         static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
+
+        string SensorSelected { get; set; } 
+        string FilterSelected { get; set; } 
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -54,7 +58,20 @@ namespace SpockApp
             
         }
 
+        private void RequestMeasurements()
+        {
+            string measurements = SocketClass.Sendmessage("r_filter," + FilterSelected + "," + input.Text.ToString());
+            string[] measurements_list = measurements.Split(",");
+            for (int i = 0; i < SensorData.GetLength(1); i++)
+            {
+                for (int j = 0; j < SensorData.GetLength(0); j++)
+                {
+                    if (measurements_list[SensorData.GetLength(0) * i + j] == "Stop") break;
+                    SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
+                }
+            }
 
+        }
         private void Btn_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -62,6 +79,7 @@ namespace SpockApp
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
+                    RequestManualMeasure();
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
@@ -71,12 +89,16 @@ namespace SpockApp
                     break;
             }
         }
+        private void RequestManualMeasure()
+        {
+            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",one" );
+        }
 
         private void InitializeSpinners(string[] filter_array, string[] naam_array )
         {
             //Maken van drop down menu om traject te slecteren
             Spinner spinnerf = FindViewById<Spinner>(Resource.Id.spinnerfilter);
-            spinnerf.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
+            spinnerf.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Sfilter_ItemSelected);
             //custom strings in de drop down menu zetten
             var adapter1 = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, filter_array);
             adapter1.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -84,18 +106,25 @@ namespace SpockApp
 
             //Maken van drop down menu om traject te slecteren
             Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensor);
-            spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Spinner_ItemSelected);
+            spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Ssensors_ItemSelected);
             //custom strings in de drop down menu zetten
             var adapter2 = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, naam_array);
             adapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinners.Adapter = adapter2;
 
         }
-        private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void Sfilter_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
             //Traject opslaan om door te sturen naar database
-           
+            FilterSelected = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
+
+        }
+        private void Ssensors_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            Spinner spinner = (Spinner)sender;
+            //Traject opslaan om door te sturen naar database
+            SensorSelected = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
         }
 
     }

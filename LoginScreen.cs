@@ -53,15 +53,15 @@ namespace SpockApp
             
             EditText ipField = FindViewById<EditText>(Resource.Id.ip_field);
             EditText portField = FindViewById<EditText>(Resource.Id.port_field);
-            
+           /* 
             if (!SocketClass.IsConnected()){
                 SocketClass.Connect(ipField.Text, Int32.Parse(portField.Text));
             }
 
             String allowdEntrance= SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
-            SocketClass.Pinging();
+            SocketClass.Pinging();*/
 
-            if (allowdEntrance == "ok")
+            if (true)//allowdEntrance == "ok")
             {
                 //swicth to homescreen
                 Intent intent = new Intent(this, typeof(HomeScreen));
