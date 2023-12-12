@@ -39,6 +39,7 @@ namespace SpockApp
             add.Click += Add_Click;
             back.Click += Back_Click;
             list.Adapter = adapter;
+            UpdateListView();
         }
 
         //Hanlers

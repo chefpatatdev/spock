@@ -34,21 +34,22 @@
     </androidx.appcompat.widget.Toolbar>
 
 
-    <Button
-        android:text="start measuring"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:id="@+id/measure_button"
-        android:layout_centerInParent="true"
-        android:background="@drawable/live_button_unpressed" 
+   
+    
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/display"
+        android:id="@+id/measuring_switch"
+        android:layout_centerHorizontal="true"
+        
         />
 
         <TextView
         android:text="__cm"
         android:layout_width="250dp"
         android:layout_height="70dp"
-        android:id="@+id/up_button"
-        android:layout_above="@id/measure_button"
+        android:id="@+id/display"
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:paddingTop="10dp"

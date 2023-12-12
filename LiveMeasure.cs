@@ -19,16 +19,24 @@ namespace SpockApp.Resources
     {
         static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
         string SensorSelected { get; set; } = "US Sensor";
+        bool Switch { get; set; } = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.measuring_screen);
             // Create your application here
-            Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
+            //Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
             //LoginButton.Click += LoginAttempt_Click;
+            Switch ptr = FindViewById<Switch>(Resource.Id.measuring_switch);
+            ptr.CheckedChange += (sender, e) =>
+            {
+                //  LiveMeasureRequested();
+                Switch = e.IsChecked;
+            };
 
-            
+
+
         }
         private void LiveMeasureRequested()
         {
