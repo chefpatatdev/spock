@@ -69,9 +69,7 @@ namespace SpockApp
                     Snackbar.Make(view, "Could not connect to that IP and port!", Snackbar.LengthLong)
                         .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
                 }
-            }
-            else
-            {
+
                 Console.WriteLine("Connected!");
 
 
@@ -92,6 +90,7 @@ namespace SpockApp
                     Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
                         .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
                 }
+
             }
 
         }

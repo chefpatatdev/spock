@@ -42,6 +42,9 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializeButtons();
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
+
         }
         public override void OnBackPressed()
         {

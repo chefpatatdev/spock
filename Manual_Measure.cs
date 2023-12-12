@@ -43,6 +43,9 @@ namespace SpockApp
             list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
             list.Adapter = adapter;
 
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
+
         }
         private void InitializeStringArray(string[] array)
         {

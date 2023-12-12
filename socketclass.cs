@@ -69,7 +69,7 @@ namespace SpockApp
             byte[] requestBytes = Encoding.ASCII.GetBytes(AesOperation.EncryptString(message));
             SocketClass.Connection.Send(requestBytes, 0, requestBytes.Length, SocketFlags.None);
             byte[] responseBytes = new byte[256];
-            int bytesReceived = Connection.Receive(responseBytes);
+            int bytesReceived = SocketClass.Connection.Receive(responseBytes);
             string response = AesOperation.DecryptString(Encoding.ASCII.GetString(responseBytes, 0, bytesReceived));
             return response;
         }
@@ -104,28 +104,7 @@ namespace SpockApp
                     }
                     await Task.Delay(1000);
                 }
-                Reconnecting();
             }
-        }
-        public static async void Reconnecting()
-        {
-
-            while (!IsConnected())
-            {
-                try
-                {
-                    Console.WriteLine("trying to connect");
-                    Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    Connection.Connect(host, port);
-                }
-                catch (Exception error)
-                {
-                    Console.WriteLine("failed");
-                    break;
-                }
-                await Task.Delay(1000);
-            }
-            Pinging();
         }
     }
 }

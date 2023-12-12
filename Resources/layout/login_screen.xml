@@ -25,7 +25,7 @@
         android:accessibilityPaneTitle="ip"
         android:inputType="text"
         android:maxLength="20" 
-        android:text="172.18.100.7"/>
+        android:text="172.18.230.3"/>
     <TextView
         android:text="Port"
         android:layout_width="match_parent"
