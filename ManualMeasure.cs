@@ -24,9 +24,9 @@ namespace SpockApp
         static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
         static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
 
-        string SensorSelected { get; set; } 
-        string FilterSelected { get; set; } 
-        
+        string SensorSelected { get; set; }
+        string FilterSelected { get; set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -48,17 +48,14 @@ namespace SpockApp
             list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
             list.Adapter = adapter;
 
-            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
-            SocketClass.socketIndicator_update = socketIndicator;
-
         }
         private void InitializeStringArray(string[] array)
         {
-                for (int j = 0; j < array.Length; j++)
-                {
-                    array[j] = "";
-                }
-            
+            for (int j = 0; j < array.Length; j++)
+            {
+                array[j] = "";
+            }
+
         }
 
         private void RequestMeasurements()
@@ -95,10 +92,10 @@ namespace SpockApp
         }
         private void RequestManualMeasure()
         {
-            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",one" );
+            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",one");
         }
 
-        private void InitializeSpinners(string[] filter_array, string[] naam_array )
+        private void InitializeSpinners(string[] filter_array, string[] naam_array)
         {
             //Maken van drop down menu om traject te slecteren
             Spinner spinnerf = FindViewById<Spinner>(Resource.Id.spinnerfilter);
