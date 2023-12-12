@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using static Android.Graphics.ColorSpace;
 using static Android.InputMethodServices.Keyboard;
 
 namespace SpockApp.Resources.mipmap_xhdpi
@@ -23,7 +24,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
         string[,] traject = new string[2, 50];
         string Command { get; set; } = "";
         int Array_index { get; set; } = 0;
-        string[] ta = { "Traject 1", "Traject 2", "Traject 3", "Test" };
+        string[] t_names = { "Traject 1", "Traject 2", "Traject 3", "Test" };
         bool Switch = false;
 
         ScrollView scroll;
@@ -32,14 +33,20 @@ namespace SpockApp.Resources.mipmap_xhdpi
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
-            if(Intent.GetStringArrayExtra("trajectID") != null)
+            if (Intent.GetStringArrayExtra("trajectID") != null)
             {
-                ta = Intent.GetStringArrayExtra("trajectID");
+                t_names = Intent.GetStringArrayExtra("trajectID");
             }
             InitializeStringMatrix(traject);
-            InitializeSpinner(ta);
+            InitializeSpinner(t_names);
             InitializePicker();
             InitializeButtons();
+
+            RecieveTrajectNames();
+            RecieveSavedTraject();
+
+
+
             scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
@@ -122,6 +129,27 @@ namespace SpockApp.Resources.mipmap_xhdpi
             var adapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, traject_array);
             adapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             spinner.Adapter = adapter;
+
+        }
+        private void RecieveSavedTraject()
+        {
+            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
+            string[] s_traject = saved_traject.Split(",");
+
+            for (int i = 0; i < traject.GetLength(0); i++)
+            {
+                for (int j = 0; j < traject.GetLength(1); j++)
+                {
+                    if (s_traject[j] == "Stop") break;
+                    traject[i, j] = s_traject[j];
+                }
+            }
+           
+        }
+        private void RecieveTrajectNames()
+        {
+            string traject_names = SocketClass.Sendmessage("r_names,");
+            t_names = traject_names.Split(",");
 
         }
 
@@ -210,8 +238,23 @@ namespace SpockApp.Resources.mipmap_xhdpi
 
             Array_index = 0;
         }
+        private void DriveTraject(string trajectname)
+        {
+            SocketClass.Sendmessage("d_traject," + trajectname);
 
-            //Button Handlers
+        }
+        private void SendTraject(string trajectname)
+        {
+            string send = "s_traject," + trajectname + ",";
+            for(int i = 0; i < traject.GetLength(1); i++)
+            {
+                send += traject[0,i] + traject[1, i] + ",";
+                if (traject[0, i] == "") break;
+
+            }
+            SocketClass.Sendmessage(send);
+        }
+        //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -391,13 +434,14 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void DriveTraject_Click(object sender, System.EventArgs e)
         {
+            DriveTraject(traject_name);
             string toast = "Traject " + traject_name + " is running";
             Toast.MakeText(this, toast, ToastLength.Long).Show();
         }
         private void EditTraject_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(Traject_Editor));
-            intent.PutExtra("arrayID", ta);
+            intent.PutExtra("arrayID", t_names);
             StartActivity(intent);
         }
     }

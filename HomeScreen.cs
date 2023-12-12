@@ -30,6 +30,9 @@ namespace SpockApp.src
             Button measure = FindViewById<Button>(Resource.Id.measuring_screen);
             measure.Click += MeasuringScreen_click;
 
+            Button measure_live = FindViewById<Button>(Resource.Id.sockets);
+            measure_live.Click += MeasuringLive_click;
+
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             SocketClass.socketIndicator_update = socketIndicator;
         }
@@ -48,6 +51,12 @@ namespace SpockApp.src
         private void TrajectDrivingNav_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(TrajectDriving));
+            StartActivity(intent);
+        }
+
+        private void MeasuringLive_click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(MeasuringScreen));
             StartActivity(intent);
         }
 

@@ -15,8 +15,11 @@ namespace SpockApp.Resources
 
 {
     [Activity(Label = "MeasuringScreen")]
-    public class MeasuringScreen : Activity
+    public class LiveMeasure : Activity
     {
+        static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
+        string SensorSelected { get; set; } = "US Sensor";
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -25,7 +28,12 @@ namespace SpockApp.Resources
             Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
             //LoginButton.Click += LoginAttempt_Click;
 
+            
+        }
+        private void LiveMeasureRequested()
+        {
+            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",live");
 
         }
     }
-}
+}   

@@ -65,7 +65,7 @@
         android:textColor="@color/colorSecundairy"
         />
         <Button
-        android:text="Measuring Screen"
+        android:text="Measuring data"
         android:id="@+id/measuring_screen"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
@@ -78,7 +78,7 @@
         android:textColor="@color/colorSecundairy"
          />
         <Button
-        android:text="Connect Sockets"
+        android:text="Live Measure"
         android:id="@+id/sockets"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
