@@ -33,6 +33,7 @@ namespace SpockApp
 
             // Create your application here
             SetContentView(Resource.Layout.manual_measurement_screen);
+            //RequestMeasurements()
 
             string[] listlength = new string[SensorData.GetLength(1)];
             InitializeStringArray(listlength);

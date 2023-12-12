@@ -274,7 +274,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    this.Command = "U";
+                    this.Command = "FW";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
@@ -290,7 +290,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "D";
+                    this.Command = "BW";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -306,7 +306,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "R";
+                    this.Command = "RD";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -322,7 +322,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "L";
+                    this.Command = "LD";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -370,7 +370,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "Wait";
+                    this.Command = "ST";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
