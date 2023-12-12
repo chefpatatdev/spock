@@ -73,7 +73,7 @@ namespace SpockApp
                 Console.WriteLine("Connected!");
 
 
-                String allowdEntrance = SocketClass.Sendmessage("login," + usernameRaw + "," + passwordRaw);
+                String allowdEntrance = SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
                 SocketClass.Pinging();
 
                 if (allowdEntrance == "ok")

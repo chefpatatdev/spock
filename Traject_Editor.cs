@@ -86,12 +86,14 @@ namespace SpockApp
             };
             Trajects = tmplist.ToArray();
             UpdateListView();
+            UpdateDB("add", item, "");
         }
         public static void RemoveItems(string item)
         {
             // items van trajecten verwijderen
             Trajects = Trajects.Where(o => o != item).ToArray();
             UpdateListView();
+            UpdateDB("del", item, "");
         }
         public static void ModifyItems(string item)
         {   
@@ -105,9 +107,18 @@ namespace SpockApp
             else
             {
                 Trajects[Array.FindIndex(Trajects, m => m == item)] = text;
+                UpdateDB("mod", item, text);
                 input.Text = "";
             }
             UpdateListView();
         }
+
+        private static void UpdateDB(string mode, string item1, string item2)
+        {
+            SocketClass.Sendmessage("r_update_traject," + mode + "," + item1 + "," + item2);
+
+        }
+
     }
+
 }

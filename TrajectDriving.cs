@@ -42,8 +42,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializePicker();
             InitializeButtons();
 
-            RecieveTrajectNames();
-            RecieveSavedTraject();
+            //RecieveTrajectNames();
+            //RecieveSavedTraject();
 
 
 
@@ -99,6 +99,12 @@ namespace SpockApp.Resources.mipmap_xhdpi
             ptr.CheckedChange += (sender, e) =>
             {
                 Switch = e.IsChecked;
+            };
+
+            Button save = FindViewById<Button>(Resource.Id.save);
+            save.Click += (sender, e) =>
+            {
+                SendTraject(traject_name);
             };
 
         }
@@ -215,10 +221,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             text.Text = toast;
             if (traject[0, Array_index + 1] == "") scroll.FullScroll(FocusSearchDirection.Down);
         }
-        private void UpdateTrajectMatrix()
-        {
-
-        }
 
         //Event Handlers
         private void NumberPicker(object sender, System.EventArgs e)
@@ -245,15 +247,25 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void SendTraject(string trajectname)
         {
-            string send = "s_traject," + trajectname + ",";
+            string send = "s_traject," + trajectname;
             for(int i = 0; i < traject.GetLength(1); i++)
             {
-                send += traject[0,i] + traject[1, i] + ",";
-                if (traject[0, i] == "") break;
+                send += "," + traject[0,i] + traject[1, i] ;
+                if (traject[0, i+1] == "") break;
 
             }
             SocketClass.Sendmessage(send);
         }
+        private void SendNames()
+        {
+            string send = "s_names";
+            for (int i = 0; i < t_names.Length; i++)
+            {
+                send += "," + t_names[i];
+            }
+            SocketClass.Sendmessage(send);
+        }
+
         //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {

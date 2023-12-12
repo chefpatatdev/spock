@@ -92,7 +92,7 @@ namespace SpockApp
         }
         private void RequestManualMeasure()
         {
-            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",one");
+            string traject_names = SocketClass.Sendmessage("r_measure," + "one," + SensorSelected);
         }
 
         private void InitializeSpinners(string[] filter_array, string[] naam_array)

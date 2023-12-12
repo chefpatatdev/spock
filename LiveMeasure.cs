@@ -32,7 +32,7 @@ namespace SpockApp.Resources
         }
         private void LiveMeasureRequested()
         {
-            string traject_names = SocketClass.Sendmessage("r_measure," + SensorSelected + ",live");
+            string traject_names = SocketClass.Sendmessage("r_measure,"  + "live," + SensorSelected);
 
         }
     }

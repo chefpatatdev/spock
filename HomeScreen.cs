@@ -44,7 +44,7 @@ namespace SpockApp.src
         }
         private void MeasuringScreen_click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(Manual_Measure));
+            Intent intent = new Intent(this, typeof(ManualMeasure));
             StartActivity(intent);
         }
 
@@ -56,7 +56,7 @@ namespace SpockApp.src
 
         private void MeasuringLive_click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(MeasuringScreen));
+            Intent intent = new Intent(this, typeof(LiveMeasure));
             StartActivity(intent);
         }
 
