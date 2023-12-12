@@ -35,7 +35,7 @@
 
 
     <Button
-        android:text="measure"
+        android:text="start measuring"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:id="@+id/measure_button"

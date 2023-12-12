@@ -76,10 +76,10 @@
     <Compile Include="HomeScreen.cs" />
     <Compile Include="ListViewAdapter.cs" />
     <Compile Include="ListViewAdapterMeasure.cs" />
-    <Compile Include="Manual_Measure.cs" />
+    <Compile Include="ManualMeasure.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
-    <Compile Include="MeasuringScreen.cs" />
+    <Compile Include="LiveMeasure.cs" />
     <Compile Include="LiveDriving.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

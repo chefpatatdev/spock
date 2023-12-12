@@ -14,13 +14,13 @@ using static Android.Renderscripts.ScriptGroup;
 namespace SpockApp
 {
     [Activity(Label = "Manual_Driving")]
-    public class Manual_Measure : Activity
+    public class ManualMeasure : Activity
     {
         static EditText input;
         static ListView list;
         static ListViewAdapterMeasure adapter;
         static Context context;
-        static string[] Filter { get; set; } = { "value", "Scalar", "Sensor", "datum" };
+        static string[] Filter { get; set; } = { "scalar", "sensor", "date", "time before", "time after", "value bigger", "value smaller", "all" };
         static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
         static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
 
@@ -68,6 +68,7 @@ namespace SpockApp
                 {
                     if (measurements_list[SensorData.GetLength(0) * i + j] == "Stop") break;
                     SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
+                    if (i == 2) Sensornames[j] = SensorData[j, i];
                 }
             }
 

@@ -243,6 +243,17 @@ namespace SpockApp.Resources.mipmap_xhdpi
             SocketClass.Sendmessage("d_traject," + trajectname);
 
         }
+        private void SendTraject(string trajectname)
+        {
+            string send = "s_traject," + trajectname + ",";
+            for(int i = 0; i < traject.GetLength(1); i++)
+            {
+                send += traject[0,i] + traject[1, i] + ",";
+                if (traject[0, i] == "") break;
+
+            }
+            SocketClass.Sendmessage(send);
+        }
         //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
