@@ -33,11 +33,18 @@ namespace SpockApp
                 SocketClass.host = host;
                 SocketClass.port = port;
                 SocketClass.Connection = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            
+            
+            // Set a timeout for the Connect operation (in milliseconds)
+            int timeout = 5000; // 5 seconds
+            SocketClass.Connection.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, timeout);
+            SocketClass.Connection.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timeout);
+
             try
             {
                 SocketClass.Connection.Connect(host, port); //we zitten in 1 thread en dit houd alles tegen als hij geen connectie vind -> app reageerd niet meer en crashed 
                 return true;
-            }catch (Exception e)
+            }catch (SocketException e)
             {
                 return false;
             }

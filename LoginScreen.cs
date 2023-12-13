@@ -1,5 +1,6 @@
 using Android.App;
 using Android.Content;
+using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Telecom;
@@ -68,27 +69,31 @@ namespace SpockApp
                     View view = (View)sender;
                     Snackbar.Make(view, "Could not connect to that IP and port!", Snackbar.LengthLong)
                         .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-                }
-
-                Console.WriteLine("Connected!");
-
-
-                String allowdEntrance = SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
-                SocketClass.Pinging();
-
-                if (allowdEntrance == "ok")
-                {
-                    //swicth to homescreen
-                    Intent intent = new Intent(this, typeof(HomeScreen));
-                    StartActivity(intent);
 
                 }
                 else
                 {
-                    //popup at the bottom of the screen
-                    View view = (View)sender;
-                    Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
-                        .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+
+                    Console.WriteLine("Connected!");
+
+
+                    String allowdEntrance = SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
+                    SocketClass.Pinging();
+
+                    if (allowdEntrance == "ok")
+                    {
+                        //swicth to homescreen
+                        Intent intent = new Intent(this, typeof(HomeScreen));
+                        StartActivity(intent);
+
+                    }
+                    else
+                    {
+                        //popup at the bottom of the screen
+                        View view = (View)sender;
+                        Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
+                            .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                    }
                 }
 
             }
