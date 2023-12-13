@@ -40,8 +40,6 @@ namespace SpockApp
 
         private void LoginAttempt_Click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(this, typeof(HomeScreen));
-            StartActivity(intent);
 
             // Code to be executed when the button is clicked
 
