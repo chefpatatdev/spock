@@ -9,18 +9,23 @@ using SpockApp.Resources.mipmap_xhdpi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
+using static Xamarin.Essentials.Platform;
+using Context = Android.Content.Context;
+using Intent = Android.Content.Intent;
 
 namespace SpockApp.src
 {
     [Activity(Label = "HomeScreen")]
     public class HomeScreen : Activity
     {
+        static Context context;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.home_screen);
-
+            context = ApplicationContext;
             Button LiveDrivingNav = FindViewById<Button>(Resource.Id.live_driving_nav);
             LiveDrivingNav.Click += LiveDrivingNav_Click;
 
@@ -35,8 +40,31 @@ namespace SpockApp.src
 
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             SocketClass.socketIndicator_update = socketIndicator;
+            string error;
+            if (Intent.GetStringExtra("context") != null)
+            {
+                error = Intent.GetStringExtra("context");
+
+                if (error == "error") ErrorHandling();
+            }
         }
 
+        public void ErrorHandling()
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.SetTitle("Connection Lost");
+            alert.SetMessage("Try again or go back to login page to try and connect again.");
+            alert.SetPositiveButton("Retry", (c, ev) =>
+            {
+                SocketClass.Connect(SocketClass.host, SocketClass.port);
+            });
+            alert.SetNegativeButton("Login", (c, ev) =>
+            {
+                Intent intent = new Intent(this, typeof(LoginScreen));
+                StartActivity(intent);
+            });
+            alert.Show();
+        }
         private void LiveDrivingNav_Click(object sender, System.EventArgs e)
         {
             Intent intent = new Intent(this, typeof(LiveDriving));

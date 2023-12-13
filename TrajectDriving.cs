@@ -14,6 +14,8 @@ using System.Linq;
 using System.Text;
 using static Android.Graphics.ColorSpace;
 using static Android.InputMethodServices.Keyboard;
+using static Xamarin.Essentials.Platform;
+using Intent = Android.Content.Intent;
 
 namespace SpockApp.Resources.mipmap_xhdpi
 {
@@ -64,6 +66,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Intent intent = new Intent(this, typeof(HomeScreen));
             StartActivity(intent);
         }
+        
 
         //initalizers
         private void InitializeButtons()
@@ -149,21 +152,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
             if (saved_traject == null)
             {
-                //Snackbar.Make(FindViewById<View>(Resource.Id.login_button) , "Couldn't load data, server not connected", Snackbar.LengthLong)
-                //  .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-                AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                alert.SetTitle("Connection Lost");
-                alert.SetMessage("Try again or go back to login page to try and connect again.");
-                alert.SetPositiveButton("Retry", (c, ev) =>
-                {
-                    RecieveSavedTraject();
-                });
-                alert.SetNegativeButton("Login", (c, ev) =>
-                {
-                    Intent intent = new Intent(context, typeof(LoginScreen));
-                    StartActivity(intent);
-                });
-                alert.Show();
+                ErrorHandling();
             }
             else
             {
@@ -199,8 +188,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             string traject_names = SocketClass.Sendmessage("r_names,");
             if (traject_names == null)
             {
-                //Snackbar.Make(FindViewById<View>(Resource.Layout.traject_driving), "Couldn't load data, server not connected", Snackbar.LengthLong)
-                  //  .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                ErrorHandling();
             }
             else
             {
@@ -311,19 +299,10 @@ namespace SpockApp.Resources.mipmap_xhdpi
         
         public void ErrorHandling()
         {
-            AlertDialog.Builder alert = new AlertDialog.Builder(context);
-            alert.SetTitle("Connection Lost");
-            alert.SetMessage("Try again or go back to login page to try and connect again.");
-            alert.SetPositiveButton("Retry", (c, ev) =>
-            {
-                SocketClass.Connect(SocketClass.host, SocketClass.port);        
-            });
-            alert.SetNegativeButton("Login", (c, ev) =>
-            {
-                Intent intent = new Intent(context, typeof(LoginScreen));
-                StartActivity(intent);
-            });
-            alert.Show();
+            Intent intent = new Intent(context, typeof(HomeScreen));
+            intent.PutExtra("context", "error");
+
+            StartActivity(intent);
         }
         //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
