@@ -108,7 +108,7 @@ namespace SpockApp
             else
             {
                 Trajects[Array.FindIndex(Trajects, m => m == item)] = text;
-                UpdateDB("mod", item, text);
+                UpdateDB("mod", text, item);
                 input.Text = "";
             }
             UpdateListView();

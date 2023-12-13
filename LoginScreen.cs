@@ -35,6 +35,7 @@ namespace SpockApp
             LoginButton.Click += LoginAttempt_Click;
 
 
+
         }
 
         private void LoginAttempt_Click(object sender, System.EventArgs e)
@@ -62,14 +63,14 @@ namespace SpockApp
             bool connectionStatus = false;
 
             if (!SocketClass.IsConnected()){
-                Console.WriteLine("Not connected, Trying to connect..\n");
+                Console.WriteLine("Not connected, Trying to connect..");
                 connectionStatus = SocketClass.Connect(IPAddr, port);
                 if (!connectionStatus)
-                {
+                {  
+                    //popup at the bottom of the screen
                     View view = (View)sender;
                     Snackbar.Make(view, "Could not connect to that IP and port!", Snackbar.LengthLong)
                         .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
-
                 }
                 else
                 {
@@ -77,12 +78,12 @@ namespace SpockApp
                     Console.WriteLine("Connected!");
 
 
-                    String allowdEntrance = SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
+                    string allowdEntrance = SocketClass.Sendmessage("r_login," + usernameRaw + "," + passwordRaw);
                     SocketClass.Pinging();
 
                     if (allowdEntrance == "ok")
                     {
-                        //swicth to homescreen
+                        //change screen to homescreen
                         Intent intent = new Intent(this, typeof(HomeScreen));
                         StartActivity(intent);
 

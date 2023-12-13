@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Snackbar;
 using Java.Nio.Channels;
 using SpockApp.src;
 using System;
@@ -28,26 +29,31 @@ namespace SpockApp.Resources.mipmap_xhdpi
         bool Switch = false;
 
         ScrollView scroll;
+        static Context context;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
+            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
+
+            context = ApplicationContext;
             if (Intent.GetStringArrayExtra("trajectID") != null)
             {
                 t_names = Intent.GetStringArrayExtra("trajectID");
             }
-            InitializeStringMatrix(traject);
+            RecieveTrajectNames();
             InitializeSpinner(t_names);
+            traject_name = t_names[0];
+            RecieveSavedTraject();
             InitializePicker();
             InitializeButtons();
 
-            //RecieveTrajectNames();
-            //RecieveSavedTraject();
+            
 
 
 
-            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
 
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             SocketClass.socketIndicator_update = socketIndicator;
@@ -139,23 +145,67 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void RecieveSavedTraject()
         {
-            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
-            string[] s_traject = saved_traject.Split(",");
 
-            for (int i = 0; i < traject.GetLength(0); i++)
+            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
+            if (saved_traject == null)
             {
-                for (int j = 0; j < traject.GetLength(1); j++)
+                //Snackbar.Make(FindViewById<View>(Resource.Id.login_button) , "Couldn't load data, server not connected", Snackbar.LengthLong)
+                //  .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.SetTitle("Connection Lost");
+                alert.SetMessage("Try again or go back to login page to try and connect again.");
+                alert.SetPositiveButton("Retry", (c, ev) =>
                 {
-                    if (s_traject[j] == "Stop") break;
-                    traject[i, j] = s_traject[j];
-                }
+                    RecieveSavedTraject();
+                });
+                alert.SetNegativeButton("Login", (c, ev) =>
+                {
+                    Intent intent = new Intent(context, typeof(LoginScreen));
+                    StartActivity(intent);
+                });
+                alert.Show();
             }
+            else
+            {
+                InitializeStringMatrix(traject);
+
+                string[] s_traject = saved_traject.Split(",");
+                int j = 0;
+                int i = 0;
+                int z = 0;
+                while(z < s_traject.Length)
+                {
+                    if (s_traject[z] == ";")
+                    {
+                        i++;
+                        j = 0;
+                    }
+                    else
+                    {
+                        traject[i, j] = s_traject[z];
+                        j++;
+                    }
+                    z++;
+
+                }
+
+                UpdateTrajectText();
+            }
+    
            
         }
         private void RecieveTrajectNames()
         {
             string traject_names = SocketClass.Sendmessage("r_names,");
-            t_names = traject_names.Split(",");
+            if (traject_names == null)
+            {
+                //Snackbar.Make(FindViewById<View>(Resource.Layout.traject_driving), "Couldn't load data, server not connected", Snackbar.LengthLong)
+                  //  .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+            }
+            else
+            {
+                t_names = traject_names.Split(",");
+            }
 
         }
 
@@ -233,6 +283,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Spinner spinner = (Spinner)sender;
             //Traject opslaan om door te sturen naar database
             traject_name = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
+            RecieveSavedTraject();
 
             //pop up dat zegt welk traject gekozen is
             string toast = string.Format("The traject is {0}", spinner.GetItemAtPosition(e.Position));
@@ -256,16 +307,24 @@ namespace SpockApp.Resources.mipmap_xhdpi
             }
             SocketClass.Sendmessage(send);
         }
-        private void SendNames()
-        {
-            string send = "s_names";
-            for (int i = 0; i < t_names.Length; i++)
-            {
-                send += "," + t_names[i];
-            }
-            SocketClass.Sendmessage(send);
-        }
 
+        
+        public void ErrorHandling()
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(context);
+            alert.SetTitle("Connection Lost");
+            alert.SetMessage("Try again or go back to login page to try and connect again.");
+            alert.SetPositiveButton("Retry", (c, ev) =>
+            {
+                SocketClass.Connect(SocketClass.host, SocketClass.port);        
+            });
+            alert.SetNegativeButton("Login", (c, ev) =>
+            {
+                Intent intent = new Intent(context, typeof(LoginScreen));
+                StartActivity(intent);
+            });
+            alert.Show();
+        }
         //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
         {
