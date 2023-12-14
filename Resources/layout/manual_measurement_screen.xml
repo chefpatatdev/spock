@@ -137,10 +137,33 @@
 
             />
      </LinearLayout>
-    <ListView
+
+   <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="300dp"
         android:id="@+id/listview_edit"
-        
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/bottom_edit_traject"
+        android:background="@color/colorThird"
+        android:layout_height="50dp"
+        android:orientation="horizontal" 
+        
+        >
+        
+
+        <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:gravity="center"
+        android:paddingBottom="5dp"   
+        android:id="@+id/filter_button"
+        android:text="Filter"
+        
+     
+        />
+    </LinearLayout>
 </LinearLayout>

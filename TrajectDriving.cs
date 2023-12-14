@@ -175,7 +175,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
                         j++;
                     }
                     z++;
-
                 }
                 UpdateTrajectText();
             }
