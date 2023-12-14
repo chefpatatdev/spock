@@ -145,7 +145,6 @@ namespace SpockApp
         private static void UpdateDB(string mode, string item1, string item2)
         {
             SocketClass.Sendmessage("r_update_traject," + mode + "," + item1 + "," + item2);
-
         }
 
     }

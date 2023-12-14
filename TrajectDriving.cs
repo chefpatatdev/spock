@@ -177,7 +177,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
                     z++;
 
                 }
-
                 UpdateTrajectText();
             }
     
@@ -194,7 +193,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 t_names = traject_names.Split(",");
             }
-
         }
 
         //Update Traject
@@ -281,19 +279,28 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void DriveTraject(string trajectname)
         {
-            SocketClass.Sendmessage("d_traject," + trajectname);
+            string socket = SocketClass.Sendmessage("d_traject," + trajectname);
+            if(socket == null)
+            {
+                ErrorHandling();
+            }
 
         }
         private void SendTraject(string trajectname)
         {
             string send = "s_traject," + trajectname;
+
             for(int i = 0; i < traject.GetLength(1); i++)
             {
                 send += "," + traject[0,i] + traject[1, i] ;
                 if (traject[0, i+1] == "") break;
 
             }
-            SocketClass.Sendmessage(send);
+            string socket = SocketClass.Sendmessage(send);
+            if (socket == null)
+            {
+                ErrorHandling();
+            }
         }
 
         
