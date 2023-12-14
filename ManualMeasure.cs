@@ -34,12 +34,12 @@ namespace SpockApp
 
             // Create your application here
             SetContentView(Resource.Layout.manual_measurement_screen);
-            //RequestMeasurements()
             input = FindViewById<EditText>(Resource.Id.filter_input);
+
+            RequestMeasurements();
 
             string[] listlength = new string[SensorData.GetLength(1)];
             InitializeStringArray(listlength);
-            RequestMeasurements();
 
             adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
             context = ApplicationContext;
@@ -129,6 +129,10 @@ namespace SpockApp
         private void RequestManualMeasure()
         {
             string traject_names = SocketClass.Sendmessage("r_measure," + "one," + SensorSelected);
+            if (traject_names == null)
+            {
+                ErrorHandling();
+            }
         }
 
         private void InitializeSpinners(string[] filter_array, string[] naam_array)

@@ -33,15 +33,13 @@ namespace SpockApp
             // Create your application here
             Button LoginButton = FindViewById<Button>(Resource.Id.login_button);
             LoginButton.Click += LoginAttempt_Click;
-
-
-
         }
 
         private void LoginAttempt_Click(object sender, System.EventArgs e)
         {
+            /*
             Intent intent = new Intent(this, typeof(HomeScreen));
-            StartActivity(intent);
+            StartActivity(intent);*/
             // Code to be executed when the button is clicked
 
             EditText usernameField = FindViewById<EditText>(Resource.Id.user_name_field);
@@ -62,7 +60,7 @@ namespace SpockApp
             int port = Int32.Parse(portField.Text);
 
             bool connectionStatus = false;
-            /*
+            
             if (!SocketClass.IsConnected()){
                 Console.WriteLine("Not connected, Trying to connect..");
                 connectionStatus = SocketClass.Connect(IPAddr, port);
@@ -98,7 +96,7 @@ namespace SpockApp
                     }
                 }
 
-            }*/
+            }
 
         }
     }

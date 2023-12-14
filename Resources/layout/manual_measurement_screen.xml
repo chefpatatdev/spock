@@ -86,10 +86,24 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         />
-    <LinearLayout
+    
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/bottom_edit_traject"
+        android:background="@color/colorThird"
+        android:layout_height="match_parent"    
+        
+        >
+        <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/linearLayout1"
+>
+
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -137,23 +151,14 @@
 
             />
      </LinearLayout>
-
-   <ListView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:id="@+id/listview_edit"
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview_edit"
+            android:layout_below="@id/linearLayout1"
+            android:layout_above="@id/filter_button"
+           
         />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:id="@+id/bottom_edit_traject"
-        android:background="@color/colorThird"
-        android:layout_height="50dp"
-        android:orientation="horizontal" 
-        
-        >
-        
-
         <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -162,8 +167,8 @@
         android:paddingBottom="5dp"   
         android:id="@+id/filter_button"
         android:text="Filter"
-        
-     
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
         />
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
