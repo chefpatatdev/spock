@@ -45,11 +45,13 @@ namespace SpockApp
             try
             {
                 SocketClass.Connection.Connect(host, port); //we zitten in 1 thread en dit houd alles tegen als hij geen connectie vind -> app reageerd niet meer en crashed 
+                SocketClass.Pinging();
                 return true;
             }catch (SocketException e)
             {
                 return false;
             }
+
 
         }
 

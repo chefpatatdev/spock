@@ -21,7 +21,7 @@ namespace SpockApp
         static ListViewAdapterMeasure adapter;
         static Context context;
         static string[] Filter { get; set; } = { "scalar", "sensor", "date", "time before", "time after", "value bigger", "value smaller", "all" };
-        static string[] Sensornames { get; set; } = { "US sensor", "Temp", "Sensor", "all" };
+        static string[] Sensornames { get; set; } = { "USsensor", "Temp", "Sensor", "all" };
         static string[,] SensorData { get; set; } = { { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
 
         string SensorSelected { get; set; }

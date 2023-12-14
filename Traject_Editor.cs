@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Snackbar;
 using Java.Util;
 using SpockApp.Resources.mipmap_xhdpi;
 using System;
@@ -59,15 +60,34 @@ namespace SpockApp
         {
             //voegt de ingevoerde string toe aan de projecten en kijkt ook ofdat deze niet leeg is
             string text = input.Text.ToString();
-            if (string.IsNullOrEmpty(text))
+            if (CheckDuplicate(text))
             {
-                Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
-                UpdateListView();
+                Toast.MakeText(context, "Traject already exists, pick another name", ToastLength.Short).Show();
             }
-            else {
-                AddItems(text);
-                input.Text = "";
+            else
+            {
+                if (string.IsNullOrEmpty(text))
+                {
+                    Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
+                    UpdateListView();
+                }
+                else
+                {
+                    AddItems(text);
+                    input.Text = "";
+                }
+
             }
+        }
+        private static bool CheckDuplicate(string item) {
+            foreach (string item2 in Trajects)
+            {
+                if (item2.Equals(item))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         //Modifying the Trajecten
@@ -100,17 +120,25 @@ namespace SpockApp
         {   
             // namen van trajecten wijzigen met wat er in het tekstvak is ingetypt
             string text = input.Text.ToString();
-
-            if (string.IsNullOrEmpty(text))
+            if (CheckDuplicate(text))
             {
-                Toast.MakeText(context, "Enter Something", ToastLength.Short).Show();
+                Toast.MakeText(context, "Traject already exists, pick another name", ToastLength.Short).Show();
+
             }
             else
             {
-                Trajects[Array.FindIndex(Trajects, m => m == item)] = text;
-                UpdateDB("mod", text, item);
-                input.Text = "";
+                if (string.IsNullOrEmpty(text))
+                {
+                    Toast.MakeText(context, "Enter Something", ToastLength.Short).Show();
+                }
+                else
+                {
+                    Trajects[Array.FindIndex(Trajects, m => m == item)] = text;
+                    UpdateDB("mod", text, item);
+                    input.Text = "";
+                }
             }
+            
             UpdateListView();
         }
 
