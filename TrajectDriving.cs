@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Google.Android.Material.Snackbar;
 using Java.Nio.Channels;
 using SpockApp.src;
 using System;
@@ -13,6 +14,8 @@ using System.Linq;
 using System.Text;
 using static Android.Graphics.ColorSpace;
 using static Android.InputMethodServices.Keyboard;
+using static Xamarin.Essentials.Platform;
+using Intent = Android.Content.Intent;
 
 namespace SpockApp.Resources.mipmap_xhdpi
 {
@@ -28,29 +31,29 @@ namespace SpockApp.Resources.mipmap_xhdpi
         bool Switch = false;
 
         ScrollView scroll;
+        static Context context;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.traject_driving);
+            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
+
+            context = ApplicationContext;
             if (Intent.GetStringArrayExtra("trajectID") != null)
             {
                 t_names = Intent.GetStringArrayExtra("trajectID");
             }
-            InitializeStringMatrix(traject);
+            RecieveTrajectNames();
             InitializeSpinner(t_names);
+            traject_name = t_names[0];
+            RecieveSavedTraject();
             InitializePicker();
             InitializeButtons();
 
-            RecieveTrajectNames();
-            RecieveSavedTraject();
 
-
-
-            scroll = FindViewById<ScrollView>(Resource.Id.scrollView);
-
-            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
-            SocketClass.socketIndicator_update = socketIndicator;
+            
 
         }
         public override void OnBackPressed()
@@ -58,6 +61,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Intent intent = new Intent(this, typeof(HomeScreen));
             StartActivity(intent);
         }
+        
 
         //initalizers
         private void InitializeButtons()
@@ -101,6 +105,14 @@ namespace SpockApp.Resources.mipmap_xhdpi
                 Switch = e.IsChecked;
             };
 
+            Button save = FindViewById<Button>(Resource.Id.save);
+            save.Click += (sender, e) =>
+            {
+                SendTraject(traject_name);
+            };
+
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
         }
         private void InitializeStringMatrix(string[,] matrix)
         {
@@ -133,24 +145,50 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void RecieveSavedTraject()
         {
-            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
-            string[] s_traject = saved_traject.Split(",");
 
-            for (int i = 0; i < traject.GetLength(0); i++)
+            string saved_traject = SocketClass.Sendmessage("r_traject," + traject_name);
+            if (saved_traject == null)
             {
-                for (int j = 0; j < traject.GetLength(1); j++)
-                {
-                    if (s_traject[j] == "Stop") break;
-                    traject[i, j] = s_traject[j];
-                }
+                ErrorHandling();
             }
+            else
+            {
+                InitializeStringMatrix(traject);
+
+                string[] s_traject = saved_traject.Split(",");
+                int j = 0;
+                int i = 0;
+                int z = 0;
+                while(z < s_traject.Length)
+                {
+                    if (s_traject[z] == ";")
+                    {
+                        i++;
+                        j = 0;
+                    }
+                    else
+                    {
+                        traject[i, j] = s_traject[z];
+                        j++;
+                    }
+                    z++;
+                }
+                UpdateTrajectText();
+            }
+    
            
         }
         private void RecieveTrajectNames()
         {
             string traject_names = SocketClass.Sendmessage("r_names,");
-            t_names = traject_names.Split(",");
-
+            if (traject_names == null)
+            {
+                ErrorHandling();
+            }
+            else
+            {
+                t_names = traject_names.Split(",");
+            }
         }
 
         //Update Traject
@@ -215,10 +253,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             text.Text = toast;
             if (traject[0, Array_index + 1] == "") scroll.FullScroll(FocusSearchDirection.Down);
         }
-        private void UpdateTrajectMatrix()
-        {
-
-        }
 
         //Event Handlers
         private void NumberPicker(object sender, System.EventArgs e)
@@ -231,6 +265,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             Spinner spinner = (Spinner)sender;
             //Traject opslaan om door te sturen naar database
             traject_name = string.Format("{0}", spinner.GetItemAtPosition(e.Position));
+            RecieveSavedTraject();
 
             //pop up dat zegt welk traject gekozen is
             string toast = string.Format("The traject is {0}", spinner.GetItemAtPosition(e.Position));
@@ -240,19 +275,39 @@ namespace SpockApp.Resources.mipmap_xhdpi
         }
         private void DriveTraject(string trajectname)
         {
-            SocketClass.Sendmessage("d_traject," + trajectname);
+            string socket = SocketClass.Sendmessage("d_traject," + trajectname);
+            if(socket == null)
+            {
+                ErrorHandling();
+            }
 
         }
         private void SendTraject(string trajectname)
         {
-            string send = "s_traject," + trajectname + ",";
+            string send = "s_traject," + trajectname;
+
             for(int i = 0; i < traject.GetLength(1); i++)
             {
-                send += traject[0,i] + traject[1, i] + ",";
-                if (traject[0, i] == "") break;
+                send += "," + traject[0,i] + traject[1, i] ;
+                if (traject[0, i+1] == "") break;
 
             }
-            SocketClass.Sendmessage(send);
+            string socket = SocketClass.Sendmessage(send);
+            if (socket == null)
+            {
+                ErrorHandling();
+            }
+            else Toast.MakeText(this, trajectname + " saved!", ToastLength.Short).Show();
+
+        }
+
+
+        public void ErrorHandling()
+        {
+            Intent intent = new Intent(context, typeof(HomeScreen));
+            intent.PutExtra("context", "error");
+
+            StartActivity(intent);
         }
         //Button Handlers
         private void UpButton_Touch(object sender, View.TouchEventArgs e)
@@ -262,7 +317,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    this.Command = "U";
+                    this.Command = "FW";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
@@ -278,7 +333,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "D";
+                    this.Command = "BW";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -294,7 +349,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "R";
+                    this.Command = "RD";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -310,7 +365,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "L";
+                    this.Command = "LD";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
@@ -358,7 +413,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    this.Command = "Wait";
+                    this.Command = "ST";
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);

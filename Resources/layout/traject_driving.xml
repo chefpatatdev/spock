@@ -73,7 +73,7 @@
                 android:layout_toRightOf="@id/drive"
                 android:layout_alignTop="@id/traject_driving_text"
                 android:layout_marginTop="9dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
             />
     </RelativeLayout>
 
@@ -241,6 +241,19 @@
             android:textSize="25dp"
             />
     </ScrollView>
+    <Button
+        android:text="save"
+        android:layout_width="75dp"
+        android:layout_height="25dp"
+        android:id="@+id/save"
+        android:layout_below="@id/switch1"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:background="@drawable/live_button_unpressed" 
+        android:textColor="@color/colorSecundairy"
+        android:layout_centerHorizontal="true"
+        />
 
     
     

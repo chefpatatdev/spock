@@ -77,7 +77,6 @@
     <Compile Include="ListViewAdapter.cs" />
     <Compile Include="ListViewAdapterMeasure.cs" />
     <Compile Include="ManualMeasure.cs" />
-    <Compile Include="Manual_Measure.cs" />
     <Compile Include="TrajectDriving.cs" />
     <Compile Include="LoginScreen.cs" />
     <Compile Include="LiveMeasure.cs" />
