@@ -20,6 +20,7 @@ namespace SpockApp.src
     [Activity(Label = "HomeScreen")]
     public class HomeScreen : Activity
     {
+        string login;
         static Context context;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -47,6 +48,16 @@ namespace SpockApp.src
 
                 if (error == "error") ErrorHandling();
             }
+            
+            if (Intent.GetStringExtra("screen") != null)
+            {
+                login = Intent.GetStringExtra("screen");
+            }
+        }
+        public override void OnBackPressed()
+        {  
+            if (login == "login") SocketClass.Disconnect(); 
+            base.OnBackPressed();
         }
 
         public void ErrorHandling()

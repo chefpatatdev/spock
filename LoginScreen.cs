@@ -100,6 +100,7 @@ namespace SpockApp
                     {
                         //change screen to homescreen
                         Intent intent = new Intent(this, typeof(HomeScreen));
+                        intent.PutExtra("screen", "login");
                         StartActivity(intent);
 
                     }
