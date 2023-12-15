@@ -52,10 +52,6 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializePicker();
             InitializeButtons();
 
-            
-
-
-
 
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             SocketClass.socketIndicator_update = socketIndicator;
@@ -300,9 +296,11 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 ErrorHandling();
             }
+            else Toast.MakeText(this, trajectname + " saved!", ToastLength.Short).Show();
+
         }
 
-        
+
         public void ErrorHandling()
         {
             Intent intent = new Intent(context, typeof(HomeScreen));

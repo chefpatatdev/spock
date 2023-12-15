@@ -41,10 +41,10 @@ namespace SpockApp
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    LoginHandler(sender);
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
+                    LoginHandler(sender);
                     break;
                 default:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);

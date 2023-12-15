@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using static Android.Renderscripts.ScriptGroup;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SpockApp
 {
@@ -89,28 +90,37 @@ namespace SpockApp
 
         private void RequestMeasurements()
         {
-            
-            string inp = input.Text.ToString();
-            string measurements = SocketClass.Sendmessage("r_filter," + FilterSelected + "," + inp);
-            
-            if (measurements == null)
+            string input_text = input.Text.ToString();
+
+            if (string.IsNullOrEmpty(input_text) && FilterSelected != "all")
             {
-                ErrorHandling();
+                Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
+                UpdateListView();
             }
             else
             {
-                string[] measurements_list = measurements.Split(",");
-                for (int i = 0; i < SensorData.GetLength(1); i++)
+
+                string measurements = SocketClass.Sendmessage("r_filter," + FilterSelected + "," + input_text);
+
+                if (measurements == null)
                 {
-
-                    for (int j = 0; j < SensorData.GetLength(0); j++)
+                    ErrorHandling();
+                }
+                else
+                {
+                    string[] measurements_list = measurements.Split(",");
+                    for (int i = 0; i < SensorData.GetLength(1); i++)
                     {
-                        if (measurements_list[SensorData.GetLength(0) * i + j] == ";") break;
-                        SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
-                        if (i == 2 && FilterSelected == "all") Sensornames[j] = SensorData[j, i];
-                    }
-                    if (measurements_list[SensorData.GetLength(0) * i + 1] == " ") break;
 
+                        for (int j = 0; j < SensorData.GetLength(0); j++)
+                        {
+                            if (measurements_list[SensorData.GetLength(0) * i + j] == ";") break;
+                            SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
+                            if (i == 2 && FilterSelected == "all") Sensornames[j] = SensorData[j, i];
+                        }
+                        if (measurements_list[SensorData.GetLength(0) * i + 1] == " ") break;
+
+                    }
                 }
             }
         }

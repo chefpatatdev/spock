@@ -73,7 +73,7 @@
                 android:layout_toRightOf="@id/drive"
                 android:layout_alignTop="@id/traject_driving_text"
                 android:layout_marginTop="9dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="10dp"
             />
     </RelativeLayout>
 

@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Lang;
 using SpockApp.src;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SpockApp.Resources
 
@@ -31,7 +33,7 @@ namespace SpockApp.Resources
             //Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
             //LoginButton.Click += LoginAttempt_Click;
             //Maken van drop down menu om traject te slecteren
-            Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensor);
+            Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensorlive);
             spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Ssensors_ItemSelected);
             //custom strings in de drop down menu zetten
             var adapter2 = new ArrayAdapter(this, Android.Resource.Layout.SimpleSpinnerItem, Sensornames);
@@ -40,12 +42,16 @@ namespace SpockApp.Resources
 
             editText = FindViewById<TextView>(Resource.Id.display);
             editText.Text = "__cm";
+
             Switch ptr = FindViewById<Switch>(Resource.Id.measuring_switch);
             ptr.CheckedChange += (sender, e) =>
             {
                 Switch = e.IsChecked;
-                LiveMeasureRequested();
+                if (Switch)  LiveMeasureRequested(); 
             };
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
+
         }
         private void Ssensors_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -60,20 +66,22 @@ namespace SpockApp.Resources
 
             StartActivity(intent);
         }
-        private void LiveMeasureRequested()
+        private async void LiveMeasureRequested()
         {
-            while(Switch)
+            while (Switch)
             {
                 string value = SocketClass.Sendmessage("r_measure," + "live," + SensorSelected);
-                if(value == null)
+                if (value == null)
                 {
                     ErrorHandling();
                 }
                 else
                 {
                     editText.Text = value;
+                    await Task.Delay(1000);
                 }
             }
+            
 
         }
     }
