@@ -55,6 +55,10 @@ namespace SpockApp
             list = (ListView)FindViewById<ListView>(Resource.Id.listview_edit);
             list.Adapter = adapter;
 
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
+
+
         }
         private void Fil_Touch(object sender, View.TouchEventArgs e)
         {
@@ -64,6 +68,7 @@ namespace SpockApp
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
                     RequestMeasurements();
+                    UpdateListView();
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
@@ -102,7 +107,7 @@ namespace SpockApp
                     {
                         if (measurements_list[SensorData.GetLength(0) * i + j] == ";") break;
                         SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
-                        if (i == 2) Sensornames[j] = SensorData[j, i];
+                        if (i == 2 && FilterSelected == "all") Sensornames[j] = SensorData[j, i];
                     }
                     if (measurements_list[SensorData.GetLength(0) * i + 1] == " ") break;
 
@@ -173,6 +178,15 @@ namespace SpockApp
             intent.PutExtra("context", "error");
 
             StartActivity(intent);
+        }
+        private void UpdateListView()
+        {
+            string[] listlength = new string[SensorData.GetLength(1)];
+            InitializeStringArray(listlength);
+            //update listview adapter
+            adapter = new ListViewAdapterMeasure(context, SensorData, listlength);
+            list.Adapter = adapter;
+
         }
 
     }

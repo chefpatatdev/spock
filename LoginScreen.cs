@@ -32,10 +32,26 @@ namespace SpockApp
             SetContentView(Resource.Layout.login_screen);
             // Create your application here
             Button LoginButton = FindViewById<Button>(Resource.Id.login_button);
-            LoginButton.Click += LoginAttempt_Click;
+            LoginButton.Touch += LoginBtn_Touch;
         }
-
-        private void LoginAttempt_Click(object sender, System.EventArgs e)
+        private void LoginBtn_Touch(object sender, View.TouchEventArgs e)
+        {
+            Button btn = (Button)sender;
+            switch (e.Event.Action & MotionEventActions.Mask)
+            {
+                case MotionEventActions.Down:
+                    btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
+                    LoginHandler(sender);
+                    break;
+                case MotionEventActions.Up:
+                    btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
+                    break;
+                default:
+                    btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
+                    break;
+            }
+        }
+        private void LoginHandler(object sender)
         {
             /*
             Intent intent = new Intent(this, typeof(HomeScreen));
