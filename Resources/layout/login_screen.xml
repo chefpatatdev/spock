@@ -64,7 +64,7 @@
         android:accessibilityPaneTitle="Username"
         android:inputType="text"
         android:maxLength="20" 
-        android:text="admin"
+        android:text="spock"
         />
     <TextView
         android:text="Password"

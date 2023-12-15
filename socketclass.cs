@@ -38,7 +38,7 @@ namespace SpockApp
             
             
             // Set a timeout for the Connect operation (in milliseconds)
-            int timeout = 2000; // 5 seconds
+            int timeout = 2000; // 2 seconds
             SocketClass.Connection.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 3000);
             SocketClass.Connection.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, timeout);
 

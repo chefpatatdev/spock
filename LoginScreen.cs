@@ -109,6 +109,7 @@ namespace SpockApp
                         View view = (View)sender;
                         Snackbar.Make(view, "Wrong password and/or username!", Snackbar.LengthLong)
                             .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+                        SocketClass.Disconnect();
                     }
                 }
 
