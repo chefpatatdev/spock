@@ -56,7 +56,12 @@ namespace SpockApp.src
             alert.SetMessage("Try again or go back to login page to try and connect again.");
             alert.SetPositiveButton("Retry", (c, ev) =>
             {
-                SocketClass.Connect(SocketClass.host, SocketClass.port);
+               bool connectionstatus =  SocketClass.Connect(SocketClass.host, SocketClass.port);
+               if (!connectionstatus)
+               {
+                    ErrorHandling();
+               }
+
             });
             alert.SetNegativeButton("Login", (c, ev) =>
             {

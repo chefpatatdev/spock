@@ -53,8 +53,7 @@ namespace SpockApp.Resources.mipmap_xhdpi
             InitializeButtons();
 
 
-            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
-            SocketClass.socketIndicator_update = socketIndicator;
+            
 
         }
         public override void OnBackPressed()
@@ -112,6 +111,8 @@ namespace SpockApp.Resources.mipmap_xhdpi
                 SendTraject(traject_name);
             };
 
+            ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
+            SocketClass.socketIndicator_update = socketIndicator;
         }
         private void InitializeStringMatrix(string[,] matrix)
         {

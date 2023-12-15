@@ -23,7 +23,7 @@ namespace SpockApp
         static ListViewAdapterMeasure adapter;
         static Context context;
         static string[] Filter { get; set; } = { "scalar", "sensor", "date", "time before", "time after", "value bigger", "value smaller", "all" };
-        static string[] Sensornames { get; set; } = { "USsensor", "Temp", "Sensor", "all" };
+        static string[] Sensornames { get; set; } = { "" };
         static string[,] SensorData { get; set; } = new string[4, 100];//{ { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
 
         string SensorSelected { get; set; }
@@ -38,6 +38,7 @@ namespace SpockApp
             input = FindViewById<EditText>(Resource.Id.filter_input);
 
             RequestMeasurements();
+            SensorSelected = Sensornames[0];
 
             string[] listlength = new string[SensorData.GetLength(1)];
             InitializeStringArray(listlength);
@@ -116,7 +117,7 @@ namespace SpockApp
                         {
                             if (measurements_list[SensorData.GetLength(0) * i + j] == ";") break;
                             SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
-                            if (i == 2 && FilterSelected == "all") Sensornames[j] = SensorData[j, i];
+                            if (j == 2 && FilterSelected == "all") Sensornames[i] = SensorData[j, i];
                         }
                         if (measurements_list[SensorData.GetLength(0) * i + 1] == " ") break;
 

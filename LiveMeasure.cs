@@ -13,6 +13,7 @@ using System.Reflection.Emit;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using static Android.Renderscripts.ScriptGroup;
 
 namespace SpockApp.Resources
 
@@ -21,8 +22,8 @@ namespace SpockApp.Resources
     [Activity(Label = "MeasuringScreen")]
     public class LiveMeasure : Activity
     {
-        static string[] Sensornames { get; set; } = { "USsensor", "Temp", "Sensor", "all" };
-        string SensorSelected { get; set; } = "USSensor";
+        static string[] Sensornames { get; set; } = { "" };
+        string SensorSelected { get; set; } 
         bool Switch { get; set; } = false;
         TextView editText;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -33,6 +34,9 @@ namespace SpockApp.Resources
             //Button measureButton = FindViewById<Button>(Resource.Id.measure_button);
             //LoginButton.Click += LoginAttempt_Click;
             //Maken van drop down menu om traject te slecteren
+
+            RequestSensorNames();
+            SensorSelected = Sensornames[0];
             Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensorlive);
             spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Ssensors_ItemSelected);
             //custom strings in de drop down menu zetten
@@ -52,6 +56,31 @@ namespace SpockApp.Resources
             ImageView socketIndicator = FindViewById<ImageView>(Resource.Id.socket_indicator);
             SocketClass.socketIndicator_update = socketIndicator;
 
+        }
+
+        private void RequestSensorNames()
+        {
+
+            string measurements = SocketClass.Sendmessage("r_filter,all,");
+            string[,] tmp = new string[4, 100];
+            if (measurements == null)
+            {
+                  ErrorHandling();
+            }
+            else
+            {
+                string[] measurements_list = measurements.Split(",");
+                for (int i = 0; i < tmp.GetLength(1); i++)
+                {
+                    for (int j = 0; j < tmp.GetLength(0); j++)
+                    {
+                        if (measurements_list[tmp.GetLength(0) * i + j] == ";") break;
+                        tmp[j, i] = measurements_list[tmp.GetLength(0) * i + j];
+                        if (j == 2 ) Sensornames[i] = tmp[j, i];
+                    }
+                   if (measurements_list[tmp.GetLength(0) * i + 1] == " ") break;
+                }
+            }
         }
         private void Ssensors_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
