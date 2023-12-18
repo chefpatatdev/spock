@@ -8,6 +8,7 @@ using Android.Widget;
 using SpockApp.src;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using static Android.Renderscripts.ScriptGroup;
@@ -21,7 +22,7 @@ namespace SpockApp
         static EditText input ;
         static ListView list;
         static ListViewAdapterMeasure adapter;
-        static Context context;
+        static Context context; 
         static string[] Filter { get; set; } = { "scalar", "sensor", "date", "time before", "time after", "value bigger", "value smaller", "all" };
         static string[] Sensornames { get; set; } = { "" };
         static string[,] SensorData { get; set; } = new string[4, 100];//{ { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
@@ -88,7 +89,21 @@ namespace SpockApp
             }
 
         }
+        private bool IsDate(string date)
+        {
+            if(FilterSelected != "date") return false;
+            if(date.Split("-").Length != 3) return false;
 
+            return DateTime.TryParseExact(date,"yyyy-mm-dd" , new CultureInfo("en-US"),
+                                   DateTimeStyles.None, out _);
+        }
+        private bool IsTime(string time)
+        {
+            if (FilterSelected != "time before" || FilterSelected != "time after") return false;
+            if (time.Split(":").Length != 3) return false;
+
+            return TimeSpan.TryParse(time, out _);
+        }
         private void RequestMeasurements()
         {
             string input_text = input.Text.ToString();
@@ -98,9 +113,19 @@ namespace SpockApp
                 Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
                 UpdateListView();
             }
-            else if (int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected != "value smaller")))
+            else if (int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected == "value smaller")))
             {
                 Toast.MakeText(this, "Enter an Integer", ToastLength.Short).Show();
+                UpdateListView();
+            }
+            else if (IsDate(input_text))
+            {
+                Toast.MakeText(this, "Enter a correct date: yyyy-mm-dd", ToastLength.Short).Show();
+                UpdateListView();
+            }
+            else if (IsTime(input_text))
+            {
+                Toast.MakeText(this, "Enter a correct time: 00:00:00", ToastLength.Short).Show();
                 UpdateListView();
             }
             else
@@ -137,10 +162,11 @@ namespace SpockApp
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    RequestManualMeasure();
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
+                    RequestManualMeasure();
+                    UpdateListView();
                     break;
                 default:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);

@@ -16,8 +16,6 @@ using System.Threading.Tasks;
 using static Android.Renderscripts.ScriptGroup;
 
 namespace SpockApp.Resources
-
-
 {
     [Activity(Label = "MeasuringScreen")]
     public class LiveMeasure : Activity
@@ -110,8 +108,6 @@ namespace SpockApp.Resources
                     await Task.Delay(1000);
                 }
             }
-            
-
         }
     }
 }   
