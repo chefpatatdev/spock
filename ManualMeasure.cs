@@ -148,12 +148,19 @@ namespace SpockApp
                         {
                             if (measurements_list[SensorData.GetLength(0) * i + i + j] == ";") break;
                             SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i +i + j ];
-                            //if (j == 2 && FilterSelected == "all") Sensornames[i] = SensorData[j, i];
+                            if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
                         }
-
                     }
                 }
             }
+        }
+        private bool InArray(string[] array, string item)
+        {
+            foreach (string s in array)
+            {
+                if (s == item) return true;
+            }
+            return false;
         }
         private void Btn_Touch(object sender, View.TouchEventArgs e)
         {

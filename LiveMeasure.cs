@@ -76,10 +76,18 @@ namespace SpockApp.Resources
                     {
                         if (measurements_list[tmp.GetLength(0) * i + i + j] == ";") break;
                         tmp[j, i] = measurements_list[tmp.GetLength(0) * i +i + j];
-                        //if (j == 2 ) Sensornames[i] = tmp[j, i];
+                        if (j == 2 && !InArray(Sensornames, tmp[j,i])) Sensornames[i] = tmp[j, i];
                     }
                 }
             }
+        }
+        private bool InArray(string[] array, string item)
+        {
+            foreach (string s in array)
+            {
+                if (s == item) return true;
+            }
+            return false;
         }
         private void Ssensors_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
