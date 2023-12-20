@@ -4,9 +4,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using SpockApp.src;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 
 namespace SpockApp.Resources.mipmap_xhdpi
@@ -51,17 +53,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    SocketClass.Sendmessage("d_live,FW");
-                    Console.WriteLine("up button pressed");
-                    
+                    SendCommand("FW");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("up button released");
+                    SendCommand("ST");
                     break;
                 default:
-                    Console.WriteLine("default up");
                     break;
             }
         }
@@ -73,16 +71,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    SocketClass.Sendmessage("d_live,BW");
-                    Console.WriteLine("down button pressed");
+                    SendCommand("BW");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("down button released");
+                    SendCommand("ST");
                     break;
                 default:
-                    Console.WriteLine("default down");
                     break;
             }
         }
@@ -94,16 +89,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    SocketClass.Sendmessage("d_live,RD");
-                    Console.WriteLine("right button pressed");
+                    SendCommand("RD");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("right button released");
+                    SendCommand("ST");
                     break;
                 default:
-                    Console.WriteLine("default right");
                     break;
             }
         }
@@ -115,16 +107,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    SocketClass.Sendmessage("d_live,LD");
-                    Console.WriteLine("left button pressed");
+                    SendCommand("LD");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("left button released");
+                    SendCommand("ST");
                     break;
                 default:
-                    Console.WriteLine("default left");
                     break;
             }
         }
@@ -136,16 +125,13 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    SocketClass.Sendmessage("d_live,RR");
-                    Console.WriteLine("RR button pressed");
+                    SendCommand("RR");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("RR button released");
+                    SendCommand("ST");
                     break;
                 default:
-                    Console.WriteLine("default RR");
                     break;
             }
         }
@@ -157,18 +143,32 @@ namespace SpockApp.Resources.mipmap_xhdpi
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_pressed);
-                    SocketClass.Sendmessage("d_live,RL");
-                    Console.WriteLine("RL button pressed");
+                    SendCommand("RL");
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_button_unpressed);
-                    SocketClass.Sendmessage("d_live,ST");
-                    Console.WriteLine("RL button released");
+                    SendCommand("ST");                    
                     break;
                 default:
-                    Console.WriteLine("default RL");
                     break;
             }
+        }
+        private void SendCommand(string command)
+        {
+            string commandstring = "d_live," + command;
+            string socket = SocketClass.Sendmessage(commandstring);
+            if(socket == null)
+            {
+                ErrorHandling();
+            }
+
+        }
+        private void ErrorHandling()
+        {
+            Intent intent = new Intent(this, typeof(HomeScreen));
+            intent.PutExtra("context", "error");
+
+            StartActivity(intent);
         }
 
     }
