@@ -156,7 +156,7 @@ namespace SpockApp
                     {
                         if (measurements_list[SensorData.GetLength(0) * i + i + j] == ";") break;
                         SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + i + j];
-                        //if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
+                        if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
                     }
                 }
 
