@@ -33,7 +33,7 @@ namespace SpockApp.Resources
             //LoginButton.Click += LoginAttempt_Click;
             //Maken van drop down menu om traject te slecteren
 
-            RequestSensorNames();
+            //RequestSensorNames();
             SensorSelected = Sensornames[0];
             Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensorlive);
             spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Ssensors_ItemSelected);
@@ -76,7 +76,7 @@ namespace SpockApp.Resources
                     {
                         if (measurements_list[tmp.GetLength(0) * i + i + j] == ";") break;
                         tmp[j, i] = measurements_list[tmp.GetLength(0) * i +i + j];
-                        if (j == 2 && !InArray(Sensornames, tmp[j,i])) Sensornames[i] = tmp[j, i];
+                        //if (j == 2 && !InArray(Sensornames, tmp[j,i])) Sensornames[i] = tmp[j, i];
                     }
                 }
             }

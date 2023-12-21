@@ -35,6 +35,7 @@ namespace SpockApp
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+
             SetContentView(Resource.Layout.manual_measurement_screen);
             input = FindViewById<EditText>(Resource.Id.filter_input);
 
@@ -44,8 +45,8 @@ namespace SpockApp
             string[] listlength = new string[SensorData.GetLength(1)];
             InitializeStringArray(listlength);
 
-            adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
             context = ApplicationContext;
+            adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
 
 
             InitializeSpinners(Filter, Sensornames);
@@ -130,28 +131,35 @@ namespace SpockApp
             }
             else
             {
-
+                string done = "";
                 string measurements = SocketClass.Sendmessage("r_filter," + FilterSelected + "," + input_text);
+                int index = 1;
 
-                if (measurements == null)
+
+                while (done != "done")
                 {
-                    ErrorHandling();
-                }
-                else
-                {
-                    string[] measurements_list = measurements.Split(",");
-                    for (int i = 0; i < SensorData.GetLength(1); i++)
+                    done = SocketClass.Sendmessage("r_filteri," + index.ToString());
+                    measurements += done;
+                    index++;
+                    if (done == null)
                     {
-                        if (measurements_list[SensorData.GetLength(0) * i + i] == " ") break;
+                        ErrorHandling();
+                    }
+          
+                }
+                string[] measurements_list = measurements.Split(",");
+                for (int i = 0; i < SensorData.GetLength(1); i++)
+                {
+                    if (measurements_list[SensorData.GetLength(0) * i + i] == "done") break;
 
-                        for (int j = 0; j < SensorData.GetLength(0); j++)
-                        {
-                            if (measurements_list[SensorData.GetLength(0) * i + i + j] == ";") break;
-                            SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i +i + j ];
-                            if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
-                        }
+                    for (int j = 0; j < SensorData.GetLength(0); j++)
+                    {
+                        if (measurements_list[SensorData.GetLength(0) * i + i + j] == ";") break;
+                        SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + i + j];
+                        //if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
                     }
                 }
+
             }
         }
         private bool InArray(string[] array, string item)
