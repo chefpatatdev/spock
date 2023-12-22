@@ -114,7 +114,7 @@ namespace SpockApp
                 Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
                 UpdateListView();
             }
-            else if (int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected == "value smaller")))
+            else if (!int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected == "value smaller")))
             {
                 Toast.MakeText(this, "Enter an Integer", ToastLength.Short).Show();
                 UpdateListView();
