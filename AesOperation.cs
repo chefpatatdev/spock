@@ -1,4 +1,5 @@
-﻿using System;
+//SOURCE: https://www.c-sharpcorner.com/article/encryption-and-decryption-using-a-symmetric-key-in-c-sharp/
+using System;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
