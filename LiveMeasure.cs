@@ -16,13 +16,11 @@ using System.Threading.Tasks;
 using static Android.Renderscripts.ScriptGroup;
 
 namespace SpockApp.Resources
-
-
 {
     [Activity(Label = "MeasuringScreen")]
     public class LiveMeasure : Activity
     {
-        static string[] Sensornames { get; set; } = { "" };
+        static string[] Sensornames { get; set; } = { "USsensor" };
         string SensorSelected { get; set; } 
         bool Switch { get; set; } = false;
         TextView editText;
@@ -35,7 +33,7 @@ namespace SpockApp.Resources
             //LoginButton.Click += LoginAttempt_Click;
             //Maken van drop down menu om traject te slecteren
 
-            RequestSensorNames();
+            //RequestSensorNames();
             SensorSelected = Sensornames[0];
             Spinner spinners = FindViewById<Spinner>(Resource.Id.spinnersensorlive);
             spinners.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(Ssensors_ItemSelected);
@@ -72,15 +70,24 @@ namespace SpockApp.Resources
                 string[] measurements_list = measurements.Split(",");
                 for (int i = 0; i < tmp.GetLength(1); i++)
                 {
+                    if (measurements_list[tmp.GetLength(0) * i + i] == " ") break;
+
                     for (int j = 0; j < tmp.GetLength(0); j++)
                     {
-                        if (measurements_list[tmp.GetLength(0) * i + j] == ";") break;
-                        tmp[j, i] = measurements_list[tmp.GetLength(0) * i + j];
-                        if (j == 2 ) Sensornames[i] = tmp[j, i];
+                        if (measurements_list[tmp.GetLength(0) * i + i + j] == ";") break;
+                        tmp[j, i] = measurements_list[tmp.GetLength(0) * i +i + j];
+                        //if (j == 2 && !InArray(Sensornames, tmp[j,i])) Sensornames[i] = tmp[j, i];
                     }
-                   if (measurements_list[tmp.GetLength(0) * i + 1] == " ") break;
                 }
             }
+        }
+        private bool InArray(string[] array, string item)
+        {
+            foreach (string s in array)
+            {
+                if (s == item) return true;
+            }
+            return false;
         }
         private void Ssensors_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
@@ -110,8 +117,6 @@ namespace SpockApp.Resources
                     await Task.Delay(1000);
                 }
             }
-            
-
         }
     }
 }   

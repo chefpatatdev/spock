@@ -8,6 +8,7 @@ using Android.Widget;
 using SpockApp.src;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using static Android.Renderscripts.ScriptGroup;
@@ -21,9 +22,9 @@ namespace SpockApp
         static EditText input ;
         static ListView list;
         static ListViewAdapterMeasure adapter;
-        static Context context;
+        static Context context; 
         static string[] Filter { get; set; } = { "scalar", "sensor", "date", "time before", "time after", "value bigger", "value smaller", "all" };
-        static string[] Sensornames { get; set; } = { "" };
+        static string[] Sensornames { get; set; } = { "USsensor" };
         static string[,] SensorData { get; set; } = new string[4, 100];//{ { "4cm", "100cm", "53cm", "13cm", "1" }, { "afstand1", "afstand2", "afst3", "afst4", "1" }, { "sens1", "sens2", "sens3", "sens4", "1" }, { "1 januari", "2januari", "3 febr", "6 december", "16 decemberrrrrrr" } };
 
         string SensorSelected { get; set; }
@@ -34,6 +35,7 @@ namespace SpockApp
             base.OnCreate(savedInstanceState);
 
             // Create your application here
+
             SetContentView(Resource.Layout.manual_measurement_screen);
             input = FindViewById<EditText>(Resource.Id.filter_input);
 
@@ -43,8 +45,8 @@ namespace SpockApp
             string[] listlength = new string[SensorData.GetLength(1)];
             InitializeStringArray(listlength);
 
-            adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
             context = ApplicationContext;
+            adapter = new ListViewAdapterMeasure(this, SensorData, listlength);
 
 
             InitializeSpinners(Filter, Sensornames);
@@ -62,6 +64,7 @@ namespace SpockApp
 
 
         }
+        
         private void Fil_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -88,7 +91,22 @@ namespace SpockApp
             }
 
         }
+        private bool IsDate(string date)
+        {
+            if(FilterSelected != "date") return false;
+            if(date.Split("-").Length != 3) return false;
 
+            return DateTime.TryParseExact(date,"yyyy-mm-dd" , new CultureInfo("en-US"),
+                                   DateTimeStyles.None, out _);
+        }
+        private bool IsTime(string time)
+        {
+            if (FilterSelected != "time before" || FilterSelected != "time after") return false;
+            if (time.Split(":").Length != 3) return false;
+
+            return TimeSpan.TryParse(time, out _);
+        }
+        //functie om lijst met metingen aan te vragen en terug te krijgen
         private void RequestMeasurements()
         {
             string input_text = input.Text.ToString();
@@ -98,37 +116,61 @@ namespace SpockApp
                 Toast.MakeText(this, "Enter Something", ToastLength.Short).Show();
                 UpdateListView();
             }
-            else if (int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected != "value smaller")))
+            else if (!int.TryParse(input_text, out _) && (FilterSelected == "value bigger" || (FilterSelected == "value smaller")))
             {
                 Toast.MakeText(this, "Enter an Integer", ToastLength.Short).Show();
                 UpdateListView();
             }
+            else if (IsDate(input_text))
+            {
+                Toast.MakeText(this, "Enter a correct date: yyyy-mm-dd", ToastLength.Short).Show();
+                UpdateListView();
+            }
+            else if (IsTime(input_text))
+            {
+                Toast.MakeText(this, "Enter a correct time: 00:00:00", ToastLength.Short).Show();
+                UpdateListView();
+            }
             else
             {
-
+                string done = "";
                 string measurements = SocketClass.Sendmessage("r_filter," + FilterSelected + "," + input_text);
+                int index = 1;
 
-                if (measurements == null)
+
+                while (done != "done")
                 {
-                    ErrorHandling();
-                }
-                else
-                {
-                    string[] measurements_list = measurements.Split(",");
-                    for (int i = 0; i < SensorData.GetLength(1); i++)
+                    done = SocketClass.Sendmessage("r_filteri," + index.ToString());
+                    measurements += done;
+                    index++;
+                    if (done == null)
                     {
+                        ErrorHandling();
+                    }
+          
+                }
+                string[] measurements_list = measurements.Split(",");
+                for (int i = 0; i < SensorData.GetLength(1); i++)
+                {
+                    if (measurements_list[SensorData.GetLength(0) * i + i] == "done") break;
 
-                        for (int j = 0; j < SensorData.GetLength(0); j++)
-                        {
-                            if (measurements_list[SensorData.GetLength(0) * i + j] == ";") break;
-                            SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + j];
-                            if (j == 2 && FilterSelected == "all") Sensornames[i] = SensorData[j, i];
-                        }
-                        if (measurements_list[SensorData.GetLength(0) * i + 1] == " ") break;
-
+                    for (int j = 0; j < SensorData.GetLength(0); j++)
+                    {
+                        if (measurements_list[SensorData.GetLength(0) * i + i + j] == ";") break;
+                        SensorData[j, i] = measurements_list[SensorData.GetLength(0) * i + i + j];
+                        if (j == 2 && FilterSelected == "all" && !InArray(Sensornames, SensorData[j, i])) Sensornames[i] = SensorData[j, i];
                     }
                 }
+
             }
+        }
+        private bool InArray(string[] array, string item)
+        {
+            foreach (string s in array)
+            {
+                if (s == item) return true;
+            }
+            return false;
         }
         private void Btn_Touch(object sender, View.TouchEventArgs e)
         {
@@ -137,10 +179,11 @@ namespace SpockApp
             {
                 case MotionEventActions.Down:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
-                    RequestManualMeasure();
                     break;
                 case MotionEventActions.Up:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_unpressed);
+                    RequestManualMeasure();
+                    UpdateListView();
                     break;
                 default:
                     btn.SetBackgroundResource(Resource.Drawable.live_upbutton_pressed);
