@@ -64,6 +64,7 @@ namespace SpockApp
 
 
         }
+        
         private void Fil_Touch(object sender, View.TouchEventArgs e)
         {
             Button btn = (Button)sender;
@@ -105,6 +106,7 @@ namespace SpockApp
 
             return TimeSpan.TryParse(time, out _);
         }
+        //functie om lijst met metingen aan te vragen en terug te krijgen
         private void RequestMeasurements()
         {
             string input_text = input.Text.ToString();
